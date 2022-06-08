@@ -8,6 +8,13 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"baseUrl": ".",
+		"paths": {
+			"@lib": ["src/lib"],
+			"@components": ["src/lib/components"],
+			"@data": ["src/lib/data"],
+			"@functions": ["src/lib/functions"]
+		}
 	}
 }
