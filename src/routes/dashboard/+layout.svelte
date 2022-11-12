@@ -2,8 +2,8 @@
     import { onMount } from "svelte";
     import "$assets/css/reset.css";
     import { sessionLoaded } from "$store/default";
-    import Loading from "$icons/Loading.svelte";
     import Dashboard from "$lib/components/common/dashboard/Dashboard.svelte";
+	import LoadingScreen from "$components/common/LoadingScreen.svelte";
 
     onMount(() => {
         sessionLoaded.set(true);
@@ -11,10 +11,7 @@
 </script>
 
 {#if !$sessionLoaded}
-    <div class="loading">
-        <h1>Loading</h1>
-        <Loading size="{72}" />
-    </div>
+    <LoadingScreen />
 {/if}
 
 <template>
