@@ -4,15 +4,15 @@
     import {onMount} from "svelte";
 
     let inviewOptions = {
-        unobserveOnEnter: true
+        unobserveOnEnter: false
     }
 
     let totalDelta = 0;
-    let currentTarget = null;
 
     let currentCard = null;
     let allChildCards = [];
     let currentCardIndex = 0;
+    let cardFlowFinished = false;
 
     function registerChildCard(card) {
         allChildCards.push(card);
@@ -23,15 +23,20 @@
 
         // scroll to the parent
         event.target.parentElement.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
-        currentTarget = event.target;
-
+        if (cardFlowFinished) {
+            currentCard.style.right = "-350px";
+            currentCard.style.left = "";
+        } else {
+            currentCard.style.left = "-350px";
+            currentCard.style.right = "";
+        }
+        currentCard.style.display = "flex";
         document.addEventListener("wheel", onScroll);
     }
 
     function unlockCard() {
         document.removeEventListener("wheel", onScroll);
         document.body.style.overflowY = "scroll";
-        currentCard.parentNode.removeChild(currentCard);
     }
 
     function onScroll(event) {
@@ -42,23 +47,39 @@
         // }
 
         // when the card is scrolled out of the screen, remove it
-        if (totalDelta > window.innerWidth + 350 || totalDelta < -window.innerWidth) {
-            // unlockCard();
-            switchCardContext(currentCardIndex);
+        if (totalDelta > window.innerWidth + 350) {
+            switchCardContext(currentCardIndex, false);
+        } else if (totalDelta < -window.innerWidth - 350) {
+            switchCardContext(currentCardIndex, true);
         }
     }
 
-    function switchCardContext(index)
-    {
-        console.log(allChildCards.length);
+    function switchCardContext(index, reversed) {
         totalDelta = 0;
-        currentCard.parentNode.removeChild(currentCard);
-
-        if (index < allChildCards.length - 1) {
-            currentCardIndex++;
+        if (reversed) {
+            index = allChildCards.length - 1 - index;
+        }
+        if (index < allChildCards.length - 1 && index >= 0) {
+            if (reversed) {
+                currentCardIndex--;
+            } else {
+                currentCardIndex++;
+            }
             currentCard = allChildCards[currentCardIndex];
+            if (reversed) {
+                currentCard.style.right = "-350px";
+                currentCard.style.left = "";
+            } else {
+                currentCard.style.left = "-350px";
+                currentCard.style.right = "";
+            }
         } else {
-            currentCardIndex = 0;
+            if (!reversed) {
+                currentCardIndex = index;
+            } else {
+                currentCardIndex = 0;
+            }
+            cardFlowFinished = !cardFlowFinished;
             unlockCard();
         }
     }
@@ -69,8 +90,7 @@
             await new Promise(resolve => setTimeout(resolve, 100));
         }
         currentCard = allChildCards[0];
-        for (let card of allChildCards)
-        {
+        for (let card of allChildCards) {
             card.style.left = "-350px";
         }
     })
@@ -114,7 +134,7 @@
       align-items: center;
       justify-content: center;
 
-      .cardWrapper{
+      .cardWrapper {
         position: absolute;
         width: auto;
         height: auto;
