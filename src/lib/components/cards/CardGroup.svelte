@@ -1,7 +1,7 @@
 <script lang="ts">
     import {inview} from 'svelte-inview';
     import {onMount} from "svelte";
-    import ExampleCard from "./Card.svelte";
+    import Card from "./Card.svelte";
 
     let inviewOptions = {
         unobserveOnEnter: false
@@ -93,13 +93,13 @@
 <div class="container">
     <div class="cardGroup">
         <div class="cardWrapper" bind:this={allChildCards[0]}>
-            <ExampleCard name="1" bgColor="red"/>
+            <Card name="1" bgColor="red"/>
         </div>
         <div class="cardWrapper" bind:this={allChildCards[1]}>
-            <ExampleCard name="2" bgColor="green"/>
+            <Card name="2" bgColor="green"/>
         </div>
         <div class="cardWrapper" bind:this={allChildCards[2]}>
-            <ExampleCard name="3" bgColor="blue"/>
+            <Card name="3" bgColor="blue"/>
         </div>
         <div class="onViewTriggerPoint" use:inview={inviewOptions} on:enter={(a) => lockCard(a)}></div>
     </div>
