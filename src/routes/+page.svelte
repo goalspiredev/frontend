@@ -1,5 +1,6 @@
 <script>
 	import Flag from "$icons/Flag.svelte";
+    import CardGroup from "$lib/components/cards/CardGroup.svelte";
 </script>
 <div>
     <h1>

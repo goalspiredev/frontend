@@ -1,5 +1,5 @@
 <script lang="ts">
-    import CardGroup from "../../../lib/components/cards/CardGroup.svelte";
+    import CardGroup from "../../lib/components/cards/CardGroup.svelte";
 </script>
 
 <div>
