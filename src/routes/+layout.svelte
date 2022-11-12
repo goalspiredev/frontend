@@ -1,5 +1,6 @@
 <script lang="ts">
-    import Navbar from "$lib/components/common/navbar/Navbar.svelte";
+    import "$assets/css/reset.css";
+    import Navbar from "$components/common/navbar/Navbar.svelte";
 </script>
 
 <template>

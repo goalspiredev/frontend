@@ -1,12 +1,7 @@
-<script>
-	import Flag from '$icons/Flag.svelte';
-</script>
-
 <div>
 	<h1>Site is being built</h1>
 	<img src="https://c.tenor.com/58DNSt-Lvw0AAAAd/corgi-computer.gif" alt="corgi pc gif" />
 	<h1>Check back soon!</h1>
-	<Flag color="red" size={24} />
 </div>
 
 <style scoped lang="scss">
