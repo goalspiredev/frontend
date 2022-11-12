@@ -1,6 +1,6 @@
 <script lang="ts">
     import { IsLoggedIn } from '$utils/User';
-    import navbarLinks from '../../../../assets/navbarLinks.json';
+    import navbarLinks from '$assets/navbarLinks.json';
 
     export let show: boolean;
 
@@ -11,7 +11,7 @@
 
 <div class="menu { show ? 'show' : 'hidden'}">
 	{#each links as link}
-        <a href={link.url}>{link.name}</a>
+        <a href={link.url} on:click={() => show = false}>{link.name}</a>
         <div />
     {/each}
 </div>
