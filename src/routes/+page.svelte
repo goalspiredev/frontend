@@ -1,3 +1,6 @@
+<script>
+	import Flag from "$icons/Flag.svelte";
+</script>
 <div>
     <h1>
         Site is being built
@@ -6,6 +9,7 @@
     <h1>
         Check back later
     </h1>
+    <Flag color="red" size="{24}" />
 </div>
 
 <style scoped lang="scss">
