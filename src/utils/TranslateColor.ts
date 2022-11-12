@@ -1,14 +1,7 @@
-import type { ColorName } from './Types'
+import { Color } from './types'
 
 export function TranslateColor(color: string): string {
   return colors.find((c) => c.name === color)?.value || '#000000';
-}
-
-export class Color {
-  constructor(public name: ColorName, public value: string) {
-    this.name = name
-    this.value = value
-  }
 }
 
 const colors = [
