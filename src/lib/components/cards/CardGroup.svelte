@@ -1,12 +1,11 @@
 <script lang="ts">
     import {inview} from 'svelte-inview';
-    import ExampleCard from "../../lib/components/cards/ExampleCard.svelte";
     import {onMount} from "svelte";
+    import ExampleCard from "./Card.svelte";
 
     let inviewOptions = {
         unobserveOnEnter: false
     }
-
     let totalDelta = 0;
 
     let currentCard = null;
@@ -14,14 +13,9 @@
     let currentCardIndex = 0;
     let cardFlowFinished = false;
 
-    function registerChildCard(card) {
-        allChildCards.push(card);
-    }
-
     function lockCard(event) {
         document.body.style.overflow = "hidden";
-
-        // scroll to the parent
+        // scroll to the parent. TODO: This is causing browser issues.
         event.target.parentElement.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
         if (cardFlowFinished) {
             currentCard.style.right = "-350px";
@@ -97,9 +91,7 @@
 </script>
 
 <div class="container">
-    <div class="card2">
-    </div>
-    <div class="card1">
+    <div class="cardGroup">
         <div class="cardWrapper" bind:this={allChildCards[0]}>
             <ExampleCard name="1" bgColor="red"/>
         </div>
@@ -111,7 +103,6 @@
         </div>
         <div class="onViewTriggerPoint" use:inview={inviewOptions} on:enter={(a) => lockCard(a)}></div>
     </div>
-    <div class="card2"></div>
 </div>
 
 <style lang="scss">
@@ -123,7 +114,7 @@
     //gap: 100px;
     width: 100vw;
 
-    .card1 {
+    .cardGroup {
       background-color: black;
       width: 100%;
       height: 100vh;
@@ -141,7 +132,6 @@
       }
 
       .onViewTriggerPoint {
-        // In the middle of the card, not affecting any other elements
         position: absolute;
         top: 97%;
         left: 50%;
@@ -149,21 +139,5 @@
         height: 1px;
       }
     }
-
-    .card2 {
-      background-color: blue;
-      width: 100%;
-      height: 100vh;
-
-      .onViewTriggerPoint {
-        // In the middle of the card, not affecting any other elements
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 1px;
-        height: 1px;
-      }
-    }
   }
-
 </style>
