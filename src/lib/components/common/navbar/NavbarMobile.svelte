@@ -1,6 +1,6 @@
 <script lang="ts">
 	import NavbarMobileMenu from './NavbarMobileMenu.svelte';
-
+  
 	let showMenu: boolean = false;
 
 	function toggleMenu(type: 'click' | 'key', e: KeyboardEvent = new KeyboardEvent('')) {

@@ -1,6 +1,7 @@
 <script>
     import CardGroup from "$lib/components/cards/CardGroup.svelte";
 </script>
+
 <div>
 	<h1>Site is being built</h1>
 	<img src="https://c.tenor.com/58DNSt-Lvw0AAAAd/corgi-computer.gif" alt="corgi pc gif" />
