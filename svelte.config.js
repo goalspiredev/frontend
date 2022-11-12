@@ -16,6 +16,7 @@ const config = {
 			$stores: './src/stores/*',
 			$utils: './src/utils/*',
 			$icons: './src/icons/*',
+			$assets: './src/assets/*',
 		},
 	}
 };
