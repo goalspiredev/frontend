@@ -3,6 +3,7 @@
     import PasswordInput from '../PasswordInput.svelte';
     import Checkbox from '../Checkbox.svelte';
     import Button from '../Button.svelte';
+    import { validateEmail, validatePassword, validateUsername } from "../../../../utils/validate.util";
 
     let email: string = '';
     let password: string = '';
@@ -11,19 +12,11 @@
     export let onSubmitCallback: (email: string, password: string, rememberMe: boolean) => void;
 
     function onSubmit() {
-        if (!validateEmail(email) || !validatePassword(password)) {
+        if (!validateEmail(email) || !validatePassword(password) || !validateUsername(email)) {
+            // TODO: show error
             return;
         }
         onSubmitCallback(email, password, rememberMe);
-    }
-
-    // TODO: Validate this using Regex
-    function validateEmail(email: string) {
-        return email.includes('@') && email.includes('.') && email != '';
-    }
-
-    function validatePassword(password: string) {
-        return password != '';
     }
 
 </script>
