@@ -6,16 +6,29 @@
     export let placeholderText: string;
 
     let passwordShown = false;
+    let passwordInput = null;
+
+    function togglePasswordVisibility() {
+        console.log("ya");
+        passwordShown = !passwordShown;
+
+        if (passwordShown) {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+
 </script>
 
 <div class="passwordInput">
-    <input type="password" name="password" id="password" placeholder={placeholderText} bind:value/>
+    <input type="password" name="password" id="password" placeholder={placeholderText} bind:value bind:this={passwordInput}/>
     {#if !passwordShown}
-        <a on:click={() => passwordShown = !passwordShown} href="">
+        <a on:click={togglePasswordVisibility} href="">
             <Eye/>
         </a>
     {:else}
-        <a on:click={() => passwordShown = !passwordShown} href="">
+        <a on:click={togglePasswordVisibility} href="">
             <EyeDashed/>
         </a>
     {/if}
@@ -24,7 +37,7 @@
 <style lang="scss">
   .passwordInput {
     width: 300px;
-    height: 50px;
+    min-height: 50px;
     position: relative;
 
     border: 1px solid #ccc;

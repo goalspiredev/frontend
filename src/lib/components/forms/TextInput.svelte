@@ -11,7 +11,7 @@
 <style lang="scss">
   .textInput {
     width: 300px;
-    height: 50px;
+    min-height: 50px;
 
     border: 1px solid #ccc;
     border-radius: 5px;

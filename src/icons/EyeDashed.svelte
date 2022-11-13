@@ -1,8 +1,8 @@
 <script lang="ts">
     import type {ColorName} from '$goalspire/types';
-    import {TranslateColor} from '$utils/TranslateColor';
+    // import {TranslateColor} from '$utils/TranslateColor';
 
-    export let color: ColorName = 'black';
+    // export let color: ColorName = 'black';
     export let size: number = 16;
 </script>
 
