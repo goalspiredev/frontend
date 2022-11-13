@@ -17,9 +17,9 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.navbar-container {
-		position: relative;
+		position: absolute;
 		width: 100vw;
 		display: flex;
 		flex-direction: row;
