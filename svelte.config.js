@@ -17,6 +17,7 @@ const config = {
 			$utils: './src/utils/*',
 			$icons: './src/icons/*',
 			$assets: './src/assets/*',
+			$goalspire: './src/@goalspire/*',
 		},
 	}
 };

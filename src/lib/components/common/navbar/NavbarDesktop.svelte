@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { IsLoggedIn } from '$utils/User';
 	import navbarLinks from '$assets/navbarLinks.json';
 
-	let isUserLoggedIn: boolean = IsLoggedIn();
+	let isUserLoggedIn: boolean = false;
 
 	const links = isUserLoggedIn ? navbarLinks.main.loggedIn : navbarLinks.main.loggedOut;
 </script>

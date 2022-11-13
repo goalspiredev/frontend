@@ -1,4 +1,4 @@
-import type { ColorName } from './Types'
+import type { ColorName } from '$goalspire/types';
 
 export function TranslateColor(color: string): string {
   return colors.find((c) => c.name === color)?.value || '#000000';
