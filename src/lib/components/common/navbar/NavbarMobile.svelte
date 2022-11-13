@@ -23,10 +23,10 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.navbar-container {
 		z-index: 10;
-		position: relative;
+		position: absolute;
 		width: 100vw;
 		padding: 1rem;
 		display: flex;
