@@ -34,12 +34,11 @@
     .form {
       border-radius: 8px;
       width: 60%;
-      height: 80%;
-      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+      min-height: 80%;
 
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 20px;
       align-items: center;
 
