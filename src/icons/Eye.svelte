@@ -1,0 +1,14 @@
+<script lang="ts">
+	import type { ColorName } from '$goalspire/types';
+	import { TranslateColor } from '$utils/TranslateColor';
+
+	export let color: ColorName = 'black';
+	export let size: number = 16;
+</script>
+
+<svg viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: {size}px; height: {size}px;">
+	<path
+		d="M14.6667 0C8 0 2.30667 4.14667 0 10C2.30667 15.8533 8 20 14.6667 20C21.3333 20 27.0267 15.8533 29.3333 10C27.0267 4.14667 21.3333 0 14.6667 0ZM14.6667 16.6667C10.9867 16.6667 8 13.68 8 10C8 6.32 10.9867 3.33333 14.6667 3.33333C18.3467 3.33333 21.3333 6.32 21.3333 10C21.3333 13.68 18.3467 16.6667 14.6667 16.6667ZM14.6667 6C12.4533 6 10.6667 7.78667 10.6667 10C10.6667 12.2133 12.4533 14 14.6667 14C16.88 14 18.6667 12.2133 18.6667 10C18.6667 7.78667 16.88 6 14.6667 6Z"
+		fill={TranslateColor(color)}
+	/>
+</svg>

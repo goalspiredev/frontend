@@ -17,6 +17,7 @@
 
 <style lang="scss" scoped>
     .menu {
+        z-index: 9;
         position: fixed;
         top: 0;
         left: 0;
