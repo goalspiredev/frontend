@@ -12,8 +12,8 @@
         <TextInput placeholderText="Your email"/>
         <PasswordInput placeholderText="Your password"/>
         <PasswordInput placeholderText="Confirm password"/>
-        <SelectInput/>
-        <SelectInput/>
+        <SelectInput content="I agree with ToS"/>
+        <SelectInput content="Send newsletter"/>
         <button class="btn">Register</button>
         <p>Already registered? <span>Login</span> here.</p>
     </div>
