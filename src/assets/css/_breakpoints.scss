@@ -1,0 +1,31 @@
+/* Breakpoints */
+
+@mixin br-sm {
+	@media screen and (min-width: 640px) {
+		@content;
+	}
+}
+
+@mixin br-md {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}
+
+@mixin br-lg {
+	@media screen and (min-width: 1024px) {
+		@content;
+	}
+}
+
+@mixin br-xl {
+	@media screen and (min-width: 1280px) {
+		@content;
+	}
+}
+
+@mixin br-2xl {
+	@media screen and (min-width: 1536px) {
+		@content;
+	}
+}

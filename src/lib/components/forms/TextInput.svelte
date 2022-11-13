@@ -1,28 +1,31 @@
 <script lang="ts">
-    export let placeholderText: string;
-    export let value: string;
+	export let value: string = '';
 </script>
 
-
 <div class="textInput">
-    <input type="text" bind:value placeholder={placeholderText} />
+	<label for="">
+		<slot />
+	</label>
+	<input type="text" bind:value />
 </div>
 
 <style lang="scss">
-  .textInput {
-    width: 300px;
-    min-height: 50px;
+	.textInput {
+		max-width: 480px;
+		width: 100%;
+		min-width: 300px;
+		height: 48px;
 
-    border: 1px solid #ccc;
-    border-radius: 5px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-    input{
-      width: 100%;
-      padding: 0 10px;
-    }
-  }
+		input {
+			width: 100%;
+			padding: 0 10px;
+		}
+	}
 </style>

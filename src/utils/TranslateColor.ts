@@ -20,7 +20,7 @@ const colors = [
   new Color('purple', '#9c27b0'),
   new Color('pink', '#e91e63'),
   new Color('brown', '#795548'),
-  new Color('grey', '#9e9e9e'),
+  new Color('gray', '#454545'),
   new Color('black', '#000000'),
   new Color('white', '#ffffff'),
   new Color('transparent', 'transparent')

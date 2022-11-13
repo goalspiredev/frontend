@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import "$assets/css/reset.css";
+    import "$assets/css/_breakpoints.scss";
     import { sessionLoaded } from "$store/default";
     import Dashboard from "$lib/components/common/dashboard/Dashboard.svelte";
 	import LoadingScreen from "$components/common/LoadingScreen.svelte";
