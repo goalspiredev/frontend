@@ -1,0 +1,26 @@
+{
+  "current": {
+    "versionNumber": "1.0.0",
+    "date": "2018-01-04",
+    "changes": [
+      "Initial release"
+    ]
+  },
+  "history": [
+    {
+      "versionNumber": "0.0.9",
+      "date": "2018-01-02",
+      "changes": [
+        "Prepare something"
+      ]
+    },
+    {
+      "versionNumber": "0.0.8",
+      "date": "2018-01-01",
+      "changes": [
+        "Fixed a bug"
+      ]
+    }
+  ],
+  "inherit": true
+}
