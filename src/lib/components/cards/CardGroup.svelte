@@ -6,6 +6,9 @@
     let inviewOptions = {
         unobserveOnEnter: false
     }
+
+    let triggerPoint = null;
+
     let totalDelta = 0;
 
     let currentCard = null;
@@ -13,10 +16,15 @@
     let currentCardIndex = 0;
     let cardFlowFinished = false;
 
+    let currentLock = null;
+
+    // above or under
+    let currentState = "above";
+
     function lockCard(event) {
         document.body.style.overflow = "hidden";
-        // scroll to the parent. TODO: This is causing browser issues.
-        event.target.parentElement.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+        currentLock = setInterval(() => event.target.parentElement.scrollIntoView({behavior: "auto", block:"center"}), 10);
+
         if (cardFlowFinished) {
             currentCard.style.right = "-350px";
             currentCard.style.left = "";
@@ -25,12 +33,21 @@
             currentCard.style.right = "";
         }
         currentCard.style.display = "flex";
-        document.addEventListener("wheel", onScroll);
+        document.addEventListener("wheel", onScroll, {passive: false});
     }
 
     function unlockCard() {
         document.removeEventListener("wheel", onScroll);
+        clearInterval(currentLock);
         document.body.style.overflowY = "scroll";
+        currentState = currentState === "above" ? "under" : "above";
+
+        if (currentState == "under")
+        {
+            triggerPoint.style.top = "3%";
+        } else {
+            triggerPoint.style.top = "97%";
+        }
     }
 
     function onScroll(event) {
@@ -91,7 +108,7 @@
 </script>
 
 <div class="container">
-    <div class="cardGroup">
+    <div class="cardGroup" id="group">
         <div class="cardWrapper" bind:this={allChildCards[0]}>
             <Card name="1" bgColor="red"/>
         </div>
@@ -101,7 +118,7 @@
         <div class="cardWrapper" bind:this={allChildCards[2]}>
             <Card name="3" bgColor="blue"/>
         </div>
-        <div class="onViewTriggerPoint" use:inview={inviewOptions} on:enter={(a) => lockCard(a)}></div>
+        <div class="onViewTriggerPoint" use:inview={inviewOptions} on:enter={(a) => lockCard(a)} bind:this={triggerPoint}></div>
     </div>
 </div>
 
