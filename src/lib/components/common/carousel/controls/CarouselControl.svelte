@@ -1,38 +1,38 @@
 <script lang="ts">
-    import {createEventDispatcher} from "svelte";
+	import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
+	export let activated: boolean = false;
 
-    let self: HTMLElement;
+	const dispatch = createEventDispatcher();
 
-    export function change(isSelected: boolean) {
-        if (isSelected) {
-            self.style.backgroundColor = "#FFFFFF";
-            self.style.width = "4rem";
-        } else {
-            self.style.backgroundColor = "#CCCCCC";
-            self.style.width = "2rem";
-        }
-    }
-
-    function onClick() {
-        dispatch("onSelected");
-    }
+	function handleClick() {
+		dispatch('click');
+	}
 </script>
 
-<a href="" on:click={onClick}>
-    <div class="control" bind:this={self}>
-    </div>
-</a>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div on:click={handleClick}>
+	<div class="control {activated ? 'yes' : 'no'}" />
+</div>
 
 <style lang="scss">
-  a {
-    .control {
-      width: 2rem;
-      height: 1rem;
-      border-radius: 10px;
-      background-color: #CCCCCC;
-      transition: all 0.15s ease-in-out;
-    }
-  }
+	div {
+		.control {
+			width: 2rem;
+			height: 0.8rem;
+			border-radius: 10px;
+			background-color: #cccccc;
+			transition: all 0.15s ease-in-out;
+		}
+
+		.yes {
+			background-color: #ffffff;
+			width: 3.5rem;
+		}
+
+		.no {
+			background-color: #cccccc;
+			width: 1.8rem;
+		}
+	}
 </style>

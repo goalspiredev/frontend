@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let text: string[] = [];
+    export let text: string[] = [ 'Default', 'Text' ];
     export let eraseInterval: number = 50;
     export let typeInterval: number = 200;
     export let waitInterval: number = 1000;
