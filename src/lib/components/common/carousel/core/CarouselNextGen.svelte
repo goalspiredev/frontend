@@ -1,19 +1,37 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import CarouselControl from '../controls/CarouselControl.svelte';
 
 	export let images: string[] = ['images/1.svg', 'images/2.svg', 'images/3.svg'];
 
 	let currentImage: number = 0;
+
+	let image: HTMLImageElement;
+
+	onMount(() => {
+		setInterval(() => {
+			handleClick((currentImage + 1) % images.length);
+		}, 5000);
+	});
+
+	function handleClick(i: number) {
+		image.style.opacity = '0';
+		setTimeout(() => {
+			image.style.opacity = '0.75';
+			currentImage = i;
+		}, 400);
+	}
 </script>
 
 <div class="carousel">
-	<img src={images[currentImage]} alt="carousel_image" />
+	<img bind:this={image} src={images[currentImage]} alt="carousel_image" />
 	<div class="content">
 		<slot />
 	</div>
 	<div class="controls">
 		{#each images as image, i}
-			<CarouselControl on:click={() => (currentImage = i)} activated={i === currentImage} />
+			<CarouselControl on:click={() => handleClick(i)} activated={i === currentImage} />
 		{/each}
 	</div>
 </div>
@@ -22,11 +40,13 @@
 	.carousel {
 		width: 100%;
 		height: 100vh;
+		overflow: hidden;
 
 		img {
 			width: 100%;
-			height: 100%;
+			height: 100vh;
 			object-fit: cover;
+			transition: all 0.4s ease-in-out;
 		}
 	}
 

@@ -26,15 +26,35 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			text-align: center;
+			padding: 0 1rem 15rem 1rem;
+
+			overflow-x: hidden;
 
 			font-family: 'Comfortaa', sans-serif;
-			font-size: 5rem;
+			font-size: 3rem;
 			font-weight: 800;
 			line-height: normal;
 
+			@include br-md {
+				font-size: 3.5rem;
+			}
+
+			@include br-lg {
+				font-size: 5rem;
+			}
+
 			h1 {
-				font-size: 6rem;
+				font-size: 3rem;
 				font-weight: 400;
+
+				@include br-md {
+					font-size: 4rem;
+				}
+
+				@include br-lg {
+					font-size: 6rem;
+				}
 			}
 		}
 	}

@@ -17,6 +17,8 @@
 
 <style lang="scss">
 	div {
+		cursor: pointer;
+
 		.control {
 			width: 2rem;
 			height: 0.8rem;
