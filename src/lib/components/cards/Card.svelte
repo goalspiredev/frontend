@@ -4,7 +4,7 @@
 </script>
 
 <div class="card" style="background-image: {image}">
-    <img src="{image}" alt="">
+    <img src={image} alt="">
     <p>{@html text}</p>
 </div>
 

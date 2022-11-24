@@ -8,10 +8,7 @@
         text: string;
     };
 
-    export let cardsContent: CardContent[] = [
-        {image: "https://picsum.photos/200/300", text: "Card 1"},
-        {image: "https://picsum.photos/200/300", text: "Card 2"},
-    ];
+    export let cardsContent: CardContent[] = [];
 
     let inviewOptions = {
         unobserveOnEnter: false
