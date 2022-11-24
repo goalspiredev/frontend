@@ -20,6 +20,7 @@
 <style lang="scss" scoped>
 	.navbar-container {
 		position: absolute;
+		z-index: 8;
 		width: 100vw;
 		display: flex;
 		flex-direction: row;

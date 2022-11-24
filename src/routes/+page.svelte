@@ -1,35 +1,60 @@
-<div>
-	<h1>Site is being built</h1>
-	<img src="https://c.tenor.com/58DNSt-Lvw0AAAAd/corgi-computer.gif" alt="corgi pc gif" />
-	<h1>Check back soon!</h1>
+<script lang="ts">
+	import CarouselNextGen from '$components/common/carousel/core/CarouselNextGen.svelte';
+	import WritingEffect from '$components/common/WritingEffect.svelte';
+
+	const text: string[] = ['discipline.', 'hard work.', 'dedication.', 'perseverance.'];
+</script>
+
+<div class="landing-wrap">
+	<CarouselNextGen>
+		<div>
+			<h1>
+				It is about
+			</h1>
+			<WritingEffect {text} />|
+		</div>
+	</CarouselNextGen>
 </div>
 
-<style scoped lang="scss">
-	div {
-		height: 100vh;
+<style lang="scss" scoped>
+	.landing-wrap {
 		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
+		height: 100vh;
 
-		font-family: 'Comfortaa', sans-serif;
+		div	{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 0 1rem 15rem 1rem;
 
-		h1 {
-			font-size: 1.75rem;
+			overflow-x: hidden;
+
+			font-family: 'Comfortaa', sans-serif;
+			font-size: 3rem;
 			font-weight: 800;
+			line-height: normal;
 
-			@media screen and (min-width: 768px) {
-				font-size: 2.5rem;
+			@include br-md {
+				font-size: 3.5rem;
 			}
-		}
 
-		img {
-			width: 16rem;
+			@include br-lg {
+				font-size: 5rem;
+			}
 
-			@media screen and (min-width: 768px) {
-				width: 24rem;
+			h1 {
+				font-size: 3rem;
+				font-weight: 400;
+
+				@include br-md {
+					font-size: 4rem;
+				}
+
+				@include br-lg {
+					font-size: 6rem;
+				}
 			}
 		}
 	}
