@@ -1,19 +1,11 @@
 <script lang="ts">
-    import {TranslateColor} from "../../../utils/TranslateColor";
-    import {onMount} from "svelte";
-
-    export let name: string;
-    export let bgColor: string;
-
-    let color: string;
-
-    onMount(() => {
-        color = TranslateColor(bgColor);
-    });
+    export let text: string;
+    export let image: string;
 </script>
 
-<div class="card" style="background-color: {color}">
-    <p>{name}</p>
+<div class="card" style="background-image: {image}">
+    <img src={image} alt="">
+    <p>{@html text}</p>
 </div>
 
 
@@ -24,17 +16,50 @@
     padding: 1rem;
     margin: 1rem;
 
-    width: 300px;
-    height: 250px;
+    width: 800px;
+    height: 350px;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    flex-direction: row;
+
+    background-color: white;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+
+      //shadow
+      box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.35);
+    }
 
     p {
-      font-size: 5rem;
+      width: 100%;
+      font-size: 1.5rem;
+      font-weight: 200;
+      color: black;
+      font-family: Comfortaa, sans-serif;
+      padding-left: 3rem;
+
+
+      text-align: left;
+    }
+
+    p :global(b) {
       font-weight: 900;
-      color: white;
+      font-family: Comfortaa, sans-serif;
+    }
+
+    p :global(i) {
+      font-style: italic;
+    }
+
+    p :global(span)
+    {
+      color: #EB4F4F;
     }
   }
 </style>

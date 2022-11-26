@@ -1,35 +1,45 @@
 <script lang="ts">
-    import {inview} from 'svelte-inview';
+    import {inview, Options} from 'svelte-inview';
     import {onMount} from "svelte";
-    import Card from "./Card.svelte";
+    import Card from "$components/cards/Card.svelte";
 
-    let inviewOptions = {
+    type CardContent = {
+        image: string;
+        text: string;
+    };
+
+    export let cardsContent: CardContent[] = [];
+
+    let inviewOptions: Options = {
         unobserveOnEnter: false
     }
 
-    let triggerPoint = null;
+    let triggerPoint: HTMLElement = null;
 
-    let totalDelta = 0;
+    let totalDelta: number = 0;
+    let currentCard: HTMLElement = null;
+    let allChildCards: HTMLElement[] = [];
+    let currentCardIndex: number = 0;
+    let cardFlowFinished: boolean = false;
+    let currentLock: NodeJS.Timer = null;
 
-    let currentCard = null;
-    let allChildCards = [];
-    let currentCardIndex = 0;
-    let cardFlowFinished = false;
-
-    let currentLock = null;
+    let offsetConstant: number = 850;
 
     // above or under
-    let currentState = "above";
+    let currentState: string = "above";
 
     function lockCard(event) {
         document.body.style.overflow = "hidden";
-        currentLock = setInterval(() => event.target.parentElement.scrollIntoView({behavior: "auto", block:"center"}), 10);
+        currentLock = setInterval(() => event.target.parentElement.scrollIntoView({
+            behavior: "auto",
+            block: "center"
+        }), 10);
 
         if (cardFlowFinished) {
-            currentCard.style.right = "-350px";
+            currentCard.style.right = -offsetConstant + "px";
             currentCard.style.left = "";
         } else {
-            currentCard.style.left = "-350px";
+            currentCard.style.left = -offsetConstant + "px";
             currentCard.style.right = "";
         }
         currentCard.style.display = "flex";
@@ -42,8 +52,7 @@
         document.body.style.overflowY = "scroll";
         currentState = currentState === "above" ? "under" : "above";
 
-        if (currentState == "under")
-        {
+        if (currentState == "under") {
             triggerPoint.style.top = "3%";
         } else {
             triggerPoint.style.top = "97%";
@@ -53,14 +62,11 @@
     function onScroll(event) {
         totalDelta += event.deltaY;
         currentCard.style.transform = `translateX(${totalDelta}px)`;
-        // if (totalDelta > deltaLimits.down || totalDelta < deltaLimits.up) {
-        //    unlockCard();
-        // }
 
         // when the card is scrolled out of the screen, remove it
-        if (totalDelta > window.innerWidth + 350) {
+        if (totalDelta > window.innerWidth + offsetConstant) {
             switchCardContext(currentCardIndex, false);
-        } else if (totalDelta < -window.innerWidth - 350) {
+        } else if (totalDelta < -window.innerWidth - offsetConstant) {
             switchCardContext(currentCardIndex, true);
         }
     }
@@ -71,54 +77,43 @@
             index = allChildCards.length - 1 - index;
         }
         if (index < allChildCards.length - 1 && index >= 0) {
-            if (reversed) {
-                currentCardIndex--;
-            } else {
-                currentCardIndex++;
-            }
+            reversed ? currentCardIndex-- : currentCardIndex++;
             currentCard = allChildCards[currentCardIndex];
+
             if (reversed) {
-                currentCard.style.right = "-350px";
+                currentCard.style.right = -offsetConstant + "px";
                 currentCard.style.left = "";
             } else {
-                currentCard.style.left = "-350px";
+                currentCard.style.left = -offsetConstant + "px";
                 currentCard.style.right = "";
             }
         } else {
-            if (!reversed) {
-                currentCardIndex = index;
-            } else {
-                currentCardIndex = 0;
-            }
+            reversed ? currentCardIndex = 0 : currentCardIndex = index;
             cardFlowFinished = !cardFlowFinished;
             unlockCard();
         }
     }
 
     onMount(async () => {
-        //wait for currentCard to not be null
         while (allChildCards[0] === null) {
             await new Promise(resolve => setTimeout(resolve, 100));
         }
         currentCard = allChildCards[0];
         for (let card of allChildCards) {
-            card.style.left = "-350px";
+            card.style.left = -offsetConstant + "px";
         }
     })
 </script>
 
 <div class="container">
     <div class="cardGroup" id="group">
-        <div class="cardWrapper" bind:this={allChildCards[0]}>
-            <Card name="1" bgColor="red"/>
-        </div>
-        <div class="cardWrapper" bind:this={allChildCards[1]}>
-            <Card name="2" bgColor="green"/>
-        </div>
-        <div class="cardWrapper" bind:this={allChildCards[2]}>
-            <Card name="3" bgColor="blue"/>
-        </div>
-        <div class="onViewTriggerPoint" use:inview={inviewOptions} on:enter={(a) => lockCard(a)} bind:this={triggerPoint}></div>
+        {#each cardsContent as card, i}
+            <div class="cardWrapper" bind:this={allChildCards[i]}>
+                <Card text={card.text} image={card.image}/>
+            </div>
+        {/each}
+        <div class="onViewTriggerPoint" use:inview={inviewOptions} on:enter={(a) => lockCard(a)}
+             bind:this={triggerPoint}></div>
     </div>
 </div>
 
