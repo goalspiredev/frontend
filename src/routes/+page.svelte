@@ -1,6 +1,9 @@
 <script lang="ts">
 	import CarouselNextGen from '$components/common/carousel/core/CarouselNextGen.svelte';
 	import WritingEffect from '$components/common/WritingEffect.svelte';
+	import CardGroup from "$components/cards/CardGroup.svelte";
+	import ourVisionContent from "$assets/ourVisionContent.json";
+	import ourSolutionContent from "$assets/ourSolutionContent.json";
 
 	const text: string[] = ['discipline.', 'hard work.', 'dedication.', 'perseverance.'];
 </script>
@@ -14,6 +17,8 @@
 			<WritingEffect {text} />|
 		</div>
 	</CarouselNextGen>
+	<CardGroup cardsContent={ourVisionContent} />
+	<CardGroup cardsContent={ourSolutionContent} />
 </div>
 
 <style lang="scss" scoped>

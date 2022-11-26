@@ -1,16 +1,21 @@
 <script lang="ts">
-    import {inview, Options} from 'svelte-inview';
+    import {inview} from 'svelte-inview';
     import {onMount} from "svelte";
     import Card from "$components/cards/Card.svelte";
 
     type CardContent = {
-        image: string;
-        text: string;
+        title: string;
+        cards: CardData[];
     };
 
-    export let cardsContent: CardContent[] = [];
+    type CardData = {
+        image: string;
+        text: string;
+    }
 
-    let inviewOptions: Options = {
+    export let cardsContent: CardContent = null;
+
+    let inviewOptions = {
         unobserveOnEnter: false
     }
 
@@ -107,7 +112,8 @@
 
 <div class="container">
     <div class="cardGroup" id="group">
-        {#each cardsContent as card, i}
+        <h2>{cardsContent.title}</h2>
+        {#each cardsContent.cards as card, i}
             <div class="cardWrapper" bind:this={allChildCards[i]}>
                 <Card text={card.text} image={card.image}/>
             </div>
@@ -136,6 +142,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      h2{
+        color: white;
+        font-size: 3rem;
+        position: absolute;
+        top: 10%;
+
+        font-family: Comfortaa, sans-serif;
+      }
 
       .cardWrapper {
         position: absolute;

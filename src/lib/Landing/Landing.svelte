@@ -1,6 +1,5 @@
 <script lang="ts">
 	import WritingEffect from '$components/common/WritingEffect.svelte';
-
 	const text: string[] = ['discipline.', 'hard work.', 'dedication.', 'perseverance.'];
 </script>
 
