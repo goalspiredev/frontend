@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {inview} from 'svelte-inview';
+    import {inview, Options} from 'svelte-inview';
     import {onMount} from "svelte";
-    import Card from "./Card.svelte";
+    import Card from "$components/cards/Card.svelte";
 
     type CardContent = {
         image: string;
@@ -10,23 +10,23 @@
 
     export let cardsContent: CardContent[] = [];
 
-    let inviewOptions = {
+    let inviewOptions: Options = {
         unobserveOnEnter: false
     }
 
-    let triggerPoint = null;
+    let triggerPoint: HTMLElement = null;
 
-    let totalDelta = 0;
-    let currentCard = null;
-    let allChildCards = [];
-    let currentCardIndex = 0;
-    let cardFlowFinished = false;
-    let currentLock = null;
+    let totalDelta: number = 0;
+    let currentCard: HTMLElement = null;
+    let allChildCards: HTMLElement[] = [];
+    let currentCardIndex: number = 0;
+    let cardFlowFinished: boolean = false;
+    let currentLock: NodeJS.Timer = null;
 
-    let offsetConstant = 850;
+    let offsetConstant: number = 850;
 
     // above or under
-    let currentState = "above";
+    let currentState: string = "above";
 
     function lockCard(event) {
         document.body.style.overflow = "hidden";
@@ -77,12 +77,9 @@
             index = allChildCards.length - 1 - index;
         }
         if (index < allChildCards.length - 1 && index >= 0) {
-            if (reversed) {
-                currentCardIndex--;
-            } else {
-                currentCardIndex++;
-            }
+            reversed ? currentCardIndex-- : currentCardIndex++;
             currentCard = allChildCards[currentCardIndex];
+
             if (reversed) {
                 currentCard.style.right = -offsetConstant + "px";
                 currentCard.style.left = "";
@@ -91,18 +88,13 @@
                 currentCard.style.right = "";
             }
         } else {
-            if (!reversed) {
-                currentCardIndex = index;
-            } else {
-                currentCardIndex = 0;
-            }
+            reversed ? currentCardIndex = 0 : currentCardIndex = index;
             cardFlowFinished = !cardFlowFinished;
             unlockCard();
         }
     }
 
     onMount(async () => {
-        //wait for currentCard to not be null
         while (allChildCards[0] === null) {
             await new Promise(resolve => setTimeout(resolve, 100));
         }
