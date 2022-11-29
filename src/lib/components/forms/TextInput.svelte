@@ -32,7 +32,7 @@
 
     max-width: 480px;
     width: 100%;
-    min-width: 300px;
+    //min-width: 300px;
     height: 48px;
 
     border: 1px solid #ccc;
