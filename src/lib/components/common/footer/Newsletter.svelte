@@ -26,10 +26,10 @@
 
         gap: 20px;
 
-        h2{
-          font-weight: 1200;
+        h2 {
+            font-weight: 1200;
             font-size: 1.2rem;
-          font-family: Comfortaa, sans-serif;
+            font-family: Comfortaa, sans-serif;
         }
 
         .input {
@@ -38,6 +38,18 @@
 
         .button {
             width: 100%;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .container {
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+
+            .button {
+                width: auto;
+            }
         }
     }
 </style>

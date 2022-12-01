@@ -19,29 +19,37 @@
 
 <div class="social">
     {#if social.name === "email"}
-        <Email size={socialIconSize} color={socialIconColor}/>
+        <a href="{social.url}" target="__blank">
+            <Email size={socialIconSize} color={socialIconColor}/>
+        </a>
     {/if}
     {#if social.name === "discord"}
-        <Discord size={socialIconSize} color={socialIconColor}/>
+        <a href="{social.url}" target="__blank">
+            <Discord size={socialIconSize} color={socialIconColor}/>
+        </a>
     {/if}
     {#if social.name === "linkedin"}
-        <LinkedIn size={socialIconSize} color={socialIconColor}/>
+        <a href="{social.url}" target="__blank">
+            <LinkedIn size={socialIconSize} color={socialIconColor}/>
+        </a>
     {/if}
     {#if social.name === "twitter"}
-        <Twitter size={socialIconSize} color={socialIconColor}/>
+        <a href="{social.url}" target="__blank">
+            <Twitter size={socialIconSize} color={socialIconColor}/>
+        </a>
     {/if}
 </div>
 
 <style lang="scss">
-  .social {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 40px;
-    background-color: #EB4F4F;
+    .social {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        background-color: #EB4F4F;
 
-    border-radius: 10px;
-  }
+        border-radius: 10px;
+    }
 </style>
