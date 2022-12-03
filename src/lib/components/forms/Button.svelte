@@ -14,7 +14,7 @@
 <style lang="scss" scoped>
 	button {
         max-width: 380px;
-		width: 50%;
+		width: 100%;
         min-width: 220px;
 		height: 3rem;
 		border-radius: 4px;

@@ -4,6 +4,7 @@
 	import CardGroup from "$components/cards/CardGroup.svelte";
 	import ourVisionContent from "$assets/ourVisionContent.json";
 	import ourSolutionContent from "$assets/ourSolutionContent.json";
+	import Footer from "../lib/components/common/footer/Footer.svelte";
 
 	const text: string[] = ['discipline.', 'hard work.', 'dedication.', 'perseverance.'];
 </script>
@@ -19,6 +20,7 @@
 	</CarouselNextGen>
 	<CardGroup cardsContent={ourVisionContent} />
 	<CardGroup cardsContent={ourSolutionContent} />
+	<Footer />
 </div>
 
 <style lang="scss" scoped>
