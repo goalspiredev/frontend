@@ -15,11 +15,11 @@
 			<h1>
 				It is about
 			</h1>
-<!--			<WritingEffect {text} />|-->
+			<WritingEffect {text} />|
 		</div>
 	</CarouselNextGen>
-<!--	<CardGroup cardsContent={ourVisionContent} />-->
-<!--	<CardGroup cardsContent={ourSolutionContent} />-->
+	<CardGroup cardsContent={ourVisionContent} />
+	<CardGroup cardsContent={ourSolutionContent} />
 	<Footer />
 </div>
 

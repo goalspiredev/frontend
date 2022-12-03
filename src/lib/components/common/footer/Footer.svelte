@@ -4,22 +4,14 @@
     import Social from "$lib/components/common/footer/Social.svelte";
     import type {SocialData} from "$lib/types/SocialData";
     import {onMount} from "svelte";
+    import Socials from "$assets/socials.json"
 
-
-    // TODO: Load this from JSON
-    let socials: SocialData[] = [];
-    socials.push({name: "email", url: "mailto:help@goalspire.net"});
-    socials.push({name: "linkedin", url: "https://linkedin.com/goalspire"});
-    socials.push({name: "twitter", url: "https://twitter.com/goalspire"});
-    socials.push({name: "discord", url: "https://discord.gg/goalspire"});
-
+    let socials: SocialData[] = Socials;
     let minimized = false;
 
     onMount(() => {
-        // set minimized to true if window width < 1000
         window.addEventListener("resize", () => {
             minimized = window.innerWidth < 1000;
-            console.log(minimized);
         });
     })
 </script>
@@ -171,6 +163,7 @@
                 height: 200px;
                 align-items: center;
                 flex-direction: column-reverse;
+                gap: 30px;
 
                 .socials {
                     width: 100%;

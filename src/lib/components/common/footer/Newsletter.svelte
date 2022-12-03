@@ -43,7 +43,7 @@
 
     @media (max-width: 1000px) {
         .container {
-            width: 50%;
+            width: 70%;
             justify-content: center;
             align-items: center;
 
