@@ -1,15 +1,18 @@
-import adapter from '@sveltejs/adapter-cloudflare';
+import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess({
-		scss: {
-			prependData: '@import "src/assets/css/_breakpoints.scss";',
-		},
-	}),
+	preprocess: [
+		preprocess({
+			postcss: true,
+			scss: {
+				prependData: '@import "src/assets/scss/_breakpoints.scss";'
+			}
+		})
+	],
 
 	kit: {
 		adapter: adapter(),
@@ -19,10 +22,10 @@ const config = {
 			$routes: './src/routes/*',
 			$store: './src/store/*',
 			$utils: './src/utils/*',
-			$icons: './src/icons/*',
-			$assets: './src/assets/*',
-			$goalspire: './src/@goalspire/*',
-		},
+			$icons: './src/assets/icons/*',
+			$scss: './src/assets/scss/*',
+			$assets: './src/assets/*'
+		}
 	}
 };
 

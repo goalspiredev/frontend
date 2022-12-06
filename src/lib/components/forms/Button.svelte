@@ -1,21 +1,20 @@
 <script lang="ts">
-	import type { ColorName } from '$goalspire/types';
-	import { TranslateColor } from '$utils/TranslateColor';
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+	import { createEventDispatcher } from 'svelte';
 
-    export let color: ColorName = 'red';
+	const dispatch = createEventDispatcher();
+
+	export let color = '#EB4F4F';
 </script>
 
-<button style="--color: {TranslateColor(color)}" on:click|preventDefault={() => dispatch('submit')}>
-    <slot />
+<button style="--color: {color}" on:click|preventDefault={() => dispatch('submit')}>
+	<slot />
 </button>
 
 <style lang="scss" scoped>
 	button {
-        max-width: 380px;
+		max-width: 380px;
 		width: 100%;
-        min-width: 220px;
+		min-width: 220px;
 		height: 3rem;
 		border-radius: 4px;
 		background-color: var(--color);

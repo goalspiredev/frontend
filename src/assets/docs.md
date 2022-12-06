@@ -1,1 +1,0 @@
-# Documentation about the assets directory

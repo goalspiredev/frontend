@@ -1,7 +1,9 @@
 <script lang="ts">
-    import RegisterForm from "../../lib/components/forms/register/RegisterForm.svelte";
+	import RegisterForm from '$lib/Register/RegisterPage.svelte';
 </script>
 
-<RegisterForm onSubmitCallback={(username, email, password) => {
-    console.log(username, email, password);
-}}/>
+<RegisterForm
+	onSubmitCallback={(username, email, password) => {
+		console.log(username, email, password);
+	}}
+/>

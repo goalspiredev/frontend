@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let value: boolean = false;
+	export let value = false;
 
 	function changeValue(type: 'click' | 'key', e: KeyboardEvent = new KeyboardEvent('')) {
 		if (type === 'key' && e.key !== 'C') return;
@@ -18,7 +18,7 @@
 	</label>
 </div>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.checkbox {
 		position: relative;
 		z-index: 1;

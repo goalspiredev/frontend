@@ -1,15 +1,15 @@
 <script lang="ts">
-	import navbarLinks from '$assets/navbarLinks.json';
+	import navbarLinks from '$assets/jsons/navbar.json';
 
-	let isUserLoggedIn: boolean = false;
+	let isUserLoggedIn = false;
 
 	const links = isUserLoggedIn ? navbarLinks.main.loggedIn : navbarLinks.main.loggedOut;
 </script>
 
 <div class="navbar-container">
 	<a href="/">
-        <h1>Goalspire</h1>
-    </a>
+		<h1>Goalspire</h1>
+	</a>
 	<div class="links">
 		{#each links as link}
 			<a href={link.url}>{link.name}</a>
@@ -21,7 +21,7 @@
 	.navbar-container {
 		position: absolute;
 		z-index: 8;
-		width: 100vw;
+		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;

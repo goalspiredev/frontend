@@ -1,7 +1,7 @@
 <script lang="ts">
 	import NavbarMobileMenu from './NavbarMobileMenu.svelte';
-  
-	let showMenu: boolean = false;
+
+	let showMenu = false;
 
 	function toggleMenu(type: 'click' | 'key', e: KeyboardEvent = new KeyboardEvent('')) {
 		if (type === 'key' && e.key !== 'M') return;
@@ -11,7 +11,7 @@
 
 <NavbarMobileMenu bind:show={showMenu} />
 <div class="navbar-container">
-	<a href="/" on:click={() => showMenu = false}>
+	<a href="/" on:click={() => (showMenu = false)}>
 		<h1>Goalspire</h1>
 	</a>
 	<div
@@ -27,7 +27,7 @@
 	.navbar-container {
 		z-index: 10;
 		position: absolute;
-		width: 100vw;
+		width: 100%;
 		padding: 1rem;
 		display: flex;
 		flex-direction: row;

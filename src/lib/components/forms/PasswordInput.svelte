@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Eye from '$icons/Eye.svelte';
 	import EyeDashed from '$icons/EyeDashed.svelte';
+	import { TranslateColor } from '$utils/color.util';
 	import { onMount } from 'svelte';
 
 	export let value: string;
@@ -19,19 +20,18 @@
 	}
 
 	let labelText: HTMLElement;
-	let parent: HTMLElement;
 
 	function focus() {
-		labelText.style.top = "0px";
-		labelText.style.color = "#EB4F4F";
-		labelText.style.fontSize = "0.9rem";
+		labelText.style.top = '0px';
+		labelText.style.color = '#EB4F4F';
+		labelText.style.fontSize = '0.9rem';
 	}
 
 	function leave() {
 		if (value.length == 0) {
-			labelText.style.top = "25%";
-			labelText.style.color = "#000000";
-			labelText.style.fontSize = "1rem";
+			labelText.style.top = '25%';
+			labelText.style.color = '#000000';
+			labelText.style.fontSize = '1rem';
 		}
 	}
 </script>
@@ -47,14 +47,14 @@
 		on:keypress={(e) => toggleVisibility('key', e)}
 	>
 		{#if !passwordShown}
-			<Eye size={32} color="gray" />
+			<Eye size={32} color={TranslateColor('gray')} />
 		{:else}
-			<EyeDashed size={32} color="gray" />
+			<EyeDashed size={32} color={TranslateColor('gray')} />
 		{/if}
 	</div>
 </div>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.passwordInput {
 		position: relative;
 		max-width: 480px;

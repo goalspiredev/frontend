@@ -1,65 +1,51 @@
 <script lang="ts">
-    export let text: string;
-    export let image: string;
+	import { onMount } from 'svelte';
+
+	import AOS from 'aos';
+
+	onMount(() => {
+		AOS.init();
+	});
+
+	export let content: {
+		image: string;
+		imageSide: 'left' | 'right';
+		imageBlur: string;
+		text: string;
+	};
 </script>
 
-<div class="card" style="background-image: {image}">
-    <img src={image} alt="">
-    <p>{@html text}</p>
-</div>
+<template>
+	<div
+		class="w-screen flex flex-row gap-6 justify-center px-8 py-2 md:px-16 md:py-4 lg:px-32 lg:py-8"
+		data-aos="fade-right"
+	>
+		{#if content.imageSide == 'left'}
+			<img
+				src={content.image}
+				alt=""
+				style="--color: {content.imageBlur}"
+				class="hidden w-1/4 object-cover rounded-[2rem] boxshadow md:block"
+			/>
+		{/if}
 
+		<p class="w-5/6 mt-4 font-quicksand font-medium text-lg md:text-xl md:w-1/3 lg:text-2xl">
+			{@html content.text}
+		</p>
 
-<style lang="scss">
-  .card {
-    border-radius: 4px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    padding: 1rem;
-    margin: 1rem;
+		{#if content.imageSide == 'right'}
+			<img
+				src={content.image}
+				alt=""
+				style="--color: {content.imageBlur}"
+				class="hidden w-1/4 object-cover rounded-[2rem] boxshadow md:block"
+			/>
+		{/if}
+	</div>
+</template>
 
-    width: 800px;
-    height: 350px;
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: row;
-
-    background-color: white;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 16px;
-
-      //shadow
-      box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.35);
-    }
-
-    p {
-      width: 100%;
-      font-size: 1.5rem;
-      font-weight: 200;
-      color: black;
-      font-family: Comfortaa, sans-serif;
-      padding-left: 3rem;
-
-
-      text-align: left;
-    }
-
-    p :global(b) {
-      font-weight: 900;
-      font-family: Comfortaa, sans-serif;
-    }
-
-    p :global(i) {
-      font-style: italic;
-    }
-
-    p :global(span)
-    {
-      color: #EB4F4F;
-    }
-  }
+<style lang="scss" scoped>
+	.boxshadow {
+		box-shadow: 0px 10px 24px 0px var(--color);
+	}
 </style>
