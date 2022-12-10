@@ -21,27 +21,33 @@
 <style lang="scss" scoped>
 	.checkbox {
 		position: relative;
-		z-index: 1;
+
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
 		justify-content: flex-start;
 
+		z-index: 1;
+
 		div {
+			cursor: pointer;
+
 			width: 1.25rem;
 			height: 1.25rem;
+
 			border: 1px solid var(--gray);
 			border-radius: 4px;
-			cursor: pointer;
 		}
 
 		.fill::after {
 			content: '';
+
 			position: absolute;
 			top: 2px;
 			left: 2px;
 			width: 16px;
 			height: 16px;
+
 			background-color: var(--red);
 			border-radius: 4px;
 		}

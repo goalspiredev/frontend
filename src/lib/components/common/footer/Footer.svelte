@@ -9,6 +9,7 @@
 		name: string;
 		url: string;
 	}[];
+
 	let minimized = false;
 
 	onMount(() => {
@@ -70,115 +71,113 @@
 	footer {
 		width: 100%;
 		height: 400px;
+
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 
-		.upperPart {
-			background-color: #fafafa;
-			height: 300px;
-			width: 100%;
+		@media (max-width: 1000px) {
+			height: 1300px;
+		}
 
+		@media (max-width: 700px) {
+			height: 1400px;
+		}
+
+		.upperPart {
+			width: 100%;
+			height: 300px;
 			padding: 50px;
 
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
 			gap: 50px;
+			justify-content: space-between;
+
+			background-color: #fafafa;
+
+			@media (max-width: 1000px) {
+				height: 1200px;
+				flex-direction: column;
+				align-items: center;
+			}
 
 			.logoAndDesc {
 				width: 20%;
 				height: 100%;
+
 				display: flex;
 				flex-direction: column;
+				gap: 5px;
 				justify-content: flex-start;
 				align-items: flex-start;
 
-				gap: 5px;
+				@media (max-width: 1000px) {
+					display: flex;
+					width: 80%;
+					justify-content: center;
+				}
 
 				h2 {
 					font-size: 2rem;
 					font-weight: 900;
+
+					@media (max-width: 1000px) {
+						align-self: center;
+						text-align: center;
+					}
 				}
 
 				p {
 					font-weight: 600;
 					font-size: 1.2rem;
+
+					@media (max-width: 1000px) {
+						align-self: center;
+						text-align: center;
+					}
 				}
 			}
 		}
 
 		.lowerPart {
-			height: 100px;
 			width: 100%;
-
-			background-color: #fafafa;
+			height: 100px;
+			padding: 50px;
 
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
 
-			padding: 50px;
+			background-color: #fafafa;
+
+			@media (max-width: 700px) {
+				height: 200px;
+				gap: 30px;
+				align-items: center;
+				flex-direction: column-reverse;
+			}
 
 			p {
 				height: 100%;
+				padding-left: 10px;
 				display: flex;
 				align-items: center;
-				padding-left: 10px;
 			}
 
 			.socials {
 				width: 30%;
 				height: 100%;
+
 				display: flex;
 				flex-direction: row;
+				gap: 10px;
 				justify-content: flex-end;
 				align-items: center;
-				gap: 10px;
-			}
-		}
-	}
 
-	@media (max-width: 1000px) {
-		footer {
-			height: 1300px;
-
-			.upperPart {
-				height: 1200px;
-				flex-direction: column;
-				align-items: center;
-
-				.logoAndDesc {
-					display: flex;
-					width: 80%;
-					justify-content: center;
-
-					h2 {
-						align-self: center;
-						text-align: center;
-					}
-
-					p {
-						align-self: center;
-						text-align: center;
-					}
-				}
-			}
-		}
-	}
-
-	@media (max-width: 700px) {
-		footer {
-			height: 1400px;
-			.lowerPart {
-				height: 200px;
-				align-items: center;
-				flex-direction: column-reverse;
-				gap: 30px;
-
-				.socials {
+				@media (max-width: 700px) {
 					width: 100%;
 					justify-content: center;
 				}

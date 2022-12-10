@@ -57,25 +57,27 @@
 <style lang="scss" scoped>
 	.passwordInput {
 		position: relative;
-		max-width: 480px;
 		width: 100%;
+		max-width: 480px;
 		min-width: 300px;
 		min-height: 48px;
 		max-height: 48px;
-
-		border: 1px solid #ccc;
-		border-radius: 5px;
 
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: flex-start;
 
+		border: 1px solid #ccc;
+		border-radius: 5px;
+
 		label {
 			position: absolute;
 			top: 25%;
 			padding-left: 10px;
+
 			transition: all 0.2s ease-in-out;
+
 			font-size: 1rem;
 		}
 
@@ -87,14 +89,15 @@
 	}
 
 	.eye {
-		height: 100%;
-		width: 4rem;
 		cursor: pointer;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 
 		position: absolute;
 		right: 0;
+		height: 100%;
+		width: 4rem;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

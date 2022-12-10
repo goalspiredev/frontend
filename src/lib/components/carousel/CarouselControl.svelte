@@ -32,18 +32,20 @@
 		.control {
 			width: 2rem;
 			height: 0.8rem;
-			border-radius: 10px;
+
 			transition: all 0.15s ease-in-out;
+
+			border-radius: 10px;
 		}
 
 		.yes {
-			background-color: var(--activated);
 			width: 3.5rem;
+			background-color: var(--activated);
 		}
 
 		.no {
-			background-color: var(--deactivated);
 			width: 1.8rem;
+			background-color: var(--deactivated);
 		}
 	}
 </style>

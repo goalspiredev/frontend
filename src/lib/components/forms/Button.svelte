@@ -12,17 +12,11 @@
 
 <style lang="scss" scoped>
 	button {
-		max-width: 380px;
+		cursor: pointer;
 		width: 100%;
+		max-width: 380px;
 		min-width: 220px;
 		height: 3rem;
-		border-radius: 4px;
-		background-color: var(--color);
-		color: var(--white);
-		font-size: 1.5rem;
-		font-weight: 600;
-		border: none;
-		cursor: pointer;
 
 		display: flex;
 		justify-content: center;
@@ -30,9 +24,18 @@
 
 		transition: background-color 0.2s;
 
+		border: none;
+		border-radius: 4px;
+
+		background-color: var(--color);
+		color: var(--white);
+
+		font-size: 1.5rem;
+		font-weight: 600;
+
 		&:hover {
-			background-color: transparent;
 			border: 2px solid var(--color);
+			background-color: transparent;
 			color: var(--color);
 		}
 	}

@@ -46,13 +46,12 @@
 <style lang="scss" scoped>
 	.formWrap {
 		height: 100vh;
-		padding-top: 5rem;
+		padding: 5rem 1rem 0 1rem;
+
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		padding-right: 1rem;
-		padding-left: 1rem;
 		gap: 2rem;
+		justify-content: center;
 		align-items: center;
 
 		font-family: 'Quicksand', sans-serif;
@@ -80,39 +79,44 @@
 
 		form {
 			width: 100%;
+
 			display: flex;
 			flex-direction: column;
-			align-items: center;
 			gap: 1rem;
+			align-items: center;
 
 			.check {
-				max-width: 480px;
 				width: 100%;
+				max-width: 480px;
 				min-width: 300px;
+				margin-bottom: 1.5rem;
+
 				display: flex;
 				flex-direction: column;
-				justify-content: flex-start;
 				gap: 0.5rem;
-				margin-bottom: 1.5rem;
+				justify-content: flex-start;
 			}
 
 			.submit {
 				width: 100%;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 0.5rem;
 				margin-bottom: 1.5rem;
 
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				align-items: center;
+
 				p {
+					text-align: center;
+
 					font-size: 1rem;
 					font-weight: 500;
 					color: var(--gray);
-					text-align: center;
 
 					a {
-						color: var(--red);
 						cursor: pointer;
+
+						color: var(--red);
 
 						&:hover {
 							text-decoration: underline;
