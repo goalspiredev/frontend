@@ -5,7 +5,7 @@
 	import Twitter from '$icons/Twitter.svelte';
 
 	// Create map where key is the name of the social media platform and value is the component icon
-	const socialMediaIcons = new Map<string, any>([['email', Email]]);
+	// const socialMediaIcons = new Map<string, any>([['email', Email]]);
 
 	let socialIconColor = 'white';
 	let socialIconSize = 25;
@@ -41,14 +41,16 @@
 
 <style lang="scss" scoped>
 	.social {
+		width: 40px;
+		height: 40px;
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		height: 40px;
-		width: 40px;
-		background-color: #eb4f4f;
 
 		border-radius: 10px;
+
+		background-color: #eb4f4f;
 	}
 </style>

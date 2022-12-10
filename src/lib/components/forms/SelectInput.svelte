@@ -24,6 +24,7 @@
 <style lang="scss" scoped>
 	.selectInput {
 		width: 300px;
+
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
@@ -32,6 +33,7 @@
 		.selectBox {
 			width: 20px;
 			height: 20px;
+
 			border: 1px solid black;
 			border-radius: 4px;
 		}
@@ -39,8 +41,10 @@
 		.selectBoxFilled {
 			width: 20px;
 			height: 20px;
+
 			border: 1px solid black;
 			border-radius: 4px;
+
 			background-color: #eb4f4f;
 		}
 

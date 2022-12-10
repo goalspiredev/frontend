@@ -25,14 +25,16 @@
 
 <style lang="scss" scoped>
 	.navbar-container {
-		z-index: 10;
 		position: absolute;
 		width: 100%;
 		padding: 1rem;
+
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+
+		z-index: 10;
 
 		h1 {
 			font-family: 'Comfortaa', cursive;
@@ -44,8 +46,10 @@
 
 	.burger-container {
 		cursor: pointer;
+
 		width: 2rem;
 		height: 2rem;
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -54,19 +58,26 @@
 	.burger {
 		width: 1.75rem;
 		height: 0.25rem;
-		background-color: var(--black);
-		border-radius: 0.25rem;
+
 		transition: all 0.2s ease-in-out;
+
+		border-radius: 0.25rem;
+
+		background-color: var(--black);
 
 		&::before,
 		&::after {
 			content: '';
+
 			position: absolute;
 			width: 1.75rem;
 			height: 0.25rem;
-			background-color: var(--black);
-			border-radius: 0.25rem;
+
 			transition: all 0.2s ease-in-out;
+
+			border-radius: 0.25rem;
+
+			background-color: var(--black);
 		}
 
 		&::before {

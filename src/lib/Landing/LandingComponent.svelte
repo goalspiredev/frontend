@@ -7,18 +7,82 @@
 
 <template>
 	<CarouselFullScreen>
-		<div
-			class="flex flex-col gap-12 items-center mb-32 font-quicksand font-bold text-center text-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl"
-		>
+		<div class="content">
 			<div>
 				<h1 class="font-medium">It is about</h1>
 				<WritingEffect {text} /><span class="font-light">|</span>
 			</div>
-			<button
-				class="px-8 lg:px-16 py-1 lg:py-2 border-black border-2 bg-white bg-opacity-20 rounded-xl uppercase text-sm transition-all hover:bg-opacity-70 sm:text-base md:text-lg lg:text-xl"
-			>
-				begin now
-			</button>
+			<button> begin now </button>
 		</div>
 	</CarouselFullScreen>
 </template>
+
+<style lang="scss" scoped>
+	.content {
+		margin-bottom: 8rem;
+
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		align-items: center;
+		text-align: center;
+
+		font-family: 'Quicksand', sans-serif;
+		font-weight: bold;
+		color: black;
+		font-size: 2.25rem;
+
+		@include br-sm {
+			font-size: 3.75rem;
+		}
+
+		@include br-md {
+			font-size: 4.5rem;
+		}
+
+		@include br-lg {
+			font-size: 6rem;
+		}
+
+		h1 {
+			font-weight: 500;
+		}
+
+		span {
+			font-weight: 300;
+		}
+
+		button {
+			padding: 0.25rem 2rem;
+
+			transition-property: all;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			transition-duration: 150ms;
+
+			border: 2px solid black;
+			border-radius: 0.75rem;
+
+			background-color: rgba(255, 255, 255, 0.2);
+
+			text-transform: uppercase;
+			font-size: small;
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.7);
+			}
+
+			@include br-sm {
+				font-size: medium;
+			}
+
+			@include br-md {
+				font-size: large;
+			}
+
+			@include br-lg {
+				padding: 0.5rem 4rem;
+				font-size: x-large;
+			}
+		}
+	}
+</style>

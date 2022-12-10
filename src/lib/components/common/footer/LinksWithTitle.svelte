@@ -1,12 +1,9 @@
 <script lang="ts">
 	export let title: string;
-	export let links: Link[];
-
-	type Link = {
+	export let links: {
 		href: string;
 		text: string;
-	};
-
+	}[];
 	export let align = 'flex-start';
 </script>
 
@@ -33,10 +30,9 @@
 
 		.links {
 			display: flex;
+			gap: 10px;
 			flex-direction: column;
 			align-items: flex-start;
-
-			gap: 10px;
 		}
 	}
 </style>

@@ -10,9 +10,17 @@
 </script>
 
 <template>
-	<div class="flex flex-col my-16">
+	<div>
 		{#each content as cont}
 			<Card content={cont} />
 		{/each}
 	</div>
 </template>
+
+<style lang="scss" scoped>
+	div {
+		display: flex;
+		flex-direction: column;
+		margin: 4rem 0;
+	}
+</style>

@@ -3,9 +3,9 @@
 	import CardCarousel from '$components/cards/CardCarousel.svelte';
 	import Footer from '$components/common/footer/Footer.svelte';
 
-	import LandingContent from '$assets/jsons/landing.json';
-	import CardsContent from '$assets/jsons/cards.json';
-	import SocialContent from '$assets/jsons/socials.json';
+	import LandingContent from '$assets/json/landing.json';
+	import CardsContent from '$assets/json/cards.json';
+	import SocialContent from '$assets/json/socials.json';
 
 	const sections = [
 		{
@@ -30,9 +30,18 @@
 </script>
 
 <template>
-	<div class="flex flex-col overflow-x-hidden">
+	<div>
 		{#each sections as section}
 			<svelte:component this={section.component} {...section.props} />
 		{/each}
 	</div>
 </template>
+
+<style lang="scss" scoped>
+	div {
+		display: flex;
+		flex-direction: column;
+
+		overflow-x: hidden;
+	}
+</style>

@@ -2,7 +2,6 @@
 	export let value = '';
 
 	let labelText: HTMLElement;
-	let parent: HTMLElement;
 
 	function focus() {
 		labelText.style.top = '0px';
@@ -19,7 +18,7 @@
 	}
 </script>
 
-<div class="textInput" bind:this={parent}>
+<div class="textInput">
 	<label bind:this={labelText}>
 		<slot />
 	</label>
@@ -29,25 +28,26 @@
 <style lang="scss" scoped>
 	.textInput {
 		position: relative;
-
-		max-width: 480px;
 		width: 100%;
+		max-width: 480px;
 		//min-width: 300px;
 		height: 48px;
-
-		border: 1px solid #ccc;
-		border-radius: 5px;
 
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: flex-start;
 
+		border: 1px solid #ccc;
+		border-radius: 5px;
+
 		label {
 			position: absolute;
 			top: 25%;
 			padding-left: 10px;
+
 			transition: all 0.2s ease-in-out;
+
 			font-size: 1rem;
 		}
 

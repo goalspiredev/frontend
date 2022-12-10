@@ -32,9 +32,9 @@
 </script>
 
 <div class="carousel">
-	<div bind:this={carouselDiv} class="transition-all duration-700 flex flex-row shrink-0">
+	<div bind:this={carouselDiv} class="imgWrapper">
 		{#each images as image}
-			<img src={image} alt="carousel_image" class="opacity-95" />
+			<img src={image} alt="carousel_image" style="opacity: 0.98;" />
 		{/each}
 	</div>
 	<div class="content">
@@ -51,34 +51,49 @@
 	.carousel {
 		width: 100vw;
 		height: 100vh;
+
 		overflow: hidden;
+
+		.imgWrapper {
+			display: flex;
+			flex-direction: row;
+			flex-shrink: 0;
+
+			transition-property: all;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			transition-duration: 700ms;
+		}
 
 		img {
 			width: 100vw;
 			height: 100vh;
+
 			object-fit: cover;
+
 			transition: all 0.4s ease-in-out;
 		}
-	}
 
-	.content {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+		.content {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
 
-	.controls {
-		position: absolute;
-		bottom: 2rem;
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		gap: 1rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.controls {
+			position: absolute;
+			bottom: 2rem;
+			width: 100%;
+
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			gap: 1rem;
+		}
 	}
 </style>

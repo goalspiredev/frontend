@@ -4,10 +4,26 @@
 </script>
 
 <template>
-	<nav class="lg:hidden">
+	<nav class="mobile">
 		<NavbarMobile />
 	</nav>
-	<nav class="hidden lg:block">
+	<nav class="desktop">
 		<NavbarDesktop />
 	</nav>
 </template>
+
+<style lang="scss" scoped>
+	.mobile {
+		@include br-lg {
+			display: none;
+		}
+	}
+
+	.desktop {
+		display: none;
+
+		@include br-lg {
+			display: block;
+		}
+	}
+</style>

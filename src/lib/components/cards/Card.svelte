@@ -16,36 +16,70 @@
 </script>
 
 <template>
-	<div
-		class="w-screen flex flex-row gap-6 justify-center px-8 py-2 md:px-16 md:py-4 lg:px-32 lg:py-8"
-		data-aos="fade-right"
-	>
+	<div class="card" data-aos="fade-right">
 		{#if content.imageSide == 'left'}
-			<img
-				src={content.image}
-				alt=""
-				style="--color: {content.imageBlur}"
-				class="hidden w-1/4 object-cover rounded-[2rem] boxshadow md:block"
-			/>
+			<img src={content.image} alt={content.image} style="--color: {content.imageBlur}" />
 		{/if}
 
-		<p class="w-5/6 mt-4 font-quicksand font-medium text-lg md:text-xl md:w-1/3 lg:text-2xl">
+		<p>
 			{@html content.text}
 		</p>
 
 		{#if content.imageSide == 'right'}
-			<img
-				src={content.image}
-				alt=""
-				style="--color: {content.imageBlur}"
-				class="hidden w-1/4 object-cover rounded-[2rem] boxshadow md:block"
-			/>
+			<img src={content.image} alt={content.image} style="--color: {content.imageBlur}" />
 		{/if}
 	</div>
 </template>
 
 <style lang="scss" scoped>
-	.boxshadow {
-		box-shadow: 0px 10px 24px 0px var(--color);
+	.card {
+		width: 100vw;
+		padding: 0.5rem 2rem;
+
+		display: flex;
+		flex-direction: row;
+		gap: 1.5rem;
+		justify-content: center;
+
+		@include br-md {
+			padding: 1rem 4rem;
+		}
+
+		@include br-lg {
+			padding: 2rem 8rem;
+		}
+
+		img {
+			width: 25%;
+
+			display: none;
+
+			object-fit: cover;
+
+			border-radius: 2rem;
+			box-shadow: 0px 10px 24px 0px var(--color);
+
+			@include br-md {
+				display: block;
+			}
+		}
+
+		p {
+			width: 85%;
+			margin-top: 1rem;
+
+			font-family: 'Quicksand', sans-serif;
+			font-weight: 500;
+			font-size: large;
+
+			@include br-md {
+				width: 33%;
+				font-size: larger;
+			}
+
+			@include br-lg {
+				font-size: x-large;
+			}
+		}
 	}
 </style>

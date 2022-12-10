@@ -7,9 +7,8 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		preprocess({
-			postcss: true,
 			scss: {
-				prependData: '@import "src/assets/scss/_breakpoints.scss";'
+				prependData: '@import "src/assets/style/_breakpoints.scss";'
 			}
 		})
 	],
@@ -23,7 +22,7 @@ const config = {
 			$store: './src/store/*',
 			$utils: './src/utils/*',
 			$icons: './src/assets/icons/*',
-			$scss: './src/assets/scss/*',
+			$style: './src/assets/style/*',
 			$assets: './src/assets/*'
 		}
 	}

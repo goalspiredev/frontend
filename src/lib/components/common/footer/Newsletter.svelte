@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import TextInput from '$lib/components/forms/TextInput.svelte';
 	import Button from '$lib/components/forms/Button.svelte';
 
@@ -18,13 +18,19 @@
 <style lang="scss" scoped>
 	.container {
 		width: 20%;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
 		height: 100%;
 
+		display: flex;
+		flex-direction: column;
 		gap: 20px;
+		align-items: flex-start;
+		justify-content: flex-start;
+
+		@media (max-width: 1000px) {
+			width: 70%;
+			justify-content: center;
+			align-items: center;
+		}
 
 		h2 {
 			font-weight: 1200;
@@ -38,16 +44,8 @@
 
 		.button {
 			width: 100%;
-		}
-	}
 
-	@media (max-width: 1000px) {
-		.container {
-			width: 70%;
-			justify-content: center;
-			align-items: center;
-
-			.button {
+			@media (max-width: 1000px) {
 				width: auto;
 			}
 		}
