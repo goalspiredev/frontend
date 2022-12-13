@@ -1,85 +1,117 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
 
-	import AOS from 'aos';
+    import AOS from 'aos';
 
-	onMount(() => {
-		AOS.init();
-	});
+    let minifed: boolean = false;
+    onMount(() => {
+        AOS.init();
 
-	export let content: {
-		image: string;
-		imageSide: 'left' | 'right';
-		imageBlur: string;
-		text: string;
-	};
+        // Goofy ahh
+        window.addEventListener('resize', () => {
+            minifed = window.innerWidth < 768;
+			console.log(minifed);
+        });
+    });
+
+
+    export let content: {
+        image: string;
+        imageSide: 'left' | 'right';
+        imageBlur: string;
+        text: string;
+    };
 </script>
 
 <template>
-	<div class="card" data-aos="fade-right">
-		{#if content.imageSide == 'left'}
-			<img src={content.image} alt={content.image} style="--color: {content.imageBlur}" />
-		{/if}
+    <div class="card" data-aos="fade-right">
+        {#if content.imageSide == 'left' || minifed}
+            <img src={content.image} alt={content.image} style="--color: {content.imageBlur}"/>
+        {/if}
 
-		<p>
-			{@html content.text}
-		</p>
+        <p>
+            {@html content.text}
+        </p>
 
-		{#if content.imageSide == 'right'}
-			<img src={content.image} alt={content.image} style="--color: {content.imageBlur}" />
-		{/if}
-	</div>
+        {#if content.imageSide == 'right' && !minifed}
+            <img src={content.image} alt={content.image} style="--color: {content.imageBlur}"/>
+        {/if}
+    </div>
 </template>
 
 <style lang="scss" scoped>
-	.card {
-		width: 100vw;
-		padding: 0.5rem 2rem;
+    .card {
+        width: 100vw;
+        padding: 0.5rem 2rem;
 
-		display: flex;
-		flex-direction: row;
-		gap: 1.5rem;
-		justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
 
-		@include br-md {
-			padding: 1rem 4rem;
-		}
 
-		@include br-lg {
-			padding: 2rem 8rem;
-		}
+        @include br-md {
+            padding: 1rem 4rem;
+            flex-direction: row;
+			gap: 1.5rem;
+        }
 
-		img {
-			width: 25%;
+        @include br-lg {
+            padding: 2rem 8rem;
+        }
 
-			display: none;
+        img {
+            width: 40%;
 
-			object-fit: cover;
+            display: block;
 
-			border-radius: 2rem;
-			box-shadow: 0px 10px 24px 0px var(--color);
+            object-fit: cover;
 
-			@include br-md {
-				display: block;
-			}
-		}
+            border-radius: 2rem;
+            box-shadow: 0px 10px 24px 0px var(--color);
 
-		p {
-			width: 85%;
-			margin-top: 1rem;
+            @include br-md {
+                width: 25%;
+            }
 
-			font-family: 'Quicksand', sans-serif;
-			font-weight: 500;
-			font-size: large;
+            //@include br-md {
+            //	display: block;
+            //}
+        }
 
-			@include br-md {
-				width: 33%;
-				font-size: larger;
-			}
+        p :global(span) {
+            color: #EB4F4F;
+        }
 
-			@include br-lg {
-				font-size: x-large;
-			}
-		}
-	}
+        p :global(i) {
+            font-style: italic;
+        }
+
+        p :global(b) {
+            font-weight: bold;
+        }
+
+        p {
+            width: 85%;
+            margin-top: 1rem;
+
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            font-size: large;
+
+            span {
+                color: green;
+            }
+
+            @include br-md {
+                width: 33%;
+                font-size: larger;
+            }
+
+            @include br-lg {
+                font-size: x-large;
+            }
+        }
+    }
 </style>

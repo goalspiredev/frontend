@@ -3,18 +3,18 @@
 		"image": "images/cards/bulb.png",
 		"imageSide": "left",
 		"imageBlur": "#63c7f2",
-		"text": "We are <b><span style=\"color: #EB4F4F\">Goalspire</span></b>, <br> the <span style=\"color: #EB4F4F\">next generationgoal-tracking and to-do software</span>. We help <i>you</i> achieve your dreams and goals with a smart <span>self learning technology</span>."
+		"text": "We are <b><span>Goalspire</span></b>, <br> the <span>next generation goal-tracking and to-do software</span>. We help <i>you</i> achieve your dreams and goals with a smart <span>self learning technology</span>."
 	},
 	{
 		"image": "images/cards/clock.png",
 		"imageSide": "right",
 		"imageBlur": "#59290c",
-		"text": "<span>We</span> deploy stuff often."
+		"text": "<span>We</span> care about our <i>users'</i> time. That's why we have created a <span>simple and intuitive interface</span> that will help you <span>achieve your goals</span> in the <span>most efficient way</span>."
 	},
 	{
 		"image": "images/cards/mobile.png",
 		"imageSide": "left",
 		"imageBlur": "#0d5163",
-		"text": "We are <b><span>Goalspire</span></b>, <br> the next generation <span>goal-tracking</span> and to-do software. We help <i>you</i> achieve your dreams and goals with a smart <span>self learning technology</span>."
+		"text": "All of our <span>features</span> are available on <span>all devices</span>. <span>Goalspire</span> is <span>responsive</span> and <span>easy to use</span> on <span>mobile</span> and <span>desktop</span>."
 	}
 ]

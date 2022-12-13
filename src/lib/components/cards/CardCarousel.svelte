@@ -10,7 +10,7 @@
 </script>
 
 <template>
-	<div>
+	<div id="cards">
 		{#each content as cont}
 			<Card content={cont} />
 		{/each}
