@@ -1,10 +1,12 @@
 <script lang="ts">
 	import LandingComponent from './LandingComponent.svelte';
-	import CardCarousel from '$components/cards/CardCarousel.svelte';
+	import CardCarousel from '$components/LandingCards/CardCarousel.svelte';
+	import GetStartedComponent from '$components/GetStarted/GetStartedComponent.svelte';
 	import Footer from '$components/common/footer/Footer.svelte';
 
 	import LandingContent from '$assets/json/landing.json';
 	import CardsContent from '$assets/json/cards.json';
+	import GetStartedContent from '$assets/json/started.json';
 	import SocialContent from '$assets/json/socials.json';
 
 	const sections = [
@@ -18,6 +20,12 @@
 			component: CardCarousel,
 			props: {
 				content: CardsContent
+			}
+		},
+		{
+			component: GetStartedComponent,
+			props: {
+				content: GetStartedContent
 			}
 		},
 		{

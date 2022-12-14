@@ -1,0 +1,18 @@
+[
+    {
+        "num": 1,
+        "title": "Create an account",
+        "description": "Making a new account is simple and fast!"
+    },
+    {
+        "num": 2,
+        "title": "Fill in your goals",
+        "description": "Just click click and then click!"
+    },
+    {
+        "num": 3,
+        "title": "Get rolling",
+        "description": "Just click click and then click!",
+        "last": true
+    }
+]
