@@ -43,7 +43,7 @@
         justify-content: center;
 
         div {
-            width: 50%;
+            width: 100%;
             padding: 1rem;
 
             display: flex;
@@ -51,6 +51,10 @@
             justify-content: center;
             align-items: center;
             text-align: left;
+
+            @include br-lg {
+                width: 50%;
+            }
 
             p {
                 max-width: 640px;
