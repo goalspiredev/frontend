@@ -69,7 +69,7 @@
 
             display: flex;
 
-            // TODO:: This does not make the whole button clickable and is a bad hack
+            // TODO: This does not make the whole button clickable and is a bad hack
             a {
                 width: 100%;
                 height: 100%;

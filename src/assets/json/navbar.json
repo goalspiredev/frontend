@@ -13,7 +13,7 @@
 		"loggedOut": [
 			{
 				"name": "Get Started",
-				"url": "/start"
+				"url": "#getStarted"
 			},
 			{
 				"name": "Register",

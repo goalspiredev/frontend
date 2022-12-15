@@ -10,7 +10,7 @@
 </script>
 
 <template>
-    <div class="wrap">
+    <div class="wrap" id="getStarted">
         <div class="sec">
             <h1>
                 Get started
@@ -54,6 +54,7 @@
             h1 {
                 font-size: 3rem;
                 font-weight: 700;
+                text-align: center;
 
                 @include br-md {
                     font-size: 4rem;
@@ -84,7 +85,7 @@
 
             object-fit: cover;
 
-            border-radius: 4rem;
+            border-radius: 2rem;
 
             @include br-lg {
                 display: block;
