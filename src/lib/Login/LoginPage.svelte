@@ -32,7 +32,7 @@
 		<PasswordInput bind:value={password}>Password</PasswordInput>
 
 		<div class="check">
-			<Checkbox bind:value={rememberMe}>Agree with Terms of Service</Checkbox>
+			<Checkbox bind:value={rememberMe}>Remember me</Checkbox>
 		</div>
 
 		<div class="submit">
