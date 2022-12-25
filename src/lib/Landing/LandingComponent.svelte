@@ -3,6 +3,11 @@
     import CarouselFullScreen from '$components/carousel/CarouselFullScreen.svelte';
 
     export let text: string[];
+
+    function scrollToCards()
+    {
+        location.hash = '#cards';
+    }
 </script>
 
 <template>
@@ -13,7 +18,7 @@
                 <WritingEffect {text}/>
                 <span class="font-light">|</span>
             </div>
-            <button><a href="#cards">begin now</a></button>
+            <button on:click={scrollToCards}><a href="#cards">begin now</a></button>
         </div>
     </CarouselFullScreen>
 </template>
@@ -33,16 +38,21 @@
         color: black;
         font-size: 2.25rem;
 
+        transform: scale(1.4);
+
         @include br-sm {
             font-size: 3.75rem;
+            transform: scale(1);
         }
 
         @include br-md {
             font-size: 4.5rem;
+            transform: scale(1);
         }
 
         @include br-lg {
             font-size: 6rem;
+            transform: scale(1);
         }
 
         h1 {
@@ -66,6 +76,8 @@
             text-transform: uppercase;
             font-size: small;
             color: white;
+
+            cursor: pointer;
 
             display: flex;
 

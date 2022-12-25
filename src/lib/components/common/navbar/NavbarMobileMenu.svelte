@@ -50,6 +50,7 @@
 			width: 75%;
 			height: 2px;
 			background-color: var(--black);
+            opacity: 0.02;
 		}
 
 		&.show {

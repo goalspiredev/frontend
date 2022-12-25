@@ -19,9 +19,9 @@
                 {#each content as section}
                     <GetStartedSection {section} />
                 {/each}
+                <p>Are you ready to start? Head over to the <a href="/register">register</a> page.</p>
             </div>
         </div>
-        
         <img src="images/started/1.png" alt="pc work">
     </div>
 </template>
@@ -31,7 +31,7 @@
         display: flex;
         gap: 1rem;
         margin: 0.5rem 1rem;
-        
+
         font-family: 'Quicksand', sans-serif;
 
         @include br-lg {
@@ -41,7 +41,7 @@
         .sec {
             width: 100%;
             padding: 0;
-            
+
             display: flex;
             flex-direction: column;
             gap: 3rem;
@@ -68,6 +68,27 @@
             flex-direction: column;
             gap: 3rem;
 
+            p {
+                font-size: 1.2rem;
+                text-align: center;
+                margin-top: -2rem;
+                padding-bottom: 2rem;
+                a {
+                    color: var(--red);
+                    text-decoration: none;
+                    font-weight: 700;
+                }
+
+                @include br-md {
+                    font-size: 1.4rem;
+                    text-align: left;
+                }
+
+                @include br-lg {
+
+                }
+            }
+
             @include br-md {
                 margin-left: 6rem;
             }
@@ -85,7 +106,6 @@
 
             object-fit: cover;
 
-            border-radius: 2rem;
 
             @include br-lg {
                 display: block;
