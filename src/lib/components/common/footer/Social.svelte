@@ -53,10 +53,10 @@
 
 		background-color: #eb4f4f;
 
-        transition: all 0.3s;
+		transition: all 0.3s;
 	}
 
-    .social:hover {
-        transform: scale(1.1);
-    }
+	.social:hover {
+		transform: scale(1.1);
+	}
 </style>

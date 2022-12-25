@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let value = '';
+	export let name = '';
 
 	let labelText: HTMLElement;
 
@@ -22,7 +23,7 @@
 	<label bind:this={labelText}>
 		<slot />
 	</label>
-	<input type="text" bind:value on:focusin={focus} on:focusout={leave} />
+	<input type="text" {name} bind:value on:focusin={focus} on:focusout={leave} />
 </div>
 
 <style lang="scss" scoped>

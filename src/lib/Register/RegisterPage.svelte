@@ -3,7 +3,9 @@
 	import PasswordInput from '$components/forms/PasswordInput.svelte';
 	import Checkbox from '$components/forms/Checkbox.svelte';
 	import Button from '$components/forms/Button.svelte';
-	import { validateEmail, validatePassword, validateUsername } from '$utils/validate.util';
+	import { useGoalspire } from '$goalspire/useGoalspire';
+
+	const { register } = useGoalspire;
 
 	let username = '';
 	let email = '';
@@ -12,22 +14,7 @@
 	let terms = false;
 	let protection = false;
 
-	export let onSubmitCallback: (username: string, email: string, password: string) => void;
-
-	function onSubmit() {
-		if (terms && protection) {
-			if (
-				password === confirmPassword &&
-				validatePassword(password) &&
-				validateEmail(email) &&
-				validateUsername(username)
-			) {
-				onSubmitCallback(username, email, password);
-			} else {
-				// TODO: Display modal if something is wrong
-			}
-		}
-	}
+	let errorMessage = ' ';
 </script>
 
 <div class="formWrap">
@@ -36,28 +23,53 @@
 		<h3>Enter your registration details</h3>
 	</div>
 
-	<form>
-		<TextInput bind:value={username}>Username</TextInput>
+	<form on:submit|preventDefault>
+		<TextInput name="username" bind:value={username}>Username</TextInput>
 
-		<TextInput bind:value={email}>Email</TextInput>
+		<TextInput name="email" bind:value={email}>Email</TextInput>
 
-		<PasswordInput bind:value={password}>Password</PasswordInput>
+		<PasswordInput name="password" bind:value={password}>Password</PasswordInput>
 
-		<PasswordInput bind:value={confirmPassword}>Confirm Password</PasswordInput>
+		<PasswordInput name="confirm_password" bind:value={confirmPassword}
+			>Confirm Password</PasswordInput
+		>
 
 		<div class="check">
-			<Checkbox bind:value={terms}>Agree with Terms of Service</Checkbox>
-			<Checkbox bind:value={protection}>Accept the terms of Personal Data Protection</Checkbox>
+			<Checkbox name="service" bind:value={terms}>Agree with Terms of Service</Checkbox>
+			<Checkbox name="protection" bind:value={protection}
+				>Accept the terms of Personal Data Protection</Checkbox
+			>
 		</div>
 
+		<p class="error">{errorMessage}</p>
+
 		<div class="submit">
-			<Button on:submit={onSubmit}>REGISTER</Button>
+			<Button
+				on:submit={() =>
+					register(username, email, password, confirmPassword, terms, protection)
+						.then(() => {
+							username = '';
+							email = '';
+							password = '';
+							confirmPassword = '';
+							terms = false;
+							protection = false;
+							window.location.href = '/confirm';
+						})
+						.catch((er) => {
+							errorMessage = er;
+						})}>REGISTER</Button
+			>
 			<p>Already registered? <a href="/login">Log into your account</a></p>
 		</div>
 	</form>
 </div>
 
 <style lang="scss" scoped>
+	.error {
+		color: var(--red);
+	}
+
 	.formWrap {
 		height: 100vh;
 		padding: 5rem 1rem 0 1rem;

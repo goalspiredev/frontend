@@ -4,7 +4,8 @@
 	import { TranslateColor } from '$utils/color.util';
 	import { onMount } from 'svelte';
 
-	export let value: string;
+	export let value = '';
+	export let name = '';
 
 	let passwordShown = false;
 	let passwordInput: HTMLInputElement;
@@ -40,7 +41,7 @@
 	<label bind:this={labelText}>
 		<slot />
 	</label>
-	<input bind:this={passwordInput} bind:value on:focusin={focus} on:focusout={leave} />
+	<input bind:this={passwordInput} {name} bind:value on:focusin={focus} on:focusout={leave} />
 	<div
 		class="eye"
 		on:click={() => toggleVisibility('click')}

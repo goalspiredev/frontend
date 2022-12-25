@@ -3,21 +3,15 @@
 	import PasswordInput from '$components/forms/PasswordInput.svelte';
 	import Checkbox from '$components/forms/Checkbox.svelte';
 	import Button from '$components/forms/Button.svelte';
-	import { validateEmail, validatePassword, validateUsername } from '$utils/validate.util';
+	import { useGoalspire } from '$goalspire/useGoalspire';
+
+	const { login } = useGoalspire;
 
 	let email = '';
 	let password = '';
 	let rememberMe = false;
 
-	export let onSubmitCallback: (email: string, password: string, rememberMe: boolean) => void;
-
-	function onSubmit() {
-		if (!validateEmail(email) || !validatePassword(password) || !validateUsername(email)) {
-			// TODO: show error
-			return;
-		}
-		onSubmitCallback(email, password, rememberMe);
-	}
+	let errorMessage = ' ';
 </script>
 
 <div class="formWrap">
@@ -26,24 +20,42 @@
 		<h3>Log in to manage your goals</h3>
 	</div>
 
-	<form>
-		<TextInput bind:value={email}>Email</TextInput>
+	<form on:submit|preventDefault>
+		<TextInput name="email" bind:value={email}>Email</TextInput>
 
-		<PasswordInput bind:value={password}>Password</PasswordInput>
+		<PasswordInput name="password" bind:value={password}>Password</PasswordInput>
+
+		<p class="error">{errorMessage}</p>
 
 		<div class="check">
-			<Checkbox bind:value={rememberMe}>Remember me</Checkbox>
+			<Checkbox name="remember" bind:value={rememberMe}>Remember me</Checkbox>
 		</div>
 
 		<div class="submit">
-			<Button on:submit={onSubmit}>LOG IN</Button>
+			<Button
+				on:submit={() =>
+					login(email, password, rememberMe)
+						.then(() => {
+							email = '';
+							password = '';
+							rememberMe = false;
+							window.location.href = '/dashboard';
+						})
+						.catch((er) => {
+							errorMessage = er;
+						})}>LOG IN</Button
+			>
 			<p>Not yet registered? <a href="/register">Create your account</a></p>
-			<p>Forgot password? <a href="/register">Support</a></p>
+			<p>Forgot password? <a href="/support">Support</a></p>
 		</div>
 	</form>
 </div>
 
 <style lang="scss" scoped>
+	.error {
+		color: var(--red);
+	}
+
 	.formWrap {
 		height: 100vh;
 		padding: 5rem 1rem 0 1rem;

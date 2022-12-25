@@ -23,9 +23,7 @@
 	function handleClick(i: number, user = false) {
 		userClicked = user;
 
-		try {
-			carouselDiv.style.transform = `translateX(-${i * 100}%)`;
-		} catch {}
+		carouselDiv.style.transform = `translateX(-${i * 100}%)`;
 
 		currentImage = i;
 	}

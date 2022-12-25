@@ -26,8 +26,8 @@
 		flex-direction: column;
 		gap: 2rem;
 
-        @include br-md {
-            gap: 0;
-        }
+		@include br-md {
+			gap: 0;
+		}
 	}
 </style>

@@ -16,6 +16,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
+			$goalspire: './src/@goalspire/*',
 			$components: './src/lib/components/*',
 			$lib: './src/lib/*',
 			$routes: './src/routes/*',

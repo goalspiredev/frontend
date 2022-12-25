@@ -10,7 +10,7 @@
 </script>
 
 <NavbarMobileMenu bind:show={showMenu} />
-<div class="navbar-container">
+<div class="navbar-container {showMenu ? 'fix' : ''}">
 	<a href="/" on:click={() => (showMenu = false)}>
 		<h1>Goalspire</h1>
 	</a>
@@ -35,6 +35,13 @@
 		align-items: center;
 
 		z-index: 10;
+
+		&.fix {
+			position: fixed;
+			top: 0;
+			left: 0;
+			background-color: var(--white);
+		}
 
 		h1 {
 			font-family: 'Comfortaa', cursive;
