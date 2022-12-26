@@ -24,7 +24,8 @@ const config = {
 			$utils: './src/utils/*',
 			$icons: './src/assets/icons/*',
 			$style: './src/assets/style/*',
-			$assets: './src/assets/*'
+			$assets: './src/assets/*',
+			$stores: './src/stores/*',
 		}
 	}
 };

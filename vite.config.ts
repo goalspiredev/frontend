@@ -3,18 +3,7 @@ import type { UserConfig } from 'vite';
 
 /** @type {import('vite').UserConfig} */
 const config: UserConfig = {
-	plugins: [sveltekit()],
-	server: {
-		proxy: {
-			'/api': {
-				target: 'http://api.goalspire.net/v1',
-				changeOrigin: true,
-				secure: false,
-				ws: true,
-				rewrite: (path) => path.replace(/^\/api/, '')
-			}
-		}
-	}
+	plugins: [sveltekit()]
 };
 
 export default config;

@@ -1,6 +1,6 @@
+import { API_URL } from '$goalspire/global';
 import Axios from 'axios';
-import {validateEmail, validatePassword} from "../validation/validate";
-
+import { validateEmail, validatePassword } from '../validation/validate';
 
 export default async function register(
 	username: string,
@@ -27,7 +27,9 @@ export default async function register(
 	}
 
 	if (!validatePassword(password)) {
-		throw new Error('Password is invalid. (At least 9 characters, 1 capital letter, 1 number is required)');
+		throw new Error(
+			'Password is invalid. (At least 9 characters, 1 capital letter, 1 number is required)'
+		);
 	}
 
 	if (!confirmPassword) {
@@ -46,5 +48,9 @@ export default async function register(
 		throw new Error('You must agree to the service terms');
 	}
 
-	return await Axios.post('/api/auth/register', { username, email, password });
+	return await Axios.post(API_URL + '/api/auth/register', {
+		username: username,
+		login: email,
+		password: password
+	})
 }
