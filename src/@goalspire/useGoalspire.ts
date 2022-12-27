@@ -1,6 +1,7 @@
 import isloggedin from './auth/isloggedin';
 import login from './auth/login';
 import register from './auth/register';
+import verifyUser from './auth/verifyuser';
 
 interface goalspire {
 	isLoggedIn(): Promise<boolean>;
@@ -13,6 +14,7 @@ interface goalspire {
 		terms: boolean,
 		service: boolean
 	): Promise<any>;
+	verifyUser(code: string, email: string): Promise<boolean>;
 }
 
 class goalspire implements goalspire {
@@ -33,6 +35,10 @@ class goalspire implements goalspire {
 		service: boolean
 	) {
 		return await register(username, email, password, confirmPassword, terms, service);
+	}
+
+	async verifyUser(code: string, email: string) {
+		return await verifyUser(code, email);
 	}
 
 	static instance: goalspire;

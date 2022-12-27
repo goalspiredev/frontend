@@ -48,9 +48,9 @@ export default async function register(
 		throw new Error('You must agree to the service terms');
 	}
 
-	return await Axios.post(API_URL + '/api/auth/register', {
+	return await Axios.post(API_URL + '/auth/register', {
 		username: username,
 		login: email,
 		password: password
-	})
+	});
 }

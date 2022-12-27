@@ -23,7 +23,7 @@ export default async function login(email: string, password: string, remember: b
 	}
 
 	// console.log(email, password, remember);
-	return await Axios.post(API_URL + '/api/auth/login', {
+	return await Axios.post(API_URL + '/auth/login', {
 		login: email,
 		password: password,
 		rememberMe: remember

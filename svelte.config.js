@@ -25,7 +25,7 @@ const config = {
 			$icons: './src/assets/icons/*',
 			$style: './src/assets/style/*',
 			$assets: './src/assets/*',
-			$stores: './src/stores/*',
+			$stores: './src/stores/*'
 		}
 	}
 };
