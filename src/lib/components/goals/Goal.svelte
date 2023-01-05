@@ -82,14 +82,14 @@
         justify-content: space-between;
 
         .info {
-            width: 40%;
             min-height: 60px;
 
+            @include br-lg {
+                display: grid;
+                grid-template-columns: 1fr 0.25fr 1fr;
+                grid-template-rows: repeat(2, 1fr);
+            }
             padding-left: 10px;
-
-            display: grid;
-            grid-template-columns: 1fr 0.25fr 1fr;
-            grid-template-rows: repeat(2, 1fr);
 
             h2 {
                 grid-area: 1 / 1 / 2 / 2;
@@ -122,9 +122,13 @@
 
                 background-color: black;
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                display: none;
+
+                @include br-lg {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
             }
 
             .deadline {
@@ -133,7 +137,9 @@
 
                 align-self: center;
 
-                padding-left: 10px;
+                @include br-lg {
+                }
+
             }
 
             .single {
@@ -144,8 +150,11 @@
         .action {
             display: flex;
             flex-direction: row;
-            gap: 30px;
+            gap: 10px;
 
+            @include br-sm {
+                gap: 30px;
+            }
             padding-right: 10px;
 
             justify-content: center;
@@ -157,20 +166,28 @@
                 justify-content: center;
                 align-items: center;
 
+                gap: 10px;
+
                 button {
                     width: 40px;
                     height: 40px;
 
                     display: flex;
                     flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
                     gap: 10px;
 
                     cursor: pointer;
 
                     i {
-                        font-size: 2.5rem;
+                        font-size: 1.6rem;
                         align-self: center;
                         height: 20px;
+
+                        @include br-sm {
+                            font-size: 2.5rem;
+                        }
 
                         vertical-align: middle;
                     }
@@ -179,6 +196,11 @@
                 p {
                     font-size: 1rem;
                     font-weight: 900;
+                    display: none;
+
+                    @include br-sm {
+                        display: block;
+                    }
                 }
             }
 
