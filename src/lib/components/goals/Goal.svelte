@@ -1,28 +1,28 @@
 <script lang="ts">
     import type {Goal} from "$goalspire/types/Goal";
     import {timeFormat} from "$utils/timeFormat.util";
-    import {onMount} from "svelte";
     import TagComponent from "$components/goals/TagComponent.svelte";
 
-    export let goalContext: Goal = {tags: []} as Goal;
+    // TODO: Feed real data
+    export let goalContext: Goal = {
+        id: "1",
+        title: "Learn Svelte",
+        description: "Muj gol",
+        completed: false,
+        deadline: "2024-01-01T18:12:07",
+        tags: ["important", "urgent", "work"],
+    };
 
-    onMount(() => {
-        goalContext = {
-            id: "1",
-            title: "Gol",
-            description: "Muj gol",
-            completed: false,
-            deadline: "2023-01-06T14:12:07",
-            tags: ["a"],
-        }
-    });
+    function onActionClick(context: string) {
+        //TODO: Do some action
+        console.log(context);
+    }
 </script>
 
 <div class="wrapper">
     <div class="info">
         <h2>{goalContext.title}</h2>
         {#if goalContext.tags.length > 0}
-
             <div class="tags">
                 {#each goalContext.tags as tag}
                     <TagComponent name={tag}/>
@@ -30,37 +30,59 @@
             </div>
             <div class="divider"></div>
             <div class="deadline">
-                <p>{timeFormat(goalContext.deadline)}</p>
+                <p>ends {timeFormat(goalContext.deadline)}</p>
             </div>
 
         {:else}
             <div class="deadline single">
-                <p>{timeFormat(goalContext.deadline)}</p>
+                <p>ends {timeFormat(goalContext.deadline)}</p>
             </div>
         {/if}
     </div>
     <div class="action">
-
+        <div class="actionButton">
+            <button on:click={() => onActionClick("edit")}>
+                <i class="far fa-calendar-plus"></i>
+            </button>
+            <p>Edit</p>
+        </div>
+        <div class="actionButton">
+            <button on:click={() => onActionClick("defer")}>
+                <i class="far fa-calendar-times"></i>
+            </button>
+            <p>Defer</p>
+        </div>
+        <div class="actionButton">
+            <button on:click={() => onActionClick("done")}>
+                <i class="far fa-calendar-check"></i>
+            </button>
+            <p>Done</p>
+        </div>
     </div>
 </div>
 
 <style lang="scss">
     p, h2 {
-        font-family: Comfortaa, sans-serif;
+        font-family: Quicksand, sans-serif;
     }
 
     .wrapper {
         //! Remove me
         margin-top: 100px;
 
-        width: 100%;
+        width: 80%;
         min-height: 60px;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        border: solid 1px #e0e0e0;
 
-        background-color: #f3f0f0;
-        //box-shadow: 0px 2px 4px rgba(0, 0, 0, 1);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
         .info {
-            width: 20%;
+            width: 40%;
             min-height: 60px;
 
             padding-left: 10px;
@@ -68,14 +90,12 @@
             display: grid;
             grid-template-columns: 1fr 0.25fr 1fr;
             grid-template-rows: repeat(2, 1fr);
-            grid-column-gap: 0px;
-            grid-row-gap: 0px;
 
             h2 {
                 grid-area: 1 / 1 / 2 / 2;
 
                 font-size: 1.7rem;
-                font-weight: 600;
+                font-weight: 900;
             }
 
             .tags {
@@ -119,6 +139,49 @@
             .single {
                 grid-area: 2 / 1 / 3 / 2;
             }
+        }
+
+        .action {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+
+            padding-right: 10px;
+
+            justify-content: center;
+            align-items: center;
+
+            .actionButton {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    width: 40px;
+                    height: 40px;
+
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    cursor: pointer;
+
+                    i {
+                        font-size: 2.5rem;
+                        align-self: center;
+                        height: 20px;
+
+                        vertical-align: middle;
+                    }
+                }
+
+                p {
+                    font-size: 1rem;
+                    font-weight: 900;
+                }
+            }
+
         }
     }
 </style>

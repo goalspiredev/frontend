@@ -13,7 +13,7 @@
         padding: 1px 10px;
 
         p {
-            font-family: Comfortaa, sans-serif;
+            font-family: Quicksand, sans-serif;
             font-size: 0.9rem;
             color: white;
         }
