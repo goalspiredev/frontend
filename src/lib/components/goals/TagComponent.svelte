@@ -6,7 +6,7 @@
 	<p>{name}</p>
 </div>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.tag {
 		background-color: #eb4f4f;
 		border-radius: 5px;
