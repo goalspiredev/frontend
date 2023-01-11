@@ -34,6 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-cloudflare": "^1.0.0",
 		"aos": "^2.3.4",
 		"axios": "^1.2.2",
 		"sass": "^1.57.1"
