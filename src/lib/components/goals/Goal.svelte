@@ -60,16 +60,13 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	p,
 	h2 {
 		font-family: Quicksand, sans-serif;
 	}
 
 	.wrapper {
-		//! Remove me
-		margin-top: 100px;
-
 		width: 80%;
 		min-height: 60px;
 		padding: 5px;
@@ -77,17 +74,17 @@
 		background-color: #ffffff;
 		border: solid 1px #e0e0e0;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 
-        @include br-sm {
-            flex-direction: row;
-            justify-content: space-between;
-        }
+		@include br-sm {
+			flex-direction: row;
+			justify-content: space-between;
+		}
 
-        .info {
-            min-height: 60px;
+		.info {
+			min-height: 60px;
 
 			@include br-lg {
 				display: grid;
