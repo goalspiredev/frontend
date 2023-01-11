@@ -9,6 +9,7 @@
 	let typeIndex = 1;
 	let backwards = true;
 	let intervalTimer = 90;
+	// eslint-disable-next-line no-undef
 	let interval: string | number | NodeJS.Timeout | undefined;
 	let stop = false;
 
