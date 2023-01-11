@@ -77,12 +77,17 @@
 		background-color: #ffffff;
 		border: solid 1px #e0e0e0;
 
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
-		.info {
-			min-height: 60px;
+        @include br-sm {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .info {
+            min-height: 60px;
 
 			@include br-lg {
 				display: grid;
