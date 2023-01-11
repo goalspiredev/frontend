@@ -5,7 +5,9 @@ import verifyUser from './auth/verifyuser';
 
 interface goalspire {
 	isLoggedIn(): Promise<boolean>;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	login(email: string, password: string, remember: boolean): Promise<any>;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	register(
 		username: string,
 		email: string,
