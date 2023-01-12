@@ -50,12 +50,14 @@
 			transition: all 0.2s ease-in-out;
 
 			font-size: 1rem;
+			font-family: Comfortaa, sans-serif;
 		}
 
 		input {
 			width: 100%;
 			padding: 20px 10px 0;
 			height: 100%;
+			font-family: Comfortaa, sans-serif;
 		}
 	}
 </style>
