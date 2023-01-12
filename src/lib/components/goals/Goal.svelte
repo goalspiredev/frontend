@@ -1,17 +1,9 @@
 <script lang="ts">
-	import type { Goal } from '$goalspire/types/Goal';
+	import type { GoalType } from '../../../@goalspire/types/GoalType';
 	import { timeFormat } from '$utils/timeFormat.util';
 	import TagComponent from '$components/goals/TagComponent.svelte';
 
-	// TODO: Feed real data
-	export let goalContext: Goal = {
-		id: '1',
-		title: 'Learn Svelte',
-		description: 'Muj gol',
-		completed: false,
-		deadline: '2024-01-01T18:12:07',
-		tags: ['important', 'urgent', 'work']
-	};
+	export let goalContext: GoalType = {} as GoalType;
 
 	function onActionClick(context: string) {
 		//TODO: Do some action

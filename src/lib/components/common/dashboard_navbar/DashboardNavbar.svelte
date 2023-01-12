@@ -87,6 +87,8 @@
 		width: 20rem;
 		height: 100vh;
 
+		z-index: 10;
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;

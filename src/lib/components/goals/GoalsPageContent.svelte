@@ -1,26 +1,48 @@
 <script lang="ts">
     import TextInput from "../forms/TextInput.svelte";
+    import GoalList from "$components/goals/GoalList.svelte";
+    import {SvelteComponent} from "svelte";
 
     let query: string = "";
     let sorting: string = "NAME";
     let activeFilters: string[] = [];
 
-    let availableFilters: string[] = ["Important", "School", "Postponed"];
+    let availableFilters: string[] = ["important", "school", "postponed", "work"];
+
+    let currentGoalList;
+
+    function changeFilterActivity(shouldBeActive: boolean, filter: string) {
+        if (shouldBeActive) {
+            activeFilters = [...activeFilters, filter];
+        } else {
+            activeFilters = activeFilters.filter(f => f !== filter);
+        }
+
+        onFiltersChanged(activeFilters, query);
+    }
+
+    function inputChanged()
+    {
+        onFiltersChanged(activeFilters, query);
+    }
+
+    let onFiltersChanged;
 </script>
 
 <div class="content">
-    <TextInput bind:value={query}>Search</TextInput>
+    <TextInput bind:value={query} on:onInputChanged={inputChanged}>Search</TextInput>
     <div class="filters">
         {#each availableFilters as filter}
             {#if activeFilters.includes(filter)}
-                <button on:click={() => activeFilters = activeFilters.filter(f => f !== filter)}
+                <button on:click={() => changeFilterActivity(false, filter)}
                         class="selected">{filter}</button>
             {:else}
-                <button on:click={() => activeFilters = [...activeFilters, filter]} class="disabled">{filter}</button>
+                <button on:click={() => changeFilterActivity(true, filter)} class="disabled">{filter}</button>
             {/if}
         {/each}
     </div>
     <p>Sort by: {sorting}</p>
+    <GoalList filterTags={activeFilters} bind:onTagsChanged={onFiltersChanged}/>
 </div>
 
 <style lang="scss">
@@ -32,12 +54,14 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        justify-content: flex-start;
+
         gap: 20px;
 
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
 
-        padding-top: 100px;
+        padding-top: 50px;
         padding-left: 50px;
 
         h1 {
