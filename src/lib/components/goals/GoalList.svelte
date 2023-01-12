@@ -32,7 +32,7 @@
 
 <div class="content">
     {#each goals as goal, i}
-        {#if (filterTags.length === 0 || filterTags.some(tag => goal.tags.includes(tag))) || (searchQuery && goal.name.toLowerCase().includes(searchQuery))}
+        {#if (filterTags.length === 0 || filterTags.some(tag => goal.tags.includes(tag))) && (searchQuery == null || searchQuery.trim() === "" || goal.title.toLowerCase().includes(searchQuery.toLowerCase()))}
             <Goal goalContext={goal}/>
         {/if}
     {/each}
