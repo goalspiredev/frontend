@@ -1,15 +1,12 @@
 <script lang="ts">
     import TextInput from "../forms/TextInput.svelte";
     import GoalList from "$components/goals/GoalList.svelte";
-    import {SvelteComponent} from "svelte";
 
     let query: string = "";
     let sorting: string = "NAME";
     let activeFilters: string[] = [];
 
     let availableFilters: string[] = ["important", "school", "postponed", "work"];
-
-    let currentGoalList;
 
     function changeFilterActivity(shouldBeActive: boolean, filter: string) {
         if (shouldBeActive) {
@@ -21,9 +18,12 @@
         onFiltersChanged(activeFilters, query);
     }
 
-    function inputChanged()
-    {
+    function inputChanged() {
         onFiltersChanged(activeFilters, query);
+    }
+
+    function createGoal() {
+        console.log("create");
     }
 
     let onFiltersChanged;
@@ -43,6 +43,7 @@
     </div>
     <p>Sort by: {sorting}</p>
     <GoalList filterTags={activeFilters} bind:onTagsChanged={onFiltersChanged}/>
+    <button class="createGoal" on:click={createGoal}>Create new Goal / Task</button>
 </div>
 
 <style lang="scss">
@@ -55,6 +56,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+        position: relative;
 
         gap: 20px;
 
@@ -71,6 +73,7 @@
         .filters {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
 
             button {
                 color: white;
@@ -96,6 +99,28 @@
             font-size: 1.3rem;
             text-transform: uppercase;
             font-weight: bold;
+        }
+
+        button.createGoal {
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: var(--red);
+            font-family: Comfortaa, sans-serif;
+            font-size: 1.2rem;
+            color: white;
+
+            cursor: pointer;
+
+            transition: all 0.2s;
+        }
+
+        button.createGoal:hover {
+            transform: scale(1.05);
         }
     }
 </style>

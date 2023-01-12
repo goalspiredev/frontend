@@ -41,5 +41,11 @@
 <style lang="scss">
     .content {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        gap: 1rem;
     }
 </style>
