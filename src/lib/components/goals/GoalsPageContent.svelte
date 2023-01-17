@@ -88,6 +88,8 @@
 
 				font-family: Inter, sans-serif;
 				font-weight: bold;
+
+				cursor: pointer;
 			}
 
 			button.selected {
