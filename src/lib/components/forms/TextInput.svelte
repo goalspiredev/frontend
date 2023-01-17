@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
 	export let value = '';
 	export let name = '';
 
 	let labelText: HTMLElement;
+	let dispatch = createEventDispatcher();
 
 	function focus() {
 		labelText.style.top = '0px';
@@ -23,7 +26,7 @@
 	<label bind:this={labelText}>
 		<slot />
 	</label>
-	<input type="text" {name} bind:value on:focusin={focus} on:focusout={leave} />
+	<input type="text" {name} bind:value on:focusin={focus} on:focusout={leave} on:input={() => dispatch('onInputChanged', '')} />
 </div>
 
 <style lang="scss" scoped>
@@ -50,12 +53,14 @@
 			transition: all 0.2s ease-in-out;
 
 			font-size: 1rem;
+			font-family: Comfortaa, sans-serif;
 		}
 
 		input {
 			width: 100%;
 			padding: 20px 10px 0;
 			height: 100%;
+			font-family: Comfortaa, sans-serif;
 		}
 	}
 </style>

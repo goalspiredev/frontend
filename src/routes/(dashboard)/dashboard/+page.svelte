@@ -2,4 +2,4 @@
 	import Goal from '$components/goals/Goal.svelte';
 </script>
 
-<Goal />
+<!--<Goal />-->

@@ -16,6 +16,7 @@
 			font-family: Quicksand, sans-serif;
 			font-size: 0.9rem;
 			color: white;
+			font-weight: bold;
 		}
 	}
 </style>
