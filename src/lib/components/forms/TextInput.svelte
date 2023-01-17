@@ -20,17 +20,13 @@
 			labelText.style.fontSize = '1rem';
 		}
 	}
-
-	function onInput() {
-		dispatch('onInputChanged', '');
-	}
 </script>
 
 <div class="textInput">
 	<label bind:this={labelText}>
 		<slot />
 	</label>
-	<input type="text" {name} bind:value on:focusin={focus} on:focusout={leave} on:input={onInput} />
+	<input type="text" {name} bind:value on:focusin={focus} on:focusout={leave} on:input={() => dispatch('onInputChanged', '')} />
 </div>
 
 <style lang="scss" scoped>

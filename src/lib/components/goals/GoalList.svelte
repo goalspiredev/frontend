@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GoalType } from '../../../@goalspire/types/GoalType';
+	import type { GoalType } from '$goalspire/types/GoalType';
 	import Goal from './Goal.svelte';
 
 	export let goals: GoalType[] = [

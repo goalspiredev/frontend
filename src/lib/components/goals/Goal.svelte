@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GoalType } from '../../../@goalspire/types/GoalType';
+	import type { GoalType } from '$goalspire/types/GoalType';
 	import { timeFormat } from '$utils/timeFormat.util';
 	import TagComponent from '$components/goals/TagComponent.svelte';
 
