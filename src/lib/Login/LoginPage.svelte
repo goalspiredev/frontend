@@ -4,6 +4,7 @@
 	import Checkbox from '$components/forms/Checkbox.svelte';
 	import Button from '$components/forms/Button.svelte';
 	import { useGoalspire } from '$goalspire/useGoalspire';
+	import { storedToken } from '$stores/token.store';
 
 	const { login } = useGoalspire;
 
@@ -35,14 +36,15 @@
 			<Button
 				on:submit={() =>
 					login(email, password, rememberMe)
-						.then(() => {
+						.then((res) => {
+							storedToken.set(res.data.token);
 							email = '';
 							password = '';
 							rememberMe = false;
 							window.location.href = '/dashboard';
 						})
 						.catch((er) => {
-							errorMessage = er;
+							errorMessage = er.response.data.error;
 						})}>LOG IN</Button
 			>
 			<p>Not yet registered? <a href="/register">Create your account</a></p>

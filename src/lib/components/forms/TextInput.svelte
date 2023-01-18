@@ -26,7 +26,14 @@
 	<label bind:this={labelText}>
 		<slot />
 	</label>
-	<input type="text" {name} bind:value on:focusin={focus} on:focusout={leave} on:input={() => dispatch('onInputChanged', '')} />
+	<input
+		type="text"
+		{name}
+		bind:value
+		on:focusin={focus}
+		on:focusout={leave}
+		on:input={() => dispatch('onInputChanged', '')}
+	/>
 </div>
 
 <style lang="scss" scoped>

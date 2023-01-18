@@ -58,17 +58,26 @@
 
 <style lang="scss" scoped>
 	.space {
-		width: 5rem;
-		height: 100vh;
+		width: 100vw;
+		height: 5rem;
+
+		padding-left: 1rem;
+		padding-top: 1rem;
 
 		display: flex;
-		justify-content: center;
+		justify-content: start;
 
 		background-color: white;
+
+		@include br-sm {
+			padding-left: 0;
+			width: 5rem;
+			height: 100vh;
+			justify-content: center;
+		}
 	}
 
 	.icon {
-		margin-top: 1rem;
 		width: 3rem;
 		height: 3rem;
 		cursor: pointer;
