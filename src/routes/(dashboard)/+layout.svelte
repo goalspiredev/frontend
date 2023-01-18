@@ -5,12 +5,32 @@
 </script>
 
 <template>
-	<div style="display: flex; gap: 1rem; background-color: #FAFAFA">
+	<div class="wrap">
 		<div>
 			<DashboardNavbar />
 		</div>
-		<div style="width: 100%; height: 100vh; display: flex;">
+		<div class="slot">
 			<slot />
 		</div>
 	</div>
 </template>
+
+<style lang="scss" scoped>
+	.wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		background-color: #fafafa;
+
+		@include br-sm {
+			flex-direction: row;
+		}
+	}
+
+	.slot {
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+	}
+</style>
