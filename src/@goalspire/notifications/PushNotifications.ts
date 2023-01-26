@@ -13,17 +13,15 @@ async function subscribe() {
 		applicationServerKey:
 			'BHUqMPRqv8gZjxtQMvV0XcPqOyvOjBOpSJ553SyTUwjudX0bz45tFBZb6R2yy1buMuRztPAI3C0JnrZoSF1rSU4'
 	});
-	console.log(subscription);
-	fetch('http://localhost:3000/register', {
-		method: 'POST',
-		body: JSON.stringify(subscription),
-		headers: {
-			'content-type': 'application/json'
-		}
-	});
+    //TODO: Fill in server URL
+	// fetch('http://localhost:3000/register', {
+	// 	method: 'POST',
+	// 	body: JSON.stringify(subscription),
+	// 	headers: {
+	// 		'content-type': 'application/json'
+	// 	}
+	// });
 }
-
-async function createExampleNotification() {}
 
 export class PushNotifications {
 	public static async request() {
