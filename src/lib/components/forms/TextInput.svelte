@@ -4,13 +4,17 @@
 	export let value = '';
 	export let name = '';
 
+	export let showLabel = true;
+
 	let labelText: HTMLElement;
 	let dispatch = createEventDispatcher();
 
 	function focus() {
-		labelText.style.top = '0px';
-		labelText.style.color = '#EB4F4F';
-		labelText.style.fontSize = '0.9rem';
+		if (showLabel) {
+			labelText.style.top = '0px';
+			labelText.style.color = '#EB4F4F';
+			labelText.style.fontSize = '0.9rem';
+		}
 	}
 
 	function leave() {
@@ -23,10 +27,20 @@
 </script>
 
 <div class="textInput">
-	<label bind:this={labelText}>
-		<slot />
-	</label>
-	<input type="text" {name} bind:value on:focusin={focus} on:focusout={leave} on:input={() => dispatch('onInputChanged', '')} />
+	{#if showLabel}
+		<label bind:this={labelText}>
+			<slot />
+		</label>
+	{/if}
+	<input
+		type="text"
+		{name}
+		bind:value
+		on:focusin={focus}
+		on:focusout={leave}
+		on:input={() => dispatch('onInputChanged', '')}
+		style="padding-top: {showLabel ? '20px' : '0px'}"
+	/>
 </div>
 
 <style lang="scss" scoped>

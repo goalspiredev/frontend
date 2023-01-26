@@ -18,6 +18,62 @@
 			completed: false,
 			deadline: '2024-01-01T18:12:07',
 			tags: ['work']
+		},
+		{
+			id: '2',
+			title: 'Learn React',
+			description: 'Reactftw',
+			completed: false,
+			deadline: '2024-01-01T18:12:07',
+			tags: ['work']
+		},
+		{
+			id: '2',
+			title: 'Learn React',
+			description: 'Reactftw',
+			completed: false,
+			deadline: '2024-01-01T18:12:07',
+			tags: ['work']
+		},
+		{
+			id: '2',
+			title: 'Learn React',
+			description: 'Reactftw',
+			completed: false,
+			deadline: '2024-01-01T18:12:07',
+			tags: ['work']
+		},
+		{
+			id: '2',
+			title: 'Learn React',
+			description: 'Reactftw',
+			completed: false,
+			deadline: '2024-01-01T18:12:07',
+			tags: ['work']
+		},
+		{
+			id: '2',
+			title: 'Learn React',
+			description: 'Reactftw',
+			completed: false,
+			deadline: '2024-01-01T18:12:07',
+			tags: ['work']
+		},
+		{
+			id: '2',
+			title: 'Learn React',
+			description: 'Reactftw',
+			completed: false,
+			deadline: '2024-01-01T18:12:07',
+			tags: ['work']
+		},
+		{
+			id: '2',
+			title: 'Learn React',
+			description: 'Reactftw',
+			completed: false,
+			deadline: '2024-01-01T18:12:07',
+			tags: ['work']
 		}
 	];
 
@@ -49,5 +105,10 @@
 		justify-content: flex-start;
 
 		gap: 1rem;
+
+		//TODO: This could be breaking stuff
+		overflow-y: auto;
+
+		padding-bottom: 300px;
 	}
 </style>

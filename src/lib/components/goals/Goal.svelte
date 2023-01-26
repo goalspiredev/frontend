@@ -60,7 +60,7 @@
 
 	.wrapper {
 		width: 80%;
-		min-height: 60px;
+		min-height: 80px;
 		padding: 5px;
 		border-radius: 10px;
 		background-color: #ffffff;
