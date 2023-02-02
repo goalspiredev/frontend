@@ -1,7 +1,7 @@
 import { API_URL } from '$goalspire/global';
 import Axios from 'axios';
-import { token } from '$stores/default';
 import { validateEmail, validatePassword } from '../validation/validate';
+import { storedToken } from '$stores/token.store';
 
 export default async function login(email: string, password: string, remember: boolean) {
 	if (!email) {
@@ -28,6 +28,10 @@ export default async function login(email: string, password: string, remember: b
 		password: password,
 		rememberMe: remember
 	}).then((res) => {
-		token.set(res.data.token);
+		storedToken.set(res.data.token);
+	})
+	.catch((err) => {
+		console.log(err);
+		throw new Error(err.response.data.message);
 	});
 }

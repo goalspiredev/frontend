@@ -50,7 +50,7 @@ export default async function register(
 
 	return await Axios.post(API_URL + '/auth/register', {
 		username: username,
-		login: email,
+		email: email,
 		password: password
 	});
 }

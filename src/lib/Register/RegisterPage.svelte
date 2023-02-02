@@ -57,7 +57,8 @@
 							window.location.href = '/confirm';
 						})
 						.catch((er) => {
-							errorMessage = er.response.data.error;
+							console.log(er);
+							errorMessage = er;
 						})}>REGISTER</Button
 			>
 			<p>Already registered? <a href="/login">Log into your account</a></p>
