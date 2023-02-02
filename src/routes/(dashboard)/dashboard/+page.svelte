@@ -22,6 +22,7 @@
 
 <button
 	on:click={() => PushNotifications.request()}
-	style="width: 10px; font-size: 20px; height: 10px">Req</button
+	style="width: 100px; font-size: 20px; height: 100px; background-color: blue; color: white"
+	>Request</button
 >
 <!--<Goal />-->
