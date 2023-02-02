@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Button from '$components/forms/Button.svelte';
 	import TagComponent from '$components/goals/TagComponent.svelte';
+	import { useGoalspire } from '$goalspire/useGoalspire';
+
+	const { createGoal } = useGoalspire;
 
 	let title: string;
 	let type: 'goal' | 'task' = 'goal';
@@ -69,8 +72,16 @@
 		<div class="buts">
 			<Button
 				color="#2AA837"
-				on:submit={() => {
-					console.log(type, priority, date, desc);
+				on:submit={async () => {
+					await createGoal(
+						title,
+						type,
+						priority,
+						date,
+						desc,
+					).then(() => {
+						window.location.href = '/dashboard/goals';
+					});
 				}}
 			>
 				CREATE
