@@ -1,8 +1,9 @@
 self.addEventListener('push', (event) => {
 	const data = event.data.json();
-	console.log(data);
-	self.registration.showNotification(data.title, {
-		body: data.message,
+	let title = data.title;
+	let body = data.message;
+	self.registration.showNotification(title, {
+		body: body,
 		actions: [{ action: 'greet', title: 'Greet' }]
 	});
 });
