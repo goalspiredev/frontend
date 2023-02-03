@@ -4,15 +4,16 @@ self.addEventListener('push', (event) => {
 	let body = data.message;
 	self.registration.showNotification(title, {
 		body: body,
-		actions: [{ action: 'greet', title: 'Greet' }]
+		actions: [{ action: 'goto', title: 'Go to' }],
+        requireInteraction: true,
+
 	});
 });
 
 self.addEventListener('notificationclick', (event) => {
-	console.log('click me!');
-	if (event.action === 'greet') {
-		// Do something when the "Greet" button is clicked
-		console.log('Greet button clicked');
+	if (event.action === 'goto') {
+		// go to /dashboard/goals
+        event.waitUntil(self.clients.openWindow('/dashboard/goals'));
 	}
 	event.notification.close();
 });

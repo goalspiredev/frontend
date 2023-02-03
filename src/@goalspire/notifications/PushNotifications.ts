@@ -1,15 +1,20 @@
 import axios from 'axios';
 
 async function subscribe() {
+    let serviceWorkerDone = false;
 	navigator.serviceWorker
 		.register('./sw.js')
 		.then((registration) => {
 			console.log('Service worker registered', registration);
+            serviceWorkerDone = true;
 		})
 		.catch((error) => {
 			console.log('Service worker registration failed', error);
 		});
 
+    while (!serviceWorkerDone) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+    }
 	const registration = await navigator.serviceWorker.getRegistration();
 	const subscription = await registration?.pushManager.subscribe({
 		userVisibleOnly: true,
