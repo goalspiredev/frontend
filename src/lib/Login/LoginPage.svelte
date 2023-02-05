@@ -36,8 +36,7 @@
 			<Button
 				on:submit={() =>
 					login(email, password, rememberMe)
-						.then((res) => {
-							storedToken.set(res.data.token);
+						.then(() => {
 							email = '';
 							password = '';
 							rememberMe = false;

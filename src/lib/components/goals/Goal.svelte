@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { GoalType } from '$goalspire/types/GoalType';
 	import { timeFormat } from '$utils/timeFormat.util';
 	import TagComponent from '$components/goals/TagComponent.svelte';
 
-	export let goalContext: GoalType = {} as GoalType;
+	export let goalContext: any = {};
 
 	function onActionClick(context: string) {
 		//TODO: Do some action
@@ -14,7 +13,7 @@
 <div class="wrapper">
 	<div class="info">
 		<h2>{goalContext.title}</h2>
-		{#if goalContext.tags.length > 0}
+		{#if goalContext?.tags?.length > 0}
 			<div class="tags">
 				{#each goalContext.tags as tag}
 					<TagComponent name={tag} />
@@ -22,19 +21,21 @@
 			</div>
 			<div class="divider" />
 			<div class="deadline">
-				<p>ends {timeFormat(goalContext.deadline)}</p>
+				<p>ends {timeFormat(goalContext.endsAt)}</p>
 			</div>
 		{:else}
 			<div class="deadline single">
-				<p>ends {timeFormat(goalContext.deadline)}</p>
+				<p>ends {timeFormat(goalContext.endsAt)}</p>
 			</div>
 		{/if}
 	</div>
 	<div class="action">
 		<div class="actionButton">
-			<button on:click={() => onActionClick('edit')}>
-				<i class="far fa-calendar-plus" />
-			</button>
+			<a href={`/dashboard/goals/edit/${goalContext.id}`}>
+				<button>
+					<i class="far fa-calendar-plus" />
+				</button>
+			</a>
 			<p>Edit</p>
 		</div>
 		<div class="actionButton">

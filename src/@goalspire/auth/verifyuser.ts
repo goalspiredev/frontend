@@ -9,7 +9,7 @@ export default async function verifyUser(code: string, email: string): Promise<b
 		.then(() => {
 			return true;
 		})
-		.catch((er) => {
+		.catch(() => {
 			return false;
 		});
 }

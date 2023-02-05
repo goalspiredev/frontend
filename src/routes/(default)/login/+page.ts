@@ -6,6 +6,6 @@ const { isLoggedIn } = useGoalspire;
 /** @type {import('./$types').PageLoad} */
 export async function load() {
 	if (await isLoggedIn()) {
-		return redirect(307, '/dashboard');
+		throw redirect(307, '/dashboard');
 	}
 }
