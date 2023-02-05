@@ -20,7 +20,7 @@
 		onFiltersChanged(activeFilters, query);
 	}
 
-	let onFiltersChanged;
+	let onFiltersChanged: any;
 </script>
 
 <div class="content">
@@ -64,7 +64,7 @@
 		gap: 20px;
 
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 
 		padding-top: 50px;
 		padding-left: 50px;
@@ -108,7 +108,7 @@
 
 		button.createGoal {
 			position: absolute;
-			bottom: 20px;
+			bottom: 40px;
 			right: 50px;
 
 			padding: 10px 20px;

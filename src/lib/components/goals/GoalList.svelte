@@ -1,25 +1,8 @@
 <script lang="ts">
-	import type { GoalType } from '$goalspire/types/GoalType';
 	import Goal from './Goal.svelte';
-
-	export let goals: GoalType[] = [
-		{
-			id: '1',
-			title: 'Learn Svelte',
-			description: 'Muj gol',
-			completed: false,
-			deadline: '2024-01-01T18:12:07',
-			tags: ['important', 'urgent']
-		},
-		{
-			id: '2',
-			title: 'Learn React',
-			description: 'Reactftw',
-			completed: false,
-			deadline: '2024-01-01T18:12:07',
-			tags: ['work']
-		}
-	];
+	import { useGoalspire } from '$goalspire/useGoalspire';
+	
+	const { getGoals } = useGoalspire;
 
 	export let filterTags: string[] = [];
 	export let searchQuery: string = '';
@@ -31,13 +14,17 @@
 </script>
 
 <div class="content">
-	{#each goals as goal, i}
-		{#if (filterTags.length === 0 || filterTags.some( (tag) => goal.tags.includes(tag) )) && (searchQuery == null || searchQuery.trim() === '' || goal.title
-					.toLowerCase()
-					.includes(searchQuery.toLowerCase()))}
-			<Goal goalContext={goal} />
-		{/if}
-	{/each}
+	{#await getGoals()}
+		<p>Loading...</p>
+	{:then goals} 
+		{#each goals as goal}
+			{#if (filterTags.length === 0 || filterTags.some( (tag) => goal?.tags?.includes(tag) )) && (searchQuery == null || searchQuery.trim() === '' || goal.title
+				.toLowerCase()
+				.includes(searchQuery.toLowerCase()))}
+				<Goal goalContext={goal} />
+			{/if}
+		{/each}
+	{/await}
 </div>
 
 <style lang="scss">

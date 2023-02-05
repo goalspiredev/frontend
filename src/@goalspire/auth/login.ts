@@ -24,9 +24,9 @@ export default async function login(email: string, password: string, remember: b
 
 	// console.log(email, password, remember);
 	return await Axios.post(API_URL + '/auth/login', {
-		login: email,
+		email: email,
 		password: password,
-		rememberMe: remember
+		rememberMe: Boolean(remember)
 	}).then((res) => {
 		storedToken.set(res.data.token);
 	})
