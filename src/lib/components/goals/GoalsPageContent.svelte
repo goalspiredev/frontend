@@ -20,11 +20,7 @@
 		onFiltersChanged(activeFilters, query);
 	}
 
-	function createGoal() {
-		console.log('create');
-	}
-
-	let onFiltersChanged;
+	let onFiltersChanged: any;
 </script>
 
 <div class="content">
