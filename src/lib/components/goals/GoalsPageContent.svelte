@@ -44,7 +44,9 @@
 	</div>
 	<p>Sort by: {sorting}</p>
 	<GoalList filterTags={activeFilters} bind:onTagsChanged={onFiltersChanged} />
-	<button class="createGoal" on:click={createGoal}>Create new Goal / Task</button>
+	<a href="/dashboard/goals/create">
+		<button class="createGoal">Create new Goal / Task</button>
+	</a>
 </div>
 
 <style lang="scss">
