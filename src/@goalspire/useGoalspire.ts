@@ -2,6 +2,8 @@ import isloggedin from './auth/isloggedin';
 import login from './auth/login';
 import register from './auth/register';
 import verifyUser from './auth/verifyuser';
+import createGoal from './goal/create';
+import getGoals from './goal/list';
 
 interface goalspire {
 	isLoggedIn(): Promise<boolean>;
@@ -17,6 +19,8 @@ interface goalspire {
 		service: boolean
 	): Promise<any>;
 	verifyUser(code: string, email: string): Promise<boolean>;
+	createGoal(title: string, type: 'goal' | 'task', priority: 'urgent' | 'important' | 'medium' | 'small', date: Date, desc: string): Promise<void>;
+	getGoals(): Promise<any>;
 }
 
 class goalspire implements goalspire {
@@ -41,6 +45,14 @@ class goalspire implements goalspire {
 
 	async verifyUser(code: string, email: string) {
 		return await verifyUser(code, email);
+	}
+
+	async createGoal(title: string, type: 'goal' | 'task', priority: 'urgent' | 'important' | 'medium' | 'small', date: Date, desc: string): Promise<void> {
+		return await createGoal(title, type, priority, date, desc);
+	}
+
+	async getGoals(): Promise<any> {
+		return await getGoals();
 	}
 
 	static instance: goalspire;

@@ -57,6 +57,7 @@
 							window.location.href = '/confirm';
 						})
 						.catch((er) => {
+							console.log(er);
 							errorMessage = er;
 						})}>REGISTER</Button
 			>

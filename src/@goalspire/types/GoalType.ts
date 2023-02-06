@@ -1,8 +1,8 @@
 export type GoalType = {
 	id: string;
 	title: string;
-	description: string;
+	content: string;
 	completed: boolean;
 	deadline: string;
-	tags: string[];
+	tags?: string[];
 };

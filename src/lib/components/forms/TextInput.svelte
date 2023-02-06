@@ -27,11 +27,9 @@
 </script>
 
 <div class="textInput">
-	{#if showLabel}
-		<label bind:this={labelText}>
-			<slot />
-		</label>
-	{/if}
+	<label bind:this={labelText}>
+		<slot />
+	</label>
 	<input
 		type="text"
 		{name}
@@ -39,7 +37,6 @@
 		on:focusin={focus}
 		on:focusout={leave}
 		on:input={() => dispatch('onInputChanged', '')}
-		style="padding-top: {showLabel ? '20px' : '0px'}"
 	/>
 </div>
 

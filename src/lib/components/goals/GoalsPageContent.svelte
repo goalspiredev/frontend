@@ -20,11 +20,7 @@
 		onFiltersChanged(activeFilters, query);
 	}
 
-	function createGoal() {
-		console.log('create');
-	}
-
-	let onFiltersChanged;
+	let onFiltersChanged: any;
 </script>
 
 <div class="content">
@@ -44,7 +40,9 @@
 	</div>
 	<p>Sort by: {sorting}</p>
 	<GoalList filterTags={activeFilters} bind:onTagsChanged={onFiltersChanged} />
-	<button class="createGoal" on:click={createGoal}>Create new Goal / Task</button>
+	<a href="/dashboard/goals/create">
+		<button class="createGoal">Create new Goal / Task</button>
+	</a>
 </div>
 
 <style lang="scss">
@@ -63,7 +61,7 @@
 		gap: 20px;
 
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 
 		padding-top: 50px;
 		padding-left: 50px;
@@ -107,7 +105,7 @@
 
 		button.createGoal {
 			position: absolute;
-			bottom: 20px;
+			bottom: 40px;
 			right: 50px;
 
 			padding: 10px 20px;

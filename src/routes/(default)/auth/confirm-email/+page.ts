@@ -16,6 +16,8 @@ export async function load({ url }: any) {
 
 	const verified = await verifyUser(code, email);
 
+	console.log(verified);
+
 	if (!verified) {
 		return {
 			success: false
