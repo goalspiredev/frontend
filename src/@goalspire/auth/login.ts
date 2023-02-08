@@ -31,7 +31,6 @@ export default async function login(email: string, password: string, remember: b
 		storedToken.set(res.data.token);
 	})
 	.catch((err) => {
-		console.log(err);
 		throw new Error(err.response.data.message);
 	});
 }

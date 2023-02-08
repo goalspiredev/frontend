@@ -2,6 +2,17 @@
 	import '$style/global.scss';
 
 	import DashboardNavbar from '$components/common/dashboard_navbar/DashboardNavbar.svelte';
+	import { onMount } from 'svelte';
+	import { redirect } from '@sveltejs/kit';
+	import { useGoalspire } from '$goalspire/useGoalspire';
+
+	const { isLoggedIn } = useGoalspire;
+
+	onMount(async () => {
+		if (!(await isLoggedIn())) {
+			throw redirect(307, '/');
+		}
+	});
 </script>
 
 <template>

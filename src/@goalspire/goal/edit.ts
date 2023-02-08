@@ -3,23 +3,24 @@ import { storedToken } from "$stores/token.store";
 import Axios from "axios";
 import { get } from "svelte/store";
 
-export default async function createGoal(title: string, type: string, priority: string, date: Date, desc: string): Promise<void> {
+export default async function editGoal(id: string, title: string, type: string, priority: string, date: Date, desc: string, completed: boolean): Promise<void> {
     let goalType = type === 'goal' ? 0 : 1;
     let goalPriority = priority === 'urgent' ? 0 : priority === 'important' ? 1 : priority === 'medium' ? 2 : 3;
-
-	// console.log(email, password, remember);
-	return await Axios.post(API_URL + '/goals', {
+    
+    await Axios.put(`${API_URL}/goals/${id}`, {
 		type: goalType,
         title: title,
         content: desc,
         priority: goalPriority,
-        endsAt: new Date(date).toISOString()
+        endsAt: new Date(date).toISOString(),
+        completed: Boolean(completed)
 	},
     {
         headers: {
             Authorization: `Bearer ${get(storedToken)}`
         }
-    }).then((res) => {
+    })
+    .then((res) => {
         return res.data;
-	});
+    });
 }
