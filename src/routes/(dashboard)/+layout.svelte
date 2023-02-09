@@ -10,7 +10,7 @@
 
 	onMount(async () => {
 		if (!(await isLoggedIn())) {
-			throw redirect(307, '/');
+			window.location.href = '/login';
 		}
 	});
 </script>

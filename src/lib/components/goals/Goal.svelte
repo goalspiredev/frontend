@@ -6,7 +6,12 @@
 
 	function onActionClick(context: string) {
 		//TODO: Do some action
-		console.log(context);
+		if (context === 'done') {
+			//redirect to /goals/done/id
+			window.location.href = `/dashboard/goals/done/${goalContext.id}`;
+		} else if (context === 'postpone') {
+			window.location.href = `/dashboard/goals/postpone/${goalContext.id}`;
+		}
 	}
 </script>
 
@@ -39,10 +44,10 @@
 			<p>Edit</p>
 		</div>
 		<div class="actionButton">
-			<button on:click={() => onActionClick('defer')}>
+			<button on:click={() => onActionClick('postpone')}>
 				<i class="far fa-calendar-times" />
 			</button>
-			<p>Defer</p>
+			<p>Postpone</p>
 		</div>
 		<div class="actionButton">
 			<button on:click={() => onActionClick('done')}>

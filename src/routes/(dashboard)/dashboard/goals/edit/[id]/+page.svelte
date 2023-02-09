@@ -1,33 +1,33 @@
 <script lang="ts">
 	import Button from '$components/forms/Button.svelte';
 	import TagComponent from '$components/goals/TagComponent.svelte';
-    import { useGoalspire } from '$goalspire/useGoalspire';
+	import { useGoalspire } from '$goalspire/useGoalspire';
 	import { onMount } from 'svelte';
-    import type { PageData } from './$types';
+	import type { PageData } from './$types';
 
-    const { getGoal, editGoal } = useGoalspire;
+	const { getGoal, editGoal } = useGoalspire;
 
-    export let data: PageData;
+	export let data: PageData;
 
-    onMount(() => {
-        getGoal(data.id).then((goal) => {
-            title = goal.title;
-            type = ['goal', 'task'][goal.type];
-            priority = ['urgent', 'important', 'medium', 'small'][goal.priority];
-            dateOld = new Date(goal.endsAt);
-            desc = goal.content;
-            createdAt = new Date(goal.createdAt);
-        });
-    });
+	onMount(() => {
+		getGoal(data.id).then((goal) => {
+			title = goal.title;
+			type = ['goal', 'task'][goal.type];
+			priority = ['urgent', 'important', 'medium', 'small'][goal.priority];
+			dateOld = new Date(goal.endsAt);
+			desc = goal.content;
+			createdAt = new Date(goal.createdAt);
+		});
+	});
 
-    let completed: boolean = false;
+	let completed: boolean = false;
 	let title: string;
 	let type: string = 'goal';
 	let priority: string = 'urgent';
 	let date: Date = new Date();
-    let dateOld: Date = new Date();
+	let dateOld: Date = new Date();
 	let desc: string;
-    let createdAt: Date = new Date();
+	let createdAt: Date = new Date();
 </script>
 
 <div class="wrap">
@@ -72,7 +72,9 @@
 				</div>
 				<div class="form">
 					<h1>DUE DATE:</h1>
-                    <p>{dateOld.toLocaleDateString()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change to:</p>
+					<p>
+						{dateOld.toLocaleDateString()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change to:
+					</p>
 					<input type="datetime-local" name="" id="" bind:value={date} />
 				</div>
 				<div class="form">
@@ -92,15 +94,7 @@
 			<Button
 				color="#2AA837"
 				on:submit={async () => {
-					await editGoal(
-                        data.id,
-						title,
-						type,
-						priority,
-						date,
-						desc,
-                        completed,
-					).then(() => {
+					await editGoal(data.id, title, type, priority, date, desc, completed).then(() => {
 						window.location.href = '/dashboard/goals';
 					});
 				}}

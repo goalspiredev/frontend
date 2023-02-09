@@ -4,21 +4,24 @@ self.addEventListener('push', (event) => {
 	let body = data.message;
 	self.registration.showNotification(title, {
 		body: body,
-		actions: [{ action: 'goto', title: 'Go to' }, {action: 'postpone', title: 'Postpone'}],
-        requireInteraction: true,
+		actions: [
+			{ action: 'done', title: 'Done' },
+			{ action: 'postpone', title: 'Postpone' }
+		],
+		requireInteraction: true
 	});
-    cachedEventData = data;
+	cachedEventData = data;
 });
 
 let cachedEventData = undefined;
 
 self.addEventListener('notificationclick', (event) => {
-    console.log(cachedEventData);
-	if (event.action === 'goto') {
+	console.log(cachedEventData);
+	if (event.action === 'done') {
 		// go to /dashboard/goals
-        event.waitUntil(self.clients.openWindow('/dashboard/goals'));
+		event.waitUntil(self.clients.openWindow('/dashboard/goals/done/' + cachedEventData.goalId));
 	} else if (event.action === 'postpone') {
-        event.waitUntil(self.clients.openWindow('/dashboard/goals/'));
-    }
+		event.waitUntil(self.clients.openWindow('/dashboard/goals/postpone/' + cachedEventData.goalId));
+	}
 	event.notification.close();
 });

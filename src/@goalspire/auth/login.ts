@@ -27,10 +27,11 @@ export default async function login(email: string, password: string, remember: b
 		email: email,
 		password: password,
 		rememberMe: Boolean(remember)
-	}).then((res) => {
-		storedToken.set(res.data.token);
 	})
-	.catch((err) => {
-		throw new Error(err.response.data.message);
-	});
+		.then((res) => {
+			storedToken.set(res.data.token);
+		})
+		.catch((err) => {
+			throw new Error(err.response.data.message);
+		});
 }
