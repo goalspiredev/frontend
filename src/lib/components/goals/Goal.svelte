@@ -66,7 +66,7 @@
 
 	.wrapper {
 		width: 80%;
-		min-height: 80px;
+		min-height: 120px;
 		padding: 5px;
 		border-radius: 10px;
 		background-color: #ffffff;
@@ -76,9 +76,11 @@
 		flex-direction: column;
 		justify-content: space-between;
 
-		@include br-sm {
+		@include br-md {
 			flex-direction: row;
 			justify-content: space-between;
+			width: 80%;
+			min-height: 80px;
 		}
 
 		.info {
@@ -92,10 +94,11 @@
 			padding-left: 10px;
 
 			h2 {
-				grid-area: 1 / 1 / 2 / 2;
+				grid-area: 1 / 1 / 2 / 4;
 
 				font-size: 1.7rem;
 				font-weight: 900;
+				width: 100%;
 			}
 
 			.tags {
@@ -151,7 +154,7 @@
 			flex-direction: row;
 			gap: 10px;
 
-			@include br-sm {
+			@include br-md {
 				gap: 30px;
 			}
 			padding-right: 10px;
@@ -184,7 +187,7 @@
 						align-self: center;
 						height: 20px;
 
-						@include br-sm {
+						@include br-md {
 							font-size: 2.5rem;
 						}
 
@@ -197,7 +200,7 @@
 					font-weight: 900;
 					display: none;
 
-					@include br-sm {
+					@include br-md {
 						display: block;
 					}
 				}

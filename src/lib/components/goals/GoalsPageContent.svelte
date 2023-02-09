@@ -24,7 +24,9 @@
 </script>
 
 <div class="content">
-	<TextInput bind:value={query} on:onInputChanged={inputChanged}>Search</TextInput>
+	<div class="search">
+    	<TextInput bind:value={query} on:onInputChanged={inputChanged}>Search</TextInput>
+	</div>
 	<div class="filters">
 		{#each availableFilters as filter}
 			{#if activeFilters.includes(filter)}
@@ -54,7 +56,7 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
 		justify-content: flex-start;
 		position: relative;
 
@@ -64,7 +66,21 @@
 		height: 100vh;
 
 		padding-top: 50px;
-		padding-left: 50px;
+
+		@include br-md {
+			padding-left: 50px;
+			align-items: flex-start;
+			justify-content: flex-start;
+		}
+
+        .search {
+            width: 80%;
+            max-width: 500px;
+
+            @include br-md {
+                width: 100%;
+            }
+        }
 
 		h1 {
 			color: black;

@@ -34,12 +34,17 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
 		justify-content: flex-start;
+
+		@include br-sm {
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: flex-start;
+		}
 
 		gap: 1rem;
 
-		//TODO: This could be breaking stuff
 		overflow-y: auto;
 
 		padding-bottom: 300px;
