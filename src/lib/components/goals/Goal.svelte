@@ -5,9 +5,7 @@
 	export let goalContext: any = {};
 
 	function onActionClick(context: string) {
-		//TODO: Do some action
 		if (context === 'done') {
-			//redirect to /goals/done/id
 			window.location.href = `/dashboard/goals/done/${goalContext.id}`;
 		} else if (context === 'postpone') {
 			window.location.href = `/dashboard/goals/postpone/${goalContext.id}`;

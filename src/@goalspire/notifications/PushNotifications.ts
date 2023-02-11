@@ -1,4 +1,7 @@
 import axios from 'axios';
+import {storedToken} from "../../stores/token.store";
+import jwtDecode from "jwt-decode";
+import {get} from "svelte/store";
 
 async function subscribe() {
 	let serviceWorkerDone = false;
@@ -32,13 +35,13 @@ async function subscribe() {
 			return v.toString(16);
 		});
 	};
-	// storedToken is a writable
-	let stringUserId = localStorage.getItem('token');
-	console.log(stringUserId);
+
+    const token = get(storedToken);
+    const decode: any = jwtDecode(token);
+    console.log(decode);
 
 	const body = {
-		//TODO: pull from local storage
-		UserId: 'c00dfd4f-70ee-4779-b627-9e4500733edc',
+		UserId: decode.id,
 		Id: newGuid(),
 		Endpoint: obj.endpoint,
 		Auth: obj.keys.auth,
