@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { navigating } from '$app/stores';
 
 	let currentPath = '';
 
@@ -8,6 +9,14 @@
 	onMount(() => {
 		currentPath = window.location.pathname;
 	});
+
+	$: if($navigating) {
+		closeMenu();
+
+		setTimeout(() => {
+			currentPath = window.location.pathname;
+		}, 100);
+	}
 
 	function closeMenu() {
 		menu.style.transform = 'translateX(-100%)';
@@ -38,22 +47,22 @@
 	<div class="wrap-wrap">
 		<h1>Goalspire</h1>
 		<div>
-			<a href="/dashboard" on:click={closeMenu}>
+			<a href="/dashboard">
 				<h2 class="link {!currentPath.split('/')[2] ? 'bold' : ''}">HOME</h2>
 			</a>
-			<a href="/dashboard/goals" on:click={closeMenu}>
+			<a href="/dashboard/goals">
 				<h2 class="link {currentPath.split('/')[2] === 'goals' ? 'bold' : ''}">GOALS</h2>
 			</a>
-			<a href="/dashboard/account" on:click={closeMenu}>
+			<a href="/dashboard/account">
 				<h2 class="link {currentPath.split('/')[2] === 'account' ? 'bold' : ''}">ACCOUNT</h2>
 			</a>
 		</div>
 		<div class="line" />
 		<div>
-			<a href="/dashboard/settings" on:click={closeMenu}>
+			<a href="/dashboard/settings">
 				<h2 class="link {currentPath.split('/')[2] === 'settings' ? 'bold' : ''}">SETTINGS</h2>
 			</a>
-			<a href="/dashboard/support" on:click={closeMenu}>
+			<a href="/dashboard/support">
 				<h2 class="link {currentPath.split('/')[2] === 'support' ? 'bold' : ''}">SUPPORT</h2>
 			</a>
 		</div>

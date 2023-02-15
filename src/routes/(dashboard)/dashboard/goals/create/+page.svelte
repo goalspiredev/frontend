@@ -8,6 +8,8 @@
 	let title: string;
 	let type: 'goal' | 'task' = 'goal';
 	let priority: 'urgent' | 'important' | 'medium' | 'small' = 'urgent';
+	let tags: string[] = [];
+	let tag: string = '';
 	let date: Date;
 	let desc: string;
 </script>
@@ -53,12 +55,32 @@
 					</button>
 				</div>
 				<div class="form">
+					<h1>TAGS:</h1>
+					<input
+						type="text"
+						name=""
+						id=""
+						placeholder="Add tag..."
+						class="add-tag"
+						bind:value={tag}
+						on:keydown={(e) => {
+							if (e.key == 'Enter') {
+								tags = [...tags, tag];
+								tag = '';
+							}
+						}}
+					/>
+					{#each tags as tag}
+						<TagComponent name={tag} />
+					{/each}
+				</div>
+				<div class="form">
 					<h1>DUE DATE:</h1>
 					<input type="datetime-local" name="" id="" bind:value={date} />
 				</div>
 				<div class="form">
 					<h1>CREATED AT:</h1>
-					{new Date().toLocaleDateString()}
+					{new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()}
 				</div>
 			</div>
 		</div>
@@ -77,6 +99,7 @@
 						title,
 						type,
 						priority,
+						tags,
 						date,
 						desc,
 					).then(() => {
@@ -98,6 +121,10 @@
 </div>
 
 <style lang="scss" scoped>
+	.add-tag {
+		width: 5rem;
+	}
+
 	.wrap {
 		width: 100%;
 		height: 100%;

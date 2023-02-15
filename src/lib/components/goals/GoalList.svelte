@@ -21,9 +21,7 @@
 			{#if (filterTags.length === 0 || filterTags.some( (tag) => goal?.tags?.includes(tag) )) && (searchQuery == null || searchQuery.trim() === '' || goal.title
 						.toLowerCase()
 						.includes(searchQuery.toLowerCase()))}
-				{#if !goal.isCompleted}
-					<Goal goalContext={goal} />
-				{/if}
+				<Goal goalContext={goal} />
 			{/if}
 		{/each}
 	{/await}

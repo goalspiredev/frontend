@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '$components/forms/Button.svelte';
+	import Checkbox from '$components/forms/Checkbox.svelte';
 	import TagComponent from '$components/goals/TagComponent.svelte';
 	import { useGoalspire } from '$goalspire/useGoalspire';
 	import { onMount } from 'svelte';
@@ -14,9 +15,11 @@
 			title = goal.title;
 			type = ['goal', 'task'][goal.type];
 			priority = ['urgent', 'important', 'medium', 'small'][goal.priority];
+			tags = goal.tags;
 			dateOld = new Date(goal.endsAt);
 			desc = goal.content;
 			createdAt = new Date(goal.createdAt);
+			completed = goal.isCompleted;
 		});
 	});
 
@@ -24,7 +27,9 @@
 	let title: string;
 	let type: string = 'goal';
 	let priority: string = 'urgent';
-	let date: Date = new Date();
+	let tags: string[] = [];
+	let tag: string = '';
+	let date: Date | undefined = undefined;
 	let dateOld: Date = new Date();
 	let desc: string;
 	let createdAt: Date = new Date();
@@ -71,15 +76,44 @@
 					</button>
 				</div>
 				<div class="form">
+					<h1>TAGS:</h1>
+					<input
+						type="text"
+						name=""
+						id=""
+						placeholder="Add tag..."
+						class="add-tag"
+						bind:value={tag}
+						on:keydown={(e) => {
+							if (e.key == 'Enter') {
+								tags = [...tags, tag];
+								tag = '';
+							}
+						}}
+					/>
+					{#each tags as tag}
+						<div class="tag">
+							<button on:click={() => tags = tags.slice(tags.indexOf(tag), 1)}>
+								x
+							</button>
+							<TagComponent name={tag} />
+						</div>
+					{/each}
+				</div>
+				<div class="form">
 					<h1>DUE DATE:</h1>
 					<p>
-						{dateOld.toLocaleDateString()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change to:
+						{dateOld.toLocaleDateString() + ' ' + dateOld.toLocaleTimeString()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change to:
 					</p>
-					<input type="datetime-local" name="" id="" bind:value={date} />
+					<input class="date" type="datetime-local" name="" id="" bind:value={date} />
 				</div>
 				<div class="form">
 					<h1>CREATED AT:</h1>
-					{createdAt.toLocaleDateString()}
+					{createdAt.toLocaleDateString() + ' ' + createdAt.toLocaleTimeString()}
+				</div>
+				<div class="form">
+					<h1>COMPLETED:</h1>
+					<Checkbox bind:value={completed} />
 				</div>
 			</div>
 		</div>
@@ -94,7 +128,7 @@
 			<Button
 				color="#2AA837"
 				on:submit={async () => {
-					await editGoal(data.id, title, type, priority, date, desc, completed).then(() => {
+					await editGoal(data.id, title, type, priority, tags, date, dateOld, desc, completed).then(() => {
 						window.location.href = '/dashboard/goals';
 					});
 				}}
@@ -113,6 +147,24 @@
 </div>
 
 <style lang="scss" scoped>
+	.date {
+		background-color: #c9c9c9;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+	}
+
+	.tag {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.2rem;
+
+		button {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 1.2rem;
+		}
+	}
+
 	.wrap {
 		width: 100%;
 		height: 100%;

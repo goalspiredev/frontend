@@ -4,11 +4,15 @@
 </script>
 
 <label>
-	<input bind:value type="checkbox" {name} />
+	<input type="checkbox" {name} class="{value ? 'bg' : ''}" on:click={() => value = !value}/>
 	<slot />
 </label>
 
 <style lang="scss" scoped>
+	.bg {
+		background-color: var(--red);
+	}
+
 	label {
 		display: flex;
 		align-items: center;
@@ -23,10 +27,6 @@
 
 			border: 1px solid var(--gray);
 			border-radius: 4px;
-		}
-
-		input[type='checkbox']:checked {
-			background-color: var(--red);
 		}
 	}
 </style>

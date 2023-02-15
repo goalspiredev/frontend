@@ -15,7 +15,7 @@
 
 <div class="wrapper">
 	<div class="info">
-		<h2>{goalContext.title}</h2>
+		<h2>{goalContext.title} {goalContext.isCompleted ? '☑️' : ''}</h2>
 		{#if goalContext?.tags?.length > 0}
 			<div class="tags">
 				{#each goalContext.tags as tag}
@@ -32,28 +32,30 @@
 			</div>
 		{/if}
 	</div>
-	<div class="action">
-		<div class="actionButton">
-			<a href={`/dashboard/goals/edit/${goalContext.id}`}>
-				<button>
-					<i class="far fa-calendar-plus" />
-				</button>
-			</a>
-			<p>Edit</p>
+		<div class="action">
+			<div class="actionButton">
+				<a href={`/dashboard/goals/edit/${goalContext.id}`}>
+					<button>
+						<i class="far fa-calendar-plus" />
+					</button>
+				</a>
+				<p>Edit</p>
+			</div>
+			{#if !goalContext.isCompleted}
+				<div class="actionButton">
+					<button on:click={() => onActionClick('postpone')}>
+						<i class="far fa-calendar-times" />
+					</button>
+					<p>Postpone</p>
+				</div>
+				<div class="actionButton">
+					<button on:click={() => onActionClick('done')}>
+						<i class="far fa-calendar-check" />
+					</button>
+					<p>Done</p>
+				</div>
+			{/if}
 		</div>
-		<div class="actionButton">
-			<button on:click={() => onActionClick('postpone')}>
-				<i class="far fa-calendar-times" />
-			</button>
-			<p>Postpone</p>
-		</div>
-		<div class="actionButton">
-			<button on:click={() => onActionClick('done')}>
-				<i class="far fa-calendar-check" />
-			</button>
-			<p>Done</p>
-		</div>
-	</div>
 </div>
 
 <style lang="scss" scoped>

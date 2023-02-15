@@ -42,8 +42,8 @@
 							rememberMe = false;
 							window.location.href = '/dashboard';
 						})
-						.catch((er) => {
-							errorMessage = er.response.data.error;
+						.catch((err) => {
+							errorMessage = err;
 						})}>LOG IN</Button
 			>
 			<p>Not yet registered? <a href="/register">Create your account</a></p>

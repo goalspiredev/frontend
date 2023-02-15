@@ -9,7 +9,9 @@ async function editGoal(
 	title: string,
 	type: string,
 	priority: string,
-	date: Date,
+	tags: string[],
+	date: Date | undefined,
+	oldDate: Date,
 	desc: string,
 	completed: boolean
 ): Promise<void> {
@@ -17,16 +19,19 @@ async function editGoal(
 	let goalPriority =
 		priority === 'urgent' ? 0 : priority === 'important' ? 1 : priority === 'medium' ? 2 : 3;
 
+	let data = {
+		type: goalType,
+		title: title,
+		content: desc,
+		priority: goalPriority,
+		tags: tags,
+		completed: Boolean(completed),
+		endsAt: date ? new Date(date).toISOString() : new Date(oldDate).toISOString()
+	};
+
 	await Axios.put(
 		`${API_URL}/goals/${id}`,
-		{
-			type: goalType,
-			title: title,
-			content: desc,
-			priority: goalPriority,
-			endsAt: new Date(date).toISOString(),
-			completed: Boolean(completed)
-		},
+		data,
 		{
 			headers: {
 				Authorization: `Bearer ${get(storedToken)}`
@@ -48,6 +53,7 @@ async function editGoalWhole(id: string, goal: GoalType): Promise<void> {
 		title: goal.title,
 		content: goal.content,
 		priority: goal.priority,
+		tags: goal.tags,
 		endsAt: new Date(goal.endsAt).toISOString(),
 		isCompleted: Boolean(goal.isCompleted)
 	};

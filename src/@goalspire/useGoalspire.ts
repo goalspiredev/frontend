@@ -26,6 +26,7 @@ interface goalspire {
 		title: string,
 		type: string,
 		priority: string,
+		tags: string[],
 		date: Date,
 		desc: string
 	): Promise<void>;
@@ -36,7 +37,9 @@ interface goalspire {
 		title: string,
 		type: string,
 		priority: string,
-		date: Date,
+		tags: string[],
+		date: Date | undefined,
+		oldDate: Date,
 		desc: string,
 		completed: boolean
 	): Promise<void>;
@@ -70,10 +73,11 @@ class goalspire implements goalspire {
 		title: string,
 		type: string,
 		priority: string,
+		tags: string[],
 		date: Date,
 		desc: string
 	): Promise<void> {
-		return await createGoal(title, type, priority, date, desc);
+		return await createGoal(title, type, priority, tags, date, desc);
 	}
 
 	async getGoals(): Promise<any> {
@@ -89,11 +93,13 @@ class goalspire implements goalspire {
 		title: string,
 		type: string,
 		priority: string,
-		date: Date,
+		tags: string[],
+		date: Date | undefined,
+		oldDate: Date,
 		desc: string,
 		completed: boolean
 	): Promise<void> {
-		return await editGoal(id, title, type, priority, date, desc, completed);
+		return await editGoal(id, title, type, priority, tags, date, oldDate, desc, completed);
 	}
 
 	async editGoalWhole(id: string, goal: GoalType) {

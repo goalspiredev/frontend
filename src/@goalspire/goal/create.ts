@@ -7,6 +7,7 @@ export default async function createGoal(
 	title: string,
 	type: string,
 	priority: string,
+	tags: string[],
 	date: Date,
 	desc: string
 ): Promise<void> {
@@ -22,6 +23,7 @@ export default async function createGoal(
 			title: title,
 			content: desc,
 			priority: goalPriority,
+			tags: tags,
 			endsAt: new Date(date).toISOString()
 		},
 		{
