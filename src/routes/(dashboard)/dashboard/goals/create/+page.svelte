@@ -76,7 +76,7 @@
 				</div>
 				<div class="form">
 					<h1>DUE DATE:</h1>
-					<input type="datetime-local" name="" id="" bind:value={date} />
+					<input type="datetime-local" name="" id="" bind:value={date} min="{new Date().toISOString()}" />
 				</div>
 				<div class="form">
 					<h1>CREATED AT:</h1>

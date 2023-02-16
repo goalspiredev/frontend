@@ -19,6 +19,7 @@
 	}
 
 	function closeMenu() {
+		if (menu === undefined) return;
 		menu.style.transform = 'translateX(-100%)';
 	}
 </script>

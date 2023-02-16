@@ -24,11 +24,11 @@
 			</div>
 			<div class="divider" />
 			<div class="deadline">
-				<p>ends {timeFormat(goalContext.endsAt)}</p>
+				<p>{timeFormat(goalContext.endsAt)}</p>
 			</div>
 		{:else}
 			<div class="deadline single">
-				<p>ends {timeFormat(goalContext.endsAt)}</p>
+				<p>{timeFormat(goalContext.endsAt)}</p>
 			</div>
 		{/if}
 	</div>

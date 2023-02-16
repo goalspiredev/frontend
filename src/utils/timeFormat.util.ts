@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime' // import plugin
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 export function timeFormat(date: string) {
     dayjs.extend(relativeTime);
-    return dayjs(date).fromNow();
+    let timeDataString = dayjs(date).fromNow();
+    return `${timeDataString.includes("ago") ? "ended " : "ends "}` + timeDataString;
 }
