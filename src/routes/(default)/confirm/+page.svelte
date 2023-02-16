@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Please check your email!</h1>
-        <p>We've sent a confirmation email. You can still keep using Goalspire without verifying your email.</p>
+        <p>We've sent a confirmation email. You can still keep using Goalspire without verifying your email. If you wish, you can go to your <a href="/dashboard">dashboard</a>.</p>
     </div>
 </template>
 
