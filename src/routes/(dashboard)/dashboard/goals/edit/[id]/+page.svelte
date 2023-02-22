@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Button from '$components/forms/Button.svelte';
 	import Checkbox from '$components/forms/Checkbox.svelte';
 	import TagComponent from '$components/goals/TagComponent.svelte';
@@ -33,6 +34,24 @@
 	let dateOld: Date = new Date();
 	let desc: string;
 	let createdAt: Date = new Date();
+
+	let loading = false;
+
+	let error = '';
+
+	function editGoalFunc() {
+		loading = true;
+
+		editGoal(data.id, title, type, priority, tags, date, dateOld, desc, completed)
+			.then(() => {
+				loading = false;
+				goto('/dashboard/goals');
+			})
+			.catch((err) => {
+				loading = false;
+				error = err;
+			});
+	}
 </script>
 
 <div class="wrap">
@@ -93,9 +112,7 @@
 					/>
 					{#each tags as tag}
 						<div class="tag">
-							<button on:click={() => tags = tags.slice(tags.indexOf(tag), 1)}>
-								x
-							</button>
+							<button on:click={() => (tags = tags.slice(tags.indexOf(tag), 1))}> x </button>
 							<TagComponent name={tag} />
 						</div>
 					{/each}
@@ -103,7 +120,8 @@
 				<div class="form">
 					<h1>DUE DATE:</h1>
 					<p>
-						{dateOld.toLocaleDateString() + ' ' + dateOld.toLocaleTimeString()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change to:
+						{dateOld.toLocaleDateString() + ' ' + dateOld.toLocaleTimeString()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Change to:
 					</p>
 					<input class="date" type="datetime-local" name="" id="" bind:value={date} />
 				</div>
@@ -124,20 +142,18 @@
 			placeholder="Start typing description..."
 			bind:value={desc}
 		/>
+		{#if error}
+			<p class="error">
+				{error}
+			</p>
+		{/if}
 		<div class="buts">
-			<Button
-				color="#2AA837"
-				on:submit={async () => {
-					await editGoal(data.id, title, type, priority, tags, date, dateOld, desc, completed).then(() => {
-						window.location.href = '/dashboard/goals';
-					});
-				}}
-			>
-				SAVE
+			<Button color="#2AA837" on:submit={async () => editGoalFunc()}>
+				{loading ? 'LOADING...' : 'SAVE'}
 			</Button>
 			<Button
 				on:submit={() => {
-					window.location.href = '/dashboard/goals';
+					goto('/dashboard/goals');
 				}}
 			>
 				CANCEL
@@ -147,6 +163,10 @@
 </div>
 
 <style lang="scss" scoped>
+	.error {
+		color: red;
+	}
+
 	.date {
 		background-color: #c9c9c9;
 		padding: 0.5rem;
@@ -162,6 +182,11 @@
 		button {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 1.2rem;
+
+			&:focus {
+				outline: 2px solid var(--red);
+				border-radius: 16px;
+			}
 		}
 	}
 
@@ -186,6 +211,11 @@
 		font-size: 2.5rem;
 		font-weight: bold;
 		outline: none;
+
+		&:focus {
+			outline: 2px solid var(--red);
+			border-radius: 16px;
+		}
 
 		&::placeholder {
 			color: #7a7a7a;
@@ -216,6 +246,13 @@
 		align-items: center;
 		gap: 1rem;
 
+		input {
+			&:focus {
+				outline: 2px solid var(--red);
+				border-radius: 16px;
+			}
+		}
+
 		h1 {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 1.5rem;
@@ -224,6 +261,10 @@
 
 		button {
 			cursor: pointer;
+			&:focus {
+				outline: 2px solid var(--red);
+				border-radius: 16px;
+			}
 		}
 	}
 
@@ -236,6 +277,11 @@
 		border-radius: 10px;
 		resize: none;
 		padding: 0.5rem;
+
+		&:focus {
+			outline: 2px solid var(--red);
+			border-radius: 16px;
+		}
 
 		&::placeholder {
 			color: #7a7a7a;

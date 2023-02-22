@@ -4,7 +4,7 @@
 	import Checkbox from '$components/forms/Checkbox.svelte';
 	import Button from '$components/forms/Button.svelte';
 	import { useGoalspire } from '$goalspire/useGoalspire';
-	import { storedToken } from '$stores/token.store';
+	import { goto } from '$app/navigation';
 
 	const { login } = useGoalspire;
 
@@ -12,7 +12,26 @@
 	let password = '';
 	let rememberMe = false;
 
-	let errorMessage = ' ';
+	let loading = false;
+
+	let errorMessage = '';
+
+	function loginFunc() {
+		loading = true;
+		
+		login(email, password, rememberMe)
+			.then(() => {
+				email = '';
+				password = '';
+				rememberMe = false;
+				loading = false;
+				goto('/dashboard');
+			})
+			.catch((err) => {
+				errorMessage = err;
+				loading = false;
+			});
+	}
 </script>
 
 <div class="formWrap">
@@ -33,19 +52,7 @@
 		</div>
 
 		<div class="submit">
-			<Button
-				on:submit={() =>
-					login(email, password, rememberMe)
-						.then(() => {
-							email = '';
-							password = '';
-							rememberMe = false;
-							window.location.href = '/dashboard';
-						})
-						.catch((err) => {
-							errorMessage = err;
-						})}>LOG IN</Button
-			>
+			<Button on:submit={() => loginFunc()}>{loading ? 'Loading...' : 'LOG IN'}</Button>
 			<p>Not yet registered? <a href="/register">Create your account</a></p>
 			<p>Forgot password? <a href="/support">Support</a></p>
 		</div>

@@ -29,6 +29,18 @@ async function editGoal(
 		endsAt: date ? new Date(date).toISOString() : new Date(oldDate).toISOString()
 	};
 
+	if (!title) {
+		throw new Error('Title is required');
+	} else if (!type) {
+		throw new Error('Type is required');
+	} else if (!priority) {
+		throw new Error('Priority is required');
+	} else if (!data.endsAt) {
+		throw new Error('Date is required');
+	} else if (!desc) {
+		throw new Error('Description is required');
+	}
+
 	await Axios.put(
 		`${API_URL}/goals/${id}`,
 		data,

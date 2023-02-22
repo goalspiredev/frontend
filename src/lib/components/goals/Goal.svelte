@@ -1,21 +1,24 @@
 <script lang="ts">
 	import { timeFormat } from '$utils/timeFormat.util';
 	import TagComponent from '$components/goals/TagComponent.svelte';
+	import { goto } from '$app/navigation';
 
 	export let goalContext: any = {};
 
 	function onActionClick(context: string) {
 		if (context === 'done') {
-			window.location.href = `/dashboard/goals/done/${goalContext.id}`;
+			goto(`/dashboard/goals/done/${goalContext.id}`);
 		} else if (context === 'postpone') {
-			window.location.href = `/dashboard/goals/postpone/${goalContext.id}`;
+			goto(`/dashboard/goals/postpone/${goalContext.id}`);
 		}
 	}
 </script>
 
 <div class="wrapper">
 	<div class="info">
-		<h2>{goalContext.title} {goalContext.isCompleted ? '☑️' : ''}</h2>
+		<a href={`/dashboard/goals/edit/${goalContext.id}`}>
+			<h2>{goalContext.title} {goalContext.isCompleted ? '☑️' : ''}</h2>
+		</a>
 		{#if goalContext?.tags?.length > 0}
 			<div class="tags">
 				{#each goalContext.tags as tag}
@@ -39,7 +42,7 @@
 						<i class="far fa-calendar-plus" />
 					</button>
 				</a>
-				<p>Edit</p>
+				<p>View</p>
 			</div>
 			{#if !goalContext.isCompleted}
 				<div class="actionButton">

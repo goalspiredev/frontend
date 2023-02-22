@@ -4,6 +4,7 @@
 	import Checkbox from '$components/forms/Checkbox.svelte';
 	import Button from '$components/forms/Button.svelte';
 	import { useGoalspire } from '$goalspire/useGoalspire';
+	import { goto } from '$app/navigation';
 
 	const { register } = useGoalspire;
 
@@ -14,7 +15,28 @@
 	let terms = false;
 	let protection = false;
 
-	let errorMessage = ' ';
+	let loading = false;
+
+	let errorMessage = '';
+
+	function registerFunc() {
+		loading = true;
+		register(username, email, password, confirmPassword, terms, protection)
+			.then(() => {
+				username = '';
+				email = '';
+				password = '';
+				confirmPassword = '';
+				terms = false;
+				protection = false;
+				loading = false;
+				goto('/confirm');
+			})
+			.catch((er) => {
+				loading = false;
+				errorMessage = er;
+			});
+	}
 </script>
 
 <div class="formWrap">
@@ -44,23 +66,7 @@
 		<p class="error">{errorMessage}</p>
 
 		<div class="submit">
-			<Button
-				on:submit={() =>
-					register(username, email, password, confirmPassword, terms, protection)
-						.then(() => {
-							username = '';
-							email = '';
-							password = '';
-							confirmPassword = '';
-							terms = false;
-							protection = false;
-							window.location.href = '/confirm';
-						})
-						.catch((er) => {
-							console.log(er);
-							errorMessage = er;
-						})}>REGISTER</Button
-			>
+			<Button on:submit={() => registerFunc()}>{loading ? 'Loading...' : 'REGISTER'}</Button>
 			<p>Already registered? <a href="/login">Log into your account</a></p>
 		</div>
 	</form>

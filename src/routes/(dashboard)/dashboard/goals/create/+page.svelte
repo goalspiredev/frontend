@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Button from '$components/forms/Button.svelte';
 	import TagComponent from '$components/goals/TagComponent.svelte';
 	import { useGoalspire } from '$goalspire/useGoalspire';
@@ -7,11 +8,28 @@
 
 	let title: string;
 	let type: 'goal' | 'task' = 'goal';
-	let priority: 'urgent' | 'important' | 'medium' | 'small' = 'urgent';
+	let priority: 'urgent' | 'important' | 'medium' | 'small' = 'medium';
 	let tags: string[] = [];
 	let tag: string = '';
 	let date: Date;
 	let desc: string;
+
+	let loading = false;
+
+	let error: string = '';
+
+	function createGoalFunc() {
+		loading = true;
+		createGoal(title, type, priority, tags, date, desc)
+			.then(() => {
+				loading = false;
+				goto('/dashboard/goals');
+			})
+			.catch((err) => {
+				loading = false;
+				error = err;
+			});
+	}
 </script>
 
 <div class="wrap">
@@ -76,7 +94,13 @@
 				</div>
 				<div class="form">
 					<h1>DUE DATE:</h1>
-					<input type="datetime-local" name="" id="" bind:value={date} min="{new Date().toISOString()}" />
+					<input
+						type="datetime-local"
+						name=""
+						id=""
+						bind:value={date}
+						min={new Date().toISOString()}
+					/>
 				</div>
 				<div class="form">
 					<h1>CREATED AT:</h1>
@@ -91,27 +115,16 @@
 			placeholder="Start typing description..."
 			bind:value={desc}
 		/>
+		{#if error}
+			<p class="error">
+				{error}
+			</p>
+		{/if}
 		<div class="buts">
-			<Button
-				color="#2AA837"
-				on:submit={async () => {
-					await createGoal(
-						title,
-						type,
-						priority,
-						tags,
-						date,
-						desc,
-					).then(() => {
-						window.location.href = '/dashboard/goals';
-					});
-				}}
-			>
-				CREATE
-			</Button>
+			<Button color="#2AA837" on:submit={async () => createGoalFunc()}>{loading ? 'Loading...' : 'CREATE'}</Button>
 			<Button
 				on:submit={() => {
-					window.location.href = '/dashboard/goals';
+					goto('/dashboard/goals');
 				}}
 			>
 				CANCEL
@@ -121,6 +134,10 @@
 </div>
 
 <style lang="scss" scoped>
+	.error {
+		color: red;
+	}
+
 	.add-tag {
 		width: 5rem;
 	}
@@ -146,6 +163,11 @@
 		font-size: 2.5rem;
 		font-weight: bold;
 		outline: none;
+
+		&:focus {
+			outline: 2px solid var(--red);
+			border-radius: 16px;
+		}
 
 		&::placeholder {
 			color: #7a7a7a;
@@ -176,6 +198,13 @@
 		align-items: center;
 		gap: 1rem;
 
+		input {
+			&:focus {
+				outline: 2px solid var(--red);
+				border-radius: 16px;
+			}	
+		}
+
 		h1 {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 1.5rem;
@@ -184,6 +213,10 @@
 
 		button {
 			cursor: pointer;
+			&:focus {
+				outline: 2px solid var(--red);
+				border-radius: 16px;
+			}
 		}
 	}
 
@@ -196,6 +229,11 @@
 		border-radius: 10px;
 		resize: none;
 		padding: 0.5rem;
+
+		&:focus {
+			outline: 2px solid var(--red);
+			border-radius: 16px;
+		}
 
 		&::placeholder {
 			color: #7a7a7a;

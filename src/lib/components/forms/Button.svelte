@@ -33,6 +33,10 @@
 		font-size: 1.5rem;
 		font-weight: 600;
 
+		&:focus {
+			outline: 2px solid var(--color);
+		}
+
 		&:hover {
 			border: 2px solid var(--color);
 			background-color: transparent;

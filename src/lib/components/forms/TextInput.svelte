@@ -3,6 +3,7 @@
 
 	export let value = '';
 	export let name = '';
+	export let required = true;
 
 	export let showLabel = true;
 
@@ -33,6 +34,7 @@
 	<input
 		type="text"
 		{name}
+		required={required}
 		bind:value
 		on:focusin={focus}
 		on:focusout={leave}
@@ -72,6 +74,10 @@
 			padding: 20px 10px 0;
 			height: 100%;
 			font-family: Comfortaa, sans-serif;
+
+			&:focus {
+				outline: 2px solid #EB4F4F;
+			}
 		}
 	}
 </style>

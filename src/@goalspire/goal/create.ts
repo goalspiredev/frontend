@@ -15,6 +15,18 @@ export default async function createGoal(
 	let goalPriority =
 		priority === 'urgent' ? 0 : priority === 'important' ? 1 : priority === 'medium' ? 2 : 3;
 
+	if (!title) {
+		throw new Error('Title is required');
+	} else if (!type) {
+		throw new Error('Type is required');
+	} else if (!priority) {
+		throw new Error('Priority is required');
+	} else if (!date) {
+		throw new Error('Date is required');
+	} else if (!desc) {
+		throw new Error('Description is required');
+	}
+
 	// console.log(email, password, remember);
 	return await Axios.post(
 		API_URL + '/goals',

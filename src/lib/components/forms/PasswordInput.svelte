@@ -86,6 +86,10 @@
 			width: 100%;
 			padding: 20px 10px 0;
 			height: 100%;
+
+			&:focus {
+				outline: 2px solid var(--red);
+			}
 		}
 	}
 

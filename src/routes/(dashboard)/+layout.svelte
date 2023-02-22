@@ -5,12 +5,13 @@
 	import { onMount } from 'svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { useGoalspire } from '$goalspire/useGoalspire';
+	import { goto } from '$app/navigation';
 
 	const { isLoggedIn } = useGoalspire;
 
 	onMount(async () => {
 		if (!(await isLoggedIn())) {
-			window.location.href = '/login';
+			goto('/login');
 		}
 	});
 </script>

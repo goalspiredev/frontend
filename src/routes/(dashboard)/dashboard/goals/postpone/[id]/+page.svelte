@@ -4,6 +4,7 @@
 	import axios from 'axios';
 	import getGoal from '$goalspire/goal/get';
 	import { editGoalWhole } from '../../../../../../@goalspire/goal/edit';
+	import { goto } from '$app/navigation';
 
 	let id: string;
 
@@ -18,7 +19,7 @@
 			goal.endsAt = new Date(goal.endsAt);
 			goal.endsAt.setDate(goal.endsAt.getDate() + 1);
 			editGoalWhole(goal.id, goal).then(() => {
-				window.location.href = '/dashboard/goals';
+				goto('/dashboard/goals');
 			});
 		});
 	});
