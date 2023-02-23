@@ -2,6 +2,7 @@ import axios from 'axios';
 import {storedToken} from "../../stores/token.store";
 import jwtDecode from "jwt-decode";
 import {get} from "svelte/store";
+import type {JWTType} from "../types/JWTType";
 
 async function subscribe() {
 	let serviceWorkerDone = false;
@@ -37,7 +38,7 @@ async function subscribe() {
 	};
 
     const token = get(storedToken);
-    const decode: any = jwtDecode(token);
+    const decode: JWTType = jwtDecode(token);
     console.log(decode);
 
 	const body = {
@@ -60,18 +61,32 @@ async function subscribe() {
 }
 
 export class PushNotifications {
-	public static async request() {
+	public static async request(callback: (granted: boolean) => void) {
 		if (Notification.permission === 'granted') {
 			console.log('User has already granted permission');
+			callback(true);
+			return true;
 		} else if (Notification.permission !== 'denied') {
 			Notification.requestPermission().then((permission) => {
 				if (permission === 'granted') {
 					subscribe();
 					console.log('User has granted permission');
+					callback(true);
+					return true;
 				} else {
 					console.log('User has denied permission');
+					callback(false);
+					return false;
 				}
 			});
 		}
+	}
+
+	public static async hasGranted() {
+		// await until Notification is defined
+		while (typeof Notification === 'undefined') {
+			await new Promise((resolve) => setTimeout(resolve, 100));
+		}
+		return Notification.permission === 'granted';
 	}
 }

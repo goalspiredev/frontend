@@ -2,8 +2,9 @@
 	import { timeFormat } from '$utils/timeFormat.util';
 	import TagComponent from '$components/goals/TagComponent.svelte';
 	import { goto } from '$app/navigation';
+	import type {GoalType} from "$goalspire/types/GoalType";
 
-	export let goalContext: any = {};
+	export let goalContext: GoalType = {} as GoalType;
 
 	function onActionClick(context: string) {
 		if (context === 'done') {

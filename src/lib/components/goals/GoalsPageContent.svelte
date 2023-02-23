@@ -24,11 +24,12 @@
         onFiltersChanged(activeFilters, query);
     }
 
-    let onFiltersChanged: any;
+    // (tags: string[], query: string) => void
+    let onFiltersChanged: (tags: string[], query: string) => void = () => {
+    };
 
     onMount(async () => {
         let goals: GoalType[] = await getGoals();
-        console.log(goals);
         let tags: string[] = [];
 
         for (let goal of goals) {
