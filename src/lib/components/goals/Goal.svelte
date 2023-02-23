@@ -3,14 +3,28 @@
 	import TagComponent from '$components/goals/TagComponent.svelte';
 	import { goto } from '$app/navigation';
 	import type {GoalType} from "$goalspire/types/GoalType";
+	import getGoal from "../../../@goalspire/goal/get";
+	import {editGoalWhole} from "../../../@goalspire/goal/edit";
 
 	export let goalContext: GoalType = {} as GoalType;
 
 	function onActionClick(context: string) {
 		if (context === 'done') {
 			goto(`/dashboard/goals/done/${goalContext.id}`);
+			// getGoal(goalContext.id).then((goal) => {
+			// 	goal.isCompleted = true;
+			// 	editGoalWhole(goal.id, goal).then(() => {
+			// 	});
+			// });
 		} else if (context === 'postpone') {
 			goto(`/dashboard/goals/postpone/${goalContext.id}`);
+			/*getGoal(goalContext.id).then((goal) => {
+				//add a day
+				goal.endsAt = new Date(goal.endsAt);
+				goal.endsAt.setDate(goal.endsAt.getDate() + 1);
+				editGoalWhole(goal.id, goal).then(() => {
+				});
+			});*/
 		}
 	}
 </script>
