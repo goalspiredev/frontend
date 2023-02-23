@@ -1,0 +1,8 @@
+@import 'reset';
+@import 'breakpoints';
+@import 'colors';
+@import 'scrollbar';
+
+html {
+	scroll-behavior: smooth;
+}

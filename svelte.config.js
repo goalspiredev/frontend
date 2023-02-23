@@ -5,18 +5,28 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: [
+		preprocess({
+			scss: {
+				prependData: '@import "src/assets/style/_breakpoints.scss";'
+			}
+		})
+	],
 
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$components: './src/components/*',
+			$goalspire: './src/@goalspire/*',
+			$components: './src/lib/components/*',
 			$lib: './src/lib/*',
 			$routes: './src/routes/*',
-			$stores: './src/stores/*',
+			$store: './src/store/*',
 			$utils: './src/utils/*',
-			$icons: './src/icons/*',
-		},
+			$icons: './src/assets/icons/*',
+			$style: './src/assets/style/*',
+			$assets: './src/assets/*',
+			$stores: './src/stores/*'
+		}
 	}
 };
 
