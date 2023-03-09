@@ -1,6 +1,7 @@
 <script lang="ts">
     import {PushNotifications} from '$goalspire/notifications/PushNotifications.js';
     import {onMount} from "svelte";
+    import PieGraph from "../../../lib/components/graphs/Graph.svelte";
 
     let notificationGranted = false;
 
@@ -8,6 +9,8 @@
         notificationGranted = await PushNotifications.hasGranted();
     })
 </script>
+
+<PieGraph/>
 
 <button on:click={async () => {
     await PushNotifications.request((g) => {
