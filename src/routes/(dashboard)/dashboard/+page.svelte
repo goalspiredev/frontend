@@ -1,54 +1,111 @@
 <script lang="ts">
     import {PushNotifications} from '$goalspire/notifications/PushNotifications.js';
     import {onMount} from "svelte";
-    import PieGraph from "../../../lib/components/graphs/Graph.svelte";
+    import {get} from "svelte/store";
+    import {storedToken} from "../../../stores/token.store";
+    import type {JWTType} from "$goalspire/types/JWTType";
+    import jwtDecode from "jwt-decode";
+    import GoalsCreatedMonthly from "$components/graphs/goals-creation-month/GoalsCreatedMonthly.svelte";
+    import TaskGoalDistribution from "$components/graphs/task-goal-distribution/TaskGoalDistribution.svelte";
 
     let notificationGranted = false;
 
+    let username = '';
+    let timeOfDay = '';
+
     onMount(async () => {
         notificationGranted = await PushNotifications.hasGranted();
+        const token = get(storedToken);
+        const decode: JWTType = jwtDecode(token);
+        console.log(decode);
+        username = decode.name;
+
+        const hour = new Date().getHours();
+        if (hour < 12) {
+            timeOfDay = 'morning';
+        } else if (hour < 18) {
+            timeOfDay = 'afternoon';
+        } else {
+            timeOfDay = 'evening';
+        }
     })
 </script>
 
-<PieGraph/>
+<div class="content">
+    <h2> Good {timeOfDay}, {username} </h2>
 
-<button on:click={async () => {
+    <div class="cards">
+        <GoalsCreatedMonthly/>
+        <TaskGoalDistribution/>
+    </div>
+
+    <button on:click={async () => {
     await PushNotifications.request((g) => {
         notificationGranted = g;
     });
         }
     } style="display: {
 notificationGranted ? 'none':'flex'}">Request notification permission
-</button>
+    </button>
+</div>
+
 
 <style lang="scss">
-    button {
-        border: none;
-        border-radius: 10px;
-
+    .content {
+        width: 100%;
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         justify-content: center;
-        align-items: center;
-        margin: 10px;
-        width: auto;
-        height: 50px;
 
-        background-color: #eb4f4f;
-        color: white;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
 
-        padding: 10px;
+        .cards {
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-self: center;
+        }
 
-        font-size: 20px;
-        font-family: 'Montserrat', sans-serif;
+        h2 {
+            font-size: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin: 0;
+        }
 
-        cursor: pointer;
+        button {
+            border: none;
+            border-radius: 10px;
 
-        transition: 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            width: auto;
+            height: 50px;
 
-        &:hover {
             background-color: #eb4f4f;
             color: white;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+            padding: 10px;
+
+            font-size: 20px;
+            font-family: 'Montserrat', sans-serif;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            &:hover {
+                background-color: #eb4f4f;
+                color: white;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+            }
         }
     }
 </style>
