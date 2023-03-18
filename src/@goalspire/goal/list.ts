@@ -2,7 +2,7 @@ import { API_URL } from '$goalspire/global';
 import { storedToken } from '$stores/token.store';
 import Axios from 'axios';
 import { get } from 'svelte/store';
-import type {GoalType} from "../types/GoalType";
+import type { GoalType } from '../types/GoalType';
 
 export default async function getGoals(): Promise<any> {
 	let goals: GoalType[] = [];

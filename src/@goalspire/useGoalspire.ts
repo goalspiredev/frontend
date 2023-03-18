@@ -7,45 +7,10 @@ import getGoals from './goal/list';
 import getGoal from './goal/get';
 import { editGoal, editGoalWhole } from './goal/edit';
 import type { GoalType } from './types/GoalType';
+import changePassword from './auth/changePassword';
+import changeEmail from './auth/changeEmail';
 
-interface goalspire {
-	isLoggedIn(): Promise<boolean>;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	login(email: string, password: string, remember: boolean): Promise<any>;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	register(
-		username: string,
-		email: string,
-		password: string,
-		confirmPassword: string,
-		terms: boolean,
-		service: boolean
-	): Promise<any>;
-	verifyUser(code: string, email: string): Promise<boolean>;
-	createGoal(
-		title: string,
-		type: string,
-		priority: string,
-		tags: string[],
-		date: Date,
-		desc: string
-	): Promise<void>;
-	getGoals(): Promise<any>;
-	getGoal(id: string): Promise<any>;
-	editGoal(
-		id: string,
-		title: string,
-		type: string,
-		priority: string,
-		tags: string[],
-		date: Date | undefined,
-		oldDate: Date,
-		desc: string,
-		completed: boolean
-	): Promise<void>;
-}
-
-class goalspire implements goalspire {
+class goalspire {
 	async isLoggedIn() {
 		return await isloggedin();
 	}
@@ -104,6 +69,19 @@ class goalspire implements goalspire {
 
 	async editGoalWhole(id: string, goal: GoalType) {
 		return await editGoalWhole(id, goal);
+	}
+
+	async changePassword(oldPassword: string, newPassword: string, confirmNewPassword: string) {
+		return await changePassword(oldPassword, newPassword, confirmNewPassword);
+	}
+
+	async changeEmail(currentEmail: string, newEmail: string, password: string) {
+		return await changeEmail(currentEmail, newEmail, password);
+	}
+
+	async logout() {
+		localStorage.removeItem('token');
+		return true;
 	}
 
 	static instance: goalspire;

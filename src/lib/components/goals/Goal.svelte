@@ -2,9 +2,9 @@
 	import { timeFormat } from '$utils/timeFormat.util';
 	import TagComponent from '$components/goals/TagComponent.svelte';
 	import { goto } from '$app/navigation';
-	import type {GoalType} from "$goalspire/types/GoalType";
-	import getGoal from "../../../@goalspire/goal/get";
-	import {editGoalWhole} from "../../../@goalspire/goal/edit";
+	import type { GoalType } from '$goalspire/types/GoalType';
+	import getGoal from '../../../@goalspire/goal/get';
+	import { editGoalWhole } from '../../../@goalspire/goal/edit';
 
 	export let goalContext: GoalType = {} as GoalType;
 
@@ -50,30 +50,30 @@
 			</div>
 		{/if}
 	</div>
-		<div class="action">
-			<div class="actionButton">
-				<a href={`/dashboard/goals/edit/${goalContext.id}`}>
-					<button>
-						<i class="far fa-calendar-plus" />
-					</button>
-				</a>
-				<p>View</p>
-			</div>
-			{#if !goalContext.isCompleted}
-				<div class="actionButton">
-					<button on:click={() => onActionClick('postpone')}>
-						<i class="far fa-calendar-times" />
-					</button>
-					<p>Postpone</p>
-				</div>
-				<div class="actionButton">
-					<button on:click={() => onActionClick('done')}>
-						<i class="far fa-calendar-check" />
-					</button>
-					<p>Done</p>
-				</div>
-			{/if}
+	<div class="action">
+		<div class="actionButton">
+			<a href={`/dashboard/goals/edit/${goalContext.id}`}>
+				<button>
+					<i class="far fa-calendar-plus" />
+				</button>
+			</a>
+			<p>View</p>
 		</div>
+		{#if !goalContext.isCompleted}
+			<div class="actionButton">
+				<button on:click={() => onActionClick('postpone')}>
+					<i class="far fa-calendar-times" />
+				</button>
+				<p>Postpone</p>
+			</div>
+			<div class="actionButton">
+				<button on:click={() => onActionClick('done')}>
+					<i class="far fa-calendar-check" />
+				</button>
+				<p>Done</p>
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style lang="scss" scoped>

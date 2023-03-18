@@ -121,7 +121,9 @@
 			</p>
 		{/if}
 		<div class="buts">
-			<Button color="#2AA837" on:submit={async () => createGoalFunc()}>{loading ? 'Loading...' : 'CREATE'}</Button>
+			<Button color="#2AA837" on:submit={async () => createGoalFunc()}
+				>{loading ? 'Loading...' : 'CREATE'}</Button
+			>
 			<Button
 				on:submit={() => {
 					goto('/dashboard/goals');
@@ -202,7 +204,7 @@
 			&:focus {
 				outline: 2px solid var(--red);
 				border-radius: 16px;
-			}	
+			}
 		}
 
 		h1 {

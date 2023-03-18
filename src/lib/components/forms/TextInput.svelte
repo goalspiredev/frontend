@@ -34,7 +34,7 @@
 	<input
 		type="text"
 		{name}
-		required={required}
+		{required}
 		bind:value
 		on:focusin={focus}
 		on:focusout={leave}
@@ -76,7 +76,7 @@
 			font-family: Comfortaa, sans-serif;
 
 			&:focus {
-				outline: 2px solid #EB4F4F;
+				outline: 2px solid #eb4f4f;
 			}
 		}
 	}

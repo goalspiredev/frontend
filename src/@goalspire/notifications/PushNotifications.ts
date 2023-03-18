@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {storedToken} from "../../stores/token.store";
-import jwtDecode from "jwt-decode";
-import {get} from "svelte/store";
-import type {JWTType} from "../types/JWTType";
+import { storedToken } from '../../stores/token.store';
+import jwtDecode from 'jwt-decode';
+import { get } from 'svelte/store';
+import type { JWTType } from '../types/JWTType';
 
 async function subscribe() {
 	let serviceWorkerDone = false;
@@ -37,9 +37,9 @@ async function subscribe() {
 		});
 	};
 
-    const token = get(storedToken);
-    const decode: JWTType = jwtDecode(token);
-    console.log(decode);
+	const token = get(storedToken);
+	const decode: JWTType = jwtDecode(token);
+	console.log(decode);
 
 	const body = {
 		UserId: decode.id,

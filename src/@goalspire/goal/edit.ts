@@ -41,15 +41,11 @@ async function editGoal(
 		throw new Error('Description is required');
 	}
 
-	await Axios.put(
-		`${API_URL}/goals/${id}`,
-		data,
-		{
-			headers: {
-				Authorization: `Bearer ${get(storedToken)}`
-			}
+	await Axios.put(`${API_URL}/goals/${id}`, data, {
+		headers: {
+			Authorization: `Bearer ${get(storedToken)}`
 		}
-	).then((res) => {
+	}).then((res) => {
 		return res.data;
 	});
 }

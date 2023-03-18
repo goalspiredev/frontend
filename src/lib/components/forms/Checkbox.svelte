@@ -4,7 +4,7 @@
 </script>
 
 <label>
-	<input type="checkbox" {name} class="{value ? 'bg' : ''}" on:click={() => value = !value}/>
+	<input type="checkbox" {name} class={value ? 'bg' : ''} on:click={() => (value = !value)} />
 	<slot />
 </label>
 

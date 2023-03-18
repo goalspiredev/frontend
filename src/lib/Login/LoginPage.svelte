@@ -18,7 +18,7 @@
 
 	function loginFunc() {
 		loading = true;
-		
+
 		login(email, password, rememberMe)
 			.then(() => {
 				email = '';

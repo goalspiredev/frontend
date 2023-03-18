@@ -25,7 +25,7 @@
 
 		try {
 			carouselDiv.style.transform = `translateX(-${i * 100}%)`;
-		} catch { }
+		} catch {}
 
 		currentImage = i;
 	}
