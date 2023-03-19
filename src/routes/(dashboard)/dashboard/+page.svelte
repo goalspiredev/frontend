@@ -7,6 +7,8 @@
 	import jwtDecode from 'jwt-decode';
 	import GoalsCreatedMonthly from '$components/graphs/goals-creation-month/GoalsCreatedMonthly.svelte';
 	import TaskGoalDistribution from '$components/graphs/task-goal-distribution/TaskGoalDistribution.svelte';
+	import GoalsCreatedSoFar from "$components/graphs/created-so-far/GoalsCreatedSoFar.svelte";
+
 
 	let notificationGranted = false;
 
@@ -37,16 +39,17 @@
 	<div class="cards">
 		<GoalsCreatedMonthly />
 		<TaskGoalDistribution />
+		<GoalsCreatedSoFar />
 	</div>
 
 	<button
-		on:click={async () => {
+			on:click={async () => {
 			await PushNotifications.request((g) => {
 				notificationGranted = g;
 			});
 		}}
-		style="display: {notificationGranted ? 'none' : 'flex'}"
-		>Request notification permission
+			style="display: {notificationGranted ? 'none' : 'flex'}"
+	>Request notification permission
 	</button>
 </div>
 
@@ -66,9 +69,11 @@
 			width: 80%;
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
+			justify-content: center;
 			flex-wrap: wrap;
 			align-self: center;
+
+			gap: 20px;
 		}
 
 		h2 {
