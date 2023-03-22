@@ -9,7 +9,7 @@
 	import { useGoalspire } from '$goalspire/useGoalspire';
 	import { goto } from '$app/navigation';
 
-	const { changePassword, changeEmail, logout } = useGoalspire;
+	const { changePassword, logout } = useGoalspire;
 
 	const token = get(storedToken);
 	let decode: JWTType;
@@ -27,10 +27,6 @@
 	let newPassword: string = '';
 	let confirmPassword: string = '';
 
-	let currentEmail: string = '';
-	let newEmail: string = '';
-	let passwordEmail: string = '';
-
 	let error: string = '';
 	let success: string = '';
 
@@ -38,19 +34,7 @@
 		changePassword(currentPassword, newPassword, confirmPassword)
 			.then((res) => {
 				error = '';
-				success = res.success;
-			})
-			.catch((err) => {
-				error = err;
-				success = '';
-			});
-	}
-
-	async function changeE() {
-		changeEmail(currentEmail, newEmail, passwordEmail)
-			.then((res) => {
-				error = '';
-				success = res.success;
+				success = 'Password changed successfully';
 			})
 			.catch((err) => {
 				error = err;
@@ -94,16 +78,9 @@
 		{/if}
 		<div class="forms">
 			<div class="form">
-				<PasswordInput bind:value={currentPassword}>Your current password</PasswordInput>
 				<PasswordInput bind:value={newPassword}>New password</PasswordInput>
 				<PasswordInput bind:value={confirmPassword}>Confirm new password</PasswordInput>
 				<Button on:submit={() => changeP()}>CHANGE PASSWORD</Button>
-			</div>
-			<div class="form">
-				<TextInput bind:value={currentEmail}>Your current email</TextInput>
-				<TextInput bind:value={newEmail}>New email</TextInput>
-				<PasswordInput bind:value={passwordEmail}>Your password</PasswordInput>
-				<Button on:submit={() => changeE()}>CHANGE EMAIL</Button>
 			</div>
 		</div>
 		<Button on:submit={() => logout_()}>LOGOUT</Button>

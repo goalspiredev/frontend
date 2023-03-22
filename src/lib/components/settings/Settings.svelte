@@ -5,6 +5,9 @@
 	// Sry, ale jinak to nefungovalo xD
 	import { storedSettings } from '../../../stores/settings.store';
 	import { onMount } from 'svelte';
+	import { useGoalspire } from '$goalspire/useGoalspire';
+
+	const { getSettings } = useGoalspire;
 
 	let settings: SettingsType = {} as SettingsType;
 
@@ -13,8 +16,8 @@
 	}
 
 	function loadSettings() {
-		storedSettings.subscribe((value) => {
-			settings = value;
+		getSettings().then((res) => {
+			settings.snooze_time = res.data.defaultSnoozeDuration.ticks;
 		});
 	}
 

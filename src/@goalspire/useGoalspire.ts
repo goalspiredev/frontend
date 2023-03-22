@@ -8,7 +8,7 @@ import getGoal from './goal/get';
 import { editGoal, editGoalWhole } from './goal/edit';
 import type { GoalType } from './types/GoalType';
 import changePassword from './auth/changePassword';
-import changeEmail from './auth/changeEmail';
+import getSettings from './settings/getSettings';
 
 class goalspire {
 	async isLoggedIn() {
@@ -75,13 +75,13 @@ class goalspire {
 		return await changePassword(oldPassword, newPassword, confirmNewPassword);
 	}
 
-	async changeEmail(currentEmail: string, newEmail: string, password: string) {
-		return await changeEmail(currentEmail, newEmail, password);
-	}
-
 	async logout() {
 		localStorage.removeItem('token');
 		return true;
+	}
+
+	async getSettings() {
+		getSettings();
 	}
 
 	static instance: goalspire;
