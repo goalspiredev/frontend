@@ -35,7 +35,7 @@
                     breakpoint: 480,
                     options: {
                         chart: {
-                            width: 200
+                            width: 280
                         },
                         legend: {
                             position: 'bottom'
@@ -118,8 +118,10 @@
 
     @media (max-width: 480px) {
         div {
-            width: 200px;
+            width: 90%;
             height: 350px;
+
+            align-self: center;
         }
     }
 </style>

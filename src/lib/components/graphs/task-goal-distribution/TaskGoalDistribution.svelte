@@ -71,4 +71,10 @@
 		border-radius: 10px;
 		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 	}
+
+	@media (max-width: 500px) {
+		.card {
+			min-width: 300px;
+		}
+	}
 </style>
