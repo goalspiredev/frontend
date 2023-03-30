@@ -9,6 +9,7 @@ import { editGoal, editGoalWhole } from './goal/edit';
 import type { GoalType } from './types/GoalType';
 import changePassword from './auth/changePassword';
 import getSettings from './settings/getSettings';
+import saveSettings from './settings/saveSettings';
 
 class goalspire {
 	async isLoggedIn() {
@@ -67,21 +68,29 @@ class goalspire {
 		return await editGoal(id, title, type, priority, tags, date, oldDate, desc, completed);
 	}
 
-	async editGoalWhole(id: string, goal: GoalType) {
+	async editGoalWhole(id: string, goal: GoalType): Promise<void> {
 		return await editGoalWhole(id, goal);
 	}
 
-	async changePassword(oldPassword: string, newPassword: string, confirmNewPassword: string) {
+	async changePassword(
+		oldPassword: string,
+		newPassword: string,
+		confirmNewPassword: string
+	): Promise<any> {
 		return await changePassword(oldPassword, newPassword, confirmNewPassword);
 	}
 
-	async logout() {
+	async logout(): Promise<boolean> {
 		localStorage.removeItem('token');
 		return true;
 	}
 
-	async getSettings() {
-		getSettings();
+	async getSettings(): Promise<any> {
+		return await getSettings();
+	}
+
+	async saveSettings(seconds: number): Promise<any> {
+		return await saveSettings(seconds);
 	}
 
 	static instance: goalspire;

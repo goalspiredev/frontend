@@ -14,27 +14,28 @@
 		if (showLabel) {
 			labelText.style.top = '0px';
 			labelText.style.color = '#EB4F4F';
-			labelText.style.fontSize = '0.9rem';
+			labelText.style.fontSize = '0.6rem';
 		}
 	}
 
 	function leave() {
 		if (value.length == 0) {
-			labelText.style.top = '25%';
+			labelText.style.top = '20%';
 			labelText.style.color = '#000000';
-			labelText.style.fontSize = '1rem';
+			labelText.style.fontSize = '0.8rem';
 		}
 	}
 </script>
 
 <div class="textInput">
-	<label bind:this={labelText}>
+	<label bind:this={labelText} for={name}>
 		<slot />
 	</label>
 	<input
 		type="text"
 		{name}
 		{required}
+		id={name}
 		bind:value
 		on:focusin={focus}
 		on:focusout={leave}
@@ -60,12 +61,12 @@
 
 		label {
 			position: absolute;
-			top: 25%;
+			top: 20%;
 			padding-left: 10px;
 
 			transition: all 0.2s ease-in-out;
 
-			font-size: 1rem;
+			font-size: 0.8rem;
 			font-family: Comfortaa, sans-serif;
 		}
 

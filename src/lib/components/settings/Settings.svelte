@@ -2,23 +2,34 @@
 	import TextInput from '$components/forms/TextInput.svelte';
 	import Button from '$components/forms/Button.svelte';
 	import type { SettingsType } from '$goalspire/types/SettingsType';
-	// Sry, ale jinak to nefungovalo xD
-	import { storedSettings } from '../../../stores/settings.store';
 	import { onMount } from 'svelte';
 	import { useGoalspire } from '$goalspire/useGoalspire';
 
-	const { getSettings } = useGoalspire;
+	const { getSettings, saveSettings } = useGoalspire;
 
 	let settings: SettingsType = {} as SettingsType;
 
-	function saveSettings() {
-		storedSettings.set(settings);
+	async function loadSettings() {
+		await getSettings().then((res) => {
+			settings.snooze_time = res.defaultSnoozeDuration;
+		});
 	}
 
-	function loadSettings() {
-		getSettings().then((res) => {
-			settings.snooze_time = res.data.defaultSnoozeDuration.ticks;
-		});
+	let error: string = '';
+	let success: string = '';
+
+	async function ssaveSettings() {
+		let split: string[] = settings.snooze_time.split(':');
+		let time: number = Number(split[0]) * 3600 + Number(split[1]) * 60 + Number(split[2]);
+		await saveSettings(time)
+			.then(() => {
+				error = '';
+				success = 'Settings saved!';
+			})
+			.catch((err) => {
+				success = '';
+				error = err;
+			});
 	}
 
 	onMount(() => {
@@ -32,14 +43,34 @@
 	</div>
 	<div class="settings">
 		<div class="snooze_time">
-			<h2>Snooze time</h2>
-			<TextInput name="email" bind:value={settings.snooze_time} showLabel={false} />
+			<label for="snooze_time">
+				<h2>Snooze time</h2>
+			</label>
+			<input name="snooze_time" type="time" bind:value={settings.snooze_time} />
 		</div>
-		<Button on:submit={() => saveSettings()} showSlot={false}>Save</Button>
+		<Button on:submit={() => ssaveSettings()}>Save</Button>
+		{#if error}
+			<p class="error">
+				{error}
+			</p>
+		{/if}
+		{#if success}
+			<p class="success">
+				{success}
+			</p>
+		{/if}
 	</div>
 </div>
 
 <style lang="scss">
+	.error {
+		color: red;
+	}
+
+	.success {
+		color: green;
+	}
+
 	h1,
 	h2,
 	h3,

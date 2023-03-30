@@ -5,11 +5,10 @@
 	import { storedToken } from '../../../stores/token.store';
 	import type { JWTType } from '$goalspire/types/JWTType';
 	import jwtDecode from 'jwt-decode';
-	import GoalsCreatedMonthly from '$components/graphs/goals-creation-month/GoalsCreatedMonthly.svelte';
-	import TaskGoalDistribution from '$components/graphs/task-goal-distribution/TaskGoalDistribution.svelte';
-	import GoalsCreatedSoFar from "$components/graphs/created-so-far/GoalsCreatedSoFar.svelte";
-	import TasksToday from "$components/tasksToday/TasksToday.svelte";
-
+	// import GoalsCreatedMonthly from '$components/graphs/goals-creation-month/GoalsCreatedMonthly.svelte';
+	// import TaskGoalDistribution from '$components/graphs/task-goal-distribution/TaskGoalDistribution.svelte';
+	// import GoalsCreatedSoFar from '$components/graphs/created-so-far/GoalsCreatedSoFar.svelte';
+	// import TasksToday from '$components/tasksToday/TasksToday.svelte';
 
 	let notificationGranted = false;
 
@@ -36,21 +35,21 @@
 <div class="content">
 	<h2>Good {timeOfDay}, {username}</h2>
 
-	<div class="cards">
+	<!-- <div class="cards">
 		<GoalsCreatedMonthly />
 		<TaskGoalDistribution />
 		<GoalsCreatedSoFar />
 		<TasksToday />
-	</div>
+	</div> -->
 
 	<button
-			on:click={async () => {
+		on:click={async () => {
 			await PushNotifications.request((g) => {
 				notificationGranted = g;
 			});
 		}}
-			style="display: {notificationGranted ? 'none' : 'flex'}"
-	>Request notification permission
+		style="display: {notificationGranted ? 'none' : 'flex'}"
+		>Request notification permission
 	</button>
 </div>
 
