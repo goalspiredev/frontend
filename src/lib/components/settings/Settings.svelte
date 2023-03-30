@@ -11,7 +11,7 @@
 
 	async function loadSettings() {
 		await getSettings().then((res) => {
-			settings.snooze_time = res.defaultSnoozeDuration;
+			settings.defaultSnoozeDuration = res.defaultSnoozeDuration;
 		});
 	}
 
@@ -19,7 +19,7 @@
 	let success: string = '';
 
 	async function ssaveSettings() {
-		let split: string[] = settings.snooze_time.split(':');
+		let split: string[] = settings.defaultSnoozeDuration.split(':');
 		let time: number = Number(split[0]) * 3600 + Number(split[1]) * 60 + Number(split[2]);
 		await saveSettings(time)
 			.then(() => {
@@ -46,7 +46,7 @@
 			<label for="snooze_time">
 				<h2>Snooze time</h2>
 			</label>
-			<input name="snooze_time" type="time" bind:value={settings.snooze_time} />
+			<input name="snooze_time" type="time" bind:value={settings.defaultSnoozeDuration} />
 		</div>
 		<Button on:submit={() => ssaveSettings()}>Save</Button>
 		{#if error}

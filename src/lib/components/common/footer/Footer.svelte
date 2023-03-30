@@ -28,26 +28,26 @@
 		<LinksWithTitle
 			title="About"
 			links={[
-				{ href: 'https://google.com', text: 'Team' },
-				{ href: 'https://google.com', text: 'Story' },
-				{ href: 'https://google.com', text: 'Vision' }
+				{ href: '', text: 'Team' },
+				{ href: '', text: 'Story' },
+				{ href: '', text: 'Vision' }
 			]}
 			align={minimized ? 'center' : 'flex-start'}
 		/>
 		<LinksWithTitle
 			title="Legal"
 			links={[
-				{ href: 'https://google.com', text: 'ToS' },
-				{ href: 'https://google.com', text: 'EULA' },
-				{ href: 'https://google.com', text: 'Privacy Policy' }
+				{ href: '/ToS_Goalspire.pdf', text: 'ToS' },
+				{ href: '/EULA_Goalspire.pdf', text: 'EULA' },
+				{ href: '/Privacy_Policy_Goalspire.pdf', text: 'Privacy Policy' }
 			]}
 			align={minimized ? 'center' : 'flex-start'}
 		/>
 		<LinksWithTitle
 			title="Help"
 			links={[
-				{ href: 'https://google.com', text: 'Support' },
-				{ href: 'https://google.com', text: 'Get started' }
+				{ href: '', text: 'Support' },
+				{ href: '', text: 'Get started' }
 			]}
 			align={minimized ? 'center' : 'flex-start'}
 		/>

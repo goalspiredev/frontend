@@ -11,7 +11,7 @@
 	<h2>{title}</h2>
 	<div class="links" style="align-items: {align}">
 		{#each links as link}
-			<a href={link.href}>{link.text}</a>
+			<a href={link.href} target="_blank">{link.text}</a>
 		{/each}
 	</div>
 </section>
