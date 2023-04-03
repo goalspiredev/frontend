@@ -98,9 +98,6 @@
 			<a href="/dashboard/settings">
 				<h2 class="link {currentPath.split('/')[2] === 'settings' ? 'bold' : ''}">SETTINGS</h2>
 			</a>
-			<a href="/dashboard/support">
-				<h2 class="link {currentPath.split('/')[2] === 'support' ? 'bold' : ''}">SUPPORT</h2>
-			</a>
 		</div>
 	</div>
 </div>
