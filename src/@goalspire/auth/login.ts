@@ -32,8 +32,6 @@ export default async function login(email: string, password: string, remember: b
 			storedToken.set(res.data.token);
 		})
 		.catch((err) => {
-			if (err.response.status === 403)
-				throw new Error('Email or password is incorrect or the account does not exist');
-			throw new Error('Something went wrong');
+			throw new Error(err.response.data.error);
 		});
 }

@@ -21,6 +21,8 @@
 			desc = goal.content;
 			createdAt = new Date(goal.createdAt);
 			completed = goal.isCompleted;
+
+			console.log(goal);
 		});
 	});
 
@@ -111,10 +113,9 @@
 						}}
 					/>
 					{#each tags as tag}
-						<div class="tag">
-							<button on:click={() => (tags = tags.slice(tags.indexOf(tag), 1))}> x</button>
-							<TagComponent name={tag} />
-						</div>
+						<TagComponent name={tag} />
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<p style="cursor: pointer;" on:click={() => tags = tags.filter((t) => t !== tag)}>X</p>
 					{/each}
 				</div>
 				<div class="form">

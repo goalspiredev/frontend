@@ -83,6 +83,7 @@
 						bind:value={tag}
 						on:keydown={(e) => {
 							if (e.key == 'Enter') {
+								if (tag == '') return;
 								tags = [...tags, tag];
 								tag = '';
 							}
@@ -90,6 +91,8 @@
 					/>
 					{#each tags as tag}
 						<TagComponent name={tag} />
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<p style="cursor: pointer;" on:click={() => tags = tags.filter((t) => t !== tag)}>X</p>
 					{/each}
 				</div>
 				<div class="form">

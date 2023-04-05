@@ -52,5 +52,7 @@ export default async function register(
 		username: username,
 		email: email,
 		password: password
+	}).catch((err) => {
+		throw new Error(err.response.data.error);
 	});
 }

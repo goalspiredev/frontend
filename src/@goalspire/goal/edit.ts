@@ -25,7 +25,7 @@ async function editGoal(
 		content: desc,
 		priority: goalPriority,
 		tags: tags,
-		completed: Boolean(completed),
+		isCompleted: completed,
 		endsAt: date ? new Date(date).toISOString() : new Date(oldDate).toISOString()
 	};
 
@@ -63,7 +63,7 @@ async function editGoalWhole(id: string, goal: GoalType): Promise<void> {
 		priority: goal.priority,
 		tags: goal.tags,
 		endsAt: new Date(goal.endsAt).toISOString(),
-		isCompleted: Boolean(goal.isCompleted)
+		isCompleted: goal.isCompleted
 	};
 
 	console.log(data);
