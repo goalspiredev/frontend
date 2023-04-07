@@ -3,6 +3,7 @@ import { storedToken } from '../../stores/token.store';
 import jwtDecode from 'jwt-decode';
 import { get } from 'svelte/store';
 import type { JWTType } from '../types/JWTType';
+import {NOTIFICATION_APP_KEY} from "../global";
 
 async function subscribe() {
 	let serviceWorkerDone = false;
@@ -24,7 +25,7 @@ async function subscribe() {
 	const subscription = await registration?.pushManager.subscribe({
 		userVisibleOnly: true,
 		applicationServerKey:
-			'BDG_rvKYJZ82GR6I3fmy3_0ypb0d5zJsqcQ1dysJvvX4uSIem4ij6L55naVcjn9N7Aj8cx_XwzItafrsO7Bvovg'
+            NOTIFICATION_APP_KEY
 	});
 
 	const obj = JSON.parse(JSON.stringify(subscription));
@@ -39,7 +40,6 @@ async function subscribe() {
 
 	const token = get(storedToken);
 	const decode: JWTType = jwtDecode(token);
-	console.log(decode);
 
 	const body = {
 		UserId: decode.id,
@@ -48,7 +48,6 @@ async function subscribe() {
 		Auth: obj.keys.auth,
 		p256dh: obj.keys.p256dh
 	};
-	console.log(body);
 
 	axios
 		.post('https://api.goalspire.net/v1/notificationstest/register', body)

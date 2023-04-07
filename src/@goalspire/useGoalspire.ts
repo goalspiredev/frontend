@@ -10,6 +10,7 @@ import type { GoalType } from './types/GoalType';
 import changePassword from './auth/changePassword';
 import getSettings from './settings/getSettings';
 import saveSettings from './settings/saveSettings';
+import type {SettingsType} from "./types/SettingsType";
 
 class goalspire {
 	async isLoggedIn() {
@@ -46,11 +47,11 @@ class goalspire {
 		return await createGoal(title, type, priority, tags, date, desc);
 	}
 
-	async getGoals(): Promise<any> {
+	async getGoals(): Promise<GoalType[]> {
 		return await getGoals();
 	}
 
-	async getGoal(id: string): Promise<any> {
+	async getGoal(id: string): Promise<GoalType> {
 		return await getGoal(id);
 	}
 
@@ -76,7 +77,7 @@ class goalspire {
 		oldPassword: string,
 		newPassword: string,
 		confirmNewPassword: string
-	): Promise<any> {
+	): Promise<void> {
 		return await changePassword(oldPassword, newPassword, confirmNewPassword);
 	}
 
@@ -85,11 +86,11 @@ class goalspire {
 		return true;
 	}
 
-	async getSettings(): Promise<any> {
+	async getSettings(): Promise<SettingsType> {
 		return await getSettings();
 	}
 
-	async saveSettings(seconds: number): Promise<any> {
+	async saveSettings(seconds: number): Promise<void> {
 		return await saveSettings(seconds);
 	}
 
