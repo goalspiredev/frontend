@@ -13,7 +13,7 @@
 
     onMount(() => {
         import('svelte-apexcharts').then(({chart}) => {
-			chartCtx = chart;
+            chartCtx = chart;
             moduleLoaded = true;
         });
     });
@@ -35,7 +35,8 @@
                     breakpoint: 480,
                     options: {
                         chart: {
-                            width: 280
+                            width: 280,
+                            height: 280
                         },
                         legend: {
                             position: 'bottom'
@@ -72,7 +73,8 @@
                     breakpoint: 480,
                     options: {
                         chart: {
-                            width: 200
+                            width: 250,
+                            height: 250,
                         },
                         legend: {
                             position: 'bottom'
@@ -85,23 +87,33 @@
 </script>
 
 {#if moduleLoaded}
-    {#if data.size > 1}
-        <div use:chartCtx={options}/>
-    {:else}
-        <div class="no-data">
-            <p>Not enough data :(</p>
-        </div>
-    {/if}
+    <div class="chartWrapper">
+        {#if data.size > 1}
+            <div use:chartCtx={options}/>
+        {:else}
+            <div class="no-data">
+                <p>Not enough data :(</p>
+            </div>
+        {/if}
+    </div>
 {:else}
-	<div class="no-data">
-		<p>Loading...</p>
-	</div>
+    <div class="no-data">
+        <p>Loading...</p>
+    </div>
 {/if}
 
 <style lang="scss">
     div {
         width: 100%;
         height: 100%;
+    }
+
+    .chartWrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .no-data {

@@ -11,20 +11,8 @@
 	function onActionClick(context: string) {
 		if (context === 'done') {
 			goto(`/dashboard/goals/done/${goalContext.id}`);
-			// getGoal(goalContext.id).then((goal) => {
-			// 	goal.isCompleted = true;
-			// 	editGoalWhole(goal.id, goal).then(() => {
-			// 	});
-			// });
 		} else if (context === 'postpone') {
 			goto(`/dashboard/goals/postpone/${goalContext.id}`);
-			/*getGoal(goalContext.id).then((goal) => {
-				//add a day
-				goal.endsAt = new Date(goal.endsAt);
-				goal.endsAt.setDate(goal.endsAt.getDate() + 1);
-				editGoalWhole(goal.id, goal).then(() => {
-				});
-			});*/
 		}
 	}
 </script>
@@ -84,11 +72,13 @@
 
 	.wrapper {
 		width: 80%;
-		min-height: 120px;
+		//min-height: 120px;
+		height: auto;
 		padding: 5px;
 		border-radius: 10px;
 		background-color: #ffffff;
 		border: solid 1px #e0e0e0;
+
 
 		display: flex;
 		flex-direction: column;
@@ -98,7 +88,7 @@
 			flex-direction: row;
 			justify-content: space-between;
 			width: 80%;
-			min-height: 80px;
+			min-height: 120px;
 		}
 
 		.info {
@@ -124,10 +114,17 @@
 
 				align-self: center;
 
+				overflow: scroll;
+
 				display: flex;
+				//wrap
+				flex-wrap: wrap;
 				flex-direction: row;
 				gap: 10px;
 				justify-content: flex-start;
+				//if wrapped, justify to center
+				align-items: center;
+
 
 				padding-right: 10px;
 			}
@@ -172,9 +169,12 @@
 			flex-direction: row;
 			gap: 10px;
 
+			padding-top: 20px;
+
 			@include br-md {
 				gap: 30px;
 			}
+
 			padding-right: 10px;
 
 			justify-content: center;
